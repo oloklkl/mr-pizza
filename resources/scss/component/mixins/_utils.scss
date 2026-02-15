@@ -1,0 +1,107 @@
+@mixin focus($offset: -0.4rem, $color: $primary-60, $alpha: 0.8) {
+  outline-offset: $offset;
+  $transparent: 1 - $alpha;
+  $focus-color: $primary-60;
+  outline: 2px solid $focus-color;
+}
+
+@mixin flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flexitems {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-layout($d: flex, $ai: flex-start, $jc: flex-start, $fd: row) {
+  display: $d;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-direction: $fd;
+}
+
+@mixin card($bg-color, $border-color) {
+  height: 300px;
+  border: 1px solid $border-color;
+  background-color: $bg-color;
+}
+
+@mixin posX {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin posY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin posXY {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin ani-s {
+  transform: translateY(60px);
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+@mixin ani-e {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@mixin ell {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+@mixin position($p: absolute, $t: null, $b: null, $l: null, $r: null) {
+  position: $p;
+  top: $t;
+  bottom: $b;
+  left: $l;
+  right: $r;
+}
+
+@mixin sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Glow presets
+@mixin glow($r, $g, $b, $a1: 0.55, $a2: 0.35, $blur1: 10px, $blur2: 26px) {
+  box-shadow:
+    0 0 $blur1 rgba($r, $g, $b, $a1),
+    0 0 $blur2 rgba($r, $g, $b, $a2);
+}
+
+@mixin textGlow($r, $g, $b, $a1: 0.75, $a2: 0.45, $blur1: 8px, $blur2: 22px) {
+  text-shadow:
+    0 0 $blur1 rgba($r, $g, $b, $a1),
+    0 0 $blur2 rgba($r, $g, $b, $a2);
+}

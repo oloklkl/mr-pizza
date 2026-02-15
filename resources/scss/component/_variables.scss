@@ -1,0 +1,96 @@
+// 변수 설정
+
+$white: #fff;
+$black: #111;
+$dark: #0f0f10;
+
+// Brand Colors
+
+// Primary (Neon Red Scale)
+$primary-5: #fff5f7;
+$primary-10: #ffe6ec;
+$primary-20: #ffb3c2;
+$primary-30: #ff8099;
+$primary-40: #ff4d70;
+$primary-50: #ff1a47;
+$primary-60: #ff0033; // base
+$primary-70: #cc0029; // hover
+$primary-80: #99001f; // pressed
+$primary-90: #660014;
+$primary-100: #33000a;
+
+// Secondary (Electric Cyan)
+$secondary: #00f0ff;
+$secondary-hover: #00c8d6;
+$secondary-soft: #e6fdff;
+
+// Accent (Neon Yellow)
+$accent: #ffe600;
+$accent-hover: #ffcc00;
+$accent-soft: #fffbe6;
+
+// Neon gradients
+$grad-primary: linear-gradient(90deg, $primary-60 0%, #ff1744 55%, #ff3ec9 100%);
+$grad-cyber: linear-gradient(135deg, rgba(255, 0, 51, 0.35), rgba(0, 240, 255, 0.18));
+$grad-dark: linear-gradient(180deg, #0b0b0c 0%, $dark 45%, #0a0a0a 100%);
+
+// Background / Surface
+$bg-base: #fbfaf8; // 전체 페이지 배경 (웜톤)
+$bg-section: #f5f4f2; // 섹션 구분 배경
+$surface: #ffffff; // 카드, 모달
+
+// Grayscale
+$gray-0: #ffffff; // 카드, 기본 배경
+$gray-5: #fafaf9; // 아주 연한 배경
+$gray-10: #f5f4f2; // 섹션 배경
+$gray-20: #e8e6e2; // 디바이더, 연한 보더
+$gray-40: #b9b3aa; // 보더, 비활성
+$gray-60: #6e6a64; // 텍스트 기본
+$gray-70: #4d4a45; // body text, detail
+$gray-80: #2a2825; // 제목, 강조 텍스트
+$gray-90: #141312; // strong title
+$gray-100: #000000; // 블랙
+
+//font weight
+$font-light: 300 !default;
+$font-normal: 400 !default;
+$font-regular: 450 !default;
+$font-medium: 500 !default;
+$font-semibold: 600 !default;
+$font-bold: 700 !default;
+$font-bolder: 800 !default;
+// font Family
+$font-base:
+  "Pretendard Variable",
+  Pretendard,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  "Apple SD Gothic Neo",
+  "Noto Sans KR",
+  sans-serif;
+
+$font-heading: "Montserrat", $font-base; // 제목/헤드라인
+$font-display: "Playfair Display", serif; // 프리미엄/감성 배너
+// font-style
+$font-size-root: 62.5% !default; //10px 1rem으로 설정
+$font-size-base: 1.7rem !default;
+$font-color-base: $gray-0 !default;
+$font-weight-base: $font-normal !default;
+
+//line height style
+$line-height-none: 1 !default;
+$line-height-base: 1.5 !default;
+
+// grid & padding
+$grid: 1820px !default;
+
+$p-desktop: 60px !default; // 1400px 이상
+$p-laptop: 40px !default; // 1000px ~ 1399px
+$p-tablet: 30px !default; // 600px ~ 999px
+$p-mobile: 20px !default; // ~599px
+
+//breakpoints
+$breakpoint-sm: 768px !default; // 태블릿 시작점
+$breakpoint-lg: 1400px !default; // 데스크탑 안정 구간
+$breakpoint-xl: 1920px !default; // 와이드 화면

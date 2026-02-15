@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MR-PIZZA</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="페이지 제목" />
+    <meta property="og:description" content="페이지 설명" />
+    <meta property="og:image" content="http://www.mysite.com/article/article1_featured_image.jpg" />
+    <meta property="og:url" content="http://www.mysite.com/article/article1.html" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="페이지 제목" />
+    <meta name="twitter:description" content="페이지 설명" />
+    <meta name="twitter:image" content="http://www.mysite.com/article/article1.html" />
+    <meta name="twitter:domain" content="사이트 명" />
+
+    <link rel="shortcut icon" href="http://www.mysite.com/favicon.ico" />
+    <!-- Google Fonts: Montserrat / Playfair Display -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" />
+
+    <!-- Pretendard (Variable) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="../resources/css/pattern_css.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script defer src="../resources/js/include.js"></script>
+    <script defer src="../resources/js/ui-pattern.js"></script>
+    <script defer src="../resources/js/ui-swiper.js"></script>
+    <script type="module" src="/resources/js/showcase-controller.js"></script>
+  </head>
+  <body>
+    <div id="skip-nav">
+      <a href="#gnb">메뉴 바로가기</a>
+      <a href="#container">본문 바로가기</a>
+    </div>
+    <div id="wrap">
+      <header id="header" include-html="./layout/header.html"></header>
+
+      <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <div class="mobile-menu__content">
+          <button class="mobile-menu__close" type="button" aria-label="Close menu">
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav class="mobile-menu__nav">
+            <ul>
+              <li><a href="#">MENU</a></li>
+              <li><a href="#">DROP</a></li>
+              <li><a href="#">STORE</a></li>
+              <li><a href="#">ABOUT</a></li>
+            </ul>
+          </nav>
+
+          <div class="mobile-menu__utils" aria-label="Account and search">
+            <button type="button" class="mobile-menu__util" aria-label="Search">
+              <i data-lucide="search" class="icon"></i>
+              <span>SEARCH</span>
+            </button>
+
+            <a href="#" class="mobile-menu__util" aria-label="Login">
+              <i data-lucide="user-round" class="icon"></i>
+              <span>LOGIN</span>
+            </a>
+          </div>
+
+          <div class="mobile-menu__footer">
+            <p class="mobile-tagline">MR.PIZZA</p>
+            <p class="mobile-year">EST. 1990 · REIMAGINED 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <main id="container">
+        <section class="hero" id="hero" aria-label="Hero Showcase">
+          <div class="hero__bg" aria-hidden="true">
+            <div class="hero__imgWrap hero__imgWrap--current">
+              <img class="hero__img hero__img--current" src="/resources/images/component/menu/1.png" alt="pizza-img" decoding="async" />
+            </div>
+            <div class="hero__imgWrap hero__imgWrap--next">
+              <img class="hero__img hero__img--next" src="/resources/images/component/menu/2.png" alt="pizza-img" decoding="async" />
+            </div>
+          </div>
+
+          <h2 class="hero__headline" aria-label="tags">
+            <span class="hero__tags" data-hero="tags"></span>
+          </h2>
+
+          <div class="inner hero__inner hero__content">
+            <div class="hero__info">
+              <p class="hero__kicker" data-hero="category"></p>
+              <h3 class="hero__title" data-hero="title"></h3>
+              <p class="hero__price" data-hero="price"></p>
+            </div>
+            <div class="hero__copy">
+              <p class="hero__pick" data-hero="pick"></p>
+              <p class="hero__desc" data-hero="desc"></p>
+            </div>
+
+            <div class="hero__cta">
+              <button class="btn btn-primary">
+                <i data-lucide="truck" class="icon"></i>
+                <span>배달 주문</span>
+              </button>
+
+              <button class="btn btn-outline">
+                <i data-lucide="shopping-bag" class="icon"></i>
+                <span>포장 주문</span>
+              </button>
+            </div>
+
+            <div class="hero__progress" aria-label="Slide progress">
+              <div class="hero__progress-bar">
+                <span class="hero__progress-fill"></span>
+              </div>
+              <div class="hero__progress-count">
+                <span class="hero__current">01</span>
+                <span class="hero__total">05</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="footer" include-html="./layout/footer.html"></footer>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

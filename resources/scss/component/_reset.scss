@@ -1,0 +1,263 @@
+/* 기본 폰트 설정 */
+html {
+  font-size: $font-size-root; // 62.5% = 10px = 1rem
+}
+body {
+  overflow-x: hidden;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  font-family: $font-base;
+  color: $font-color-base;
+  font-weight: $font-weight-base;
+  background: $bg-base;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $secondary;
+    outline-offset: 2px;
+    border-radius: 0.2rem;
+  }
+}
+
+/* reset */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+textarea,
+p,
+blockquote,
+th,
+td,
+input,
+select,
+button,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+fieldset,
+img {
+  border: 0 none;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+dl,
+ul,
+ol,
+menu,
+li {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote {
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+q {
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+input,
+select,
+textarea {
+  font-size: 100%;
+  vertical-align: middle;
+  font-family: inherit;
+  color: inherit;
+}
+
+button {
+  font-size: 100%;
+  vertical-align: middle;
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+/* 뷰표트 변환시 폰트크기 자동확대 방지 */
+input {
+  &[type="text"],
+  &[type="password"],
+  &[type="submit"],
+  &[type="search"] {
+    appearance: none;
+    border-radius: 0;
+  }
+
+  &:checked[type="checkbox"] {
+    accent-color: $primary-60;
+  }
+}
+
+button {
+  appearance: button;
+  border-radius: 0;
+}
+
+input {
+  &[type="button"],
+  &[type="submit"],
+  &[type="reset"],
+  &[type="file"] {
+    appearance: button;
+    border-radius: 0;
+  }
+
+  accent-color: $primary-60;
+
+  &[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
+  }
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+hr {
+  display: none;
+}
+
+input[type="password"] {
+  font-family: $font-base;
+}
+
+/* 이미지 스프라이트 */
+.img-g {
+  display: inline-block;
+  overflow: hidden;
+  // background: url(../../images/comm/img-comm.png) no-repeat;
+  vertical-align: top;
+}
+
+.ir-pm {
+  display: block;
+  overflow: hidden;
+  font-size: 0px;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+/* 사용된 이미지내 의미있는 텍스트의 대체텍스트를 제공할때 */
+.ir-wa {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+}
+
+/* 중요한 이미지 대체텍스트로 이미지off시에도 대체 텍스트를 보여주고자 할때 */
+.blind,
+caption,
+legend {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+/* 대체텍스트가 아닌 접근성을 위한 숨김텍스트를 제공할때 */
+.f_l {
+  float: left;
+}
+
+.f_r {
+  float: right;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.tbl {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 테이블 초기화 */
+.clearfix {
+  display: block;
+  overflow: visible;
+  width: auto;
+  clear: both;
+  zoom: 1;
+
+  &:after {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    content: "";
+  }
+}

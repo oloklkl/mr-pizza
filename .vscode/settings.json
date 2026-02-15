@@ -1,0 +1,11 @@
+{
+  "prettier.printWidth": 600,
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "~/../css/output"
+    }
+  ],
+  "liveServer.settings.port": 5502
+}
