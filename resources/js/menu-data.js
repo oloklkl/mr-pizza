@@ -13,11 +13,11 @@ export const MENU_ITEMS = [
     id: 2,
     img: "/resources/images/component/menu/2.png",
     category: "프리미엄 피자",
-    title: "쉬림프골드",
+    title: "미스터트리오",
     price: "L 39,500 · M 32,500",
-    pick: "탱글한 쉬림프의 정석",
-    desc: "버터 갈릭의 고소함과 풍성한 치즈가 어우러진 깊이 있는 프리미엄 씨푸드.",
-    tags: ["BEST", "SEAFOOD", "BUTTER GARLIC"],
+    pick: "세 가지 시그니처의 완성형 조합",
+    desc: "풍성한 토핑과 깊은 풍미가 어우러진 트리플 레이어. 고기, 치즈, 소스의 밸런스를 한 번에 즐기는 프리미엄 블렌드.",
+    tags: ["TRIO", "PREMIUM", "BALANCED"],
   },
   {
     id: 3,
@@ -58,6 +58,33 @@ export const MENU_ITEMS = [
     desc: "두툼한 감자와 달콤한 크림소스, 그리고 베이컨의 황금 밸런스. 클래식을 넘어선 ‘레전드’ 조합.",
     tags: ["POTATO", "CLASSIC HERO", "BEST SELLER"],
   },
+  {
+    id: 7,
+    img: "/resources/images/component/menu/2.png",
+    category: "클래식 피자",
+    title: "더블치즈",
+    price: "L 28,900 · M 21,900",
+    pick: "치즈의 본질에 집중하다",
+    desc: "두 배로 녹아내리는 치즈의 풍미. 불필요한 장식 없이 깊고 진한 고소함을 그대로 담은 클래식의 정석.",
+    tags: ["CHEESE", "CLASSIC", "RICH"],
+  },
+  {
+    id: 8,
+    img: "/resources/images/component/menu/2.png",
+    category: "프리미엄 피자",
+    title: "쉬림프골드",
+    price: "L 39,500 · M 32,500",
+    pick: "탱글한 쉬림프의 정석",
+    desc: "버터 갈릭의 고소함과 풍성한 치즈가 어우러진 깊이 있는 프리미엄 씨푸드.",
+    tags: ["BEST", "SEAFOOD", "BUTTER GARLIC"],
+  },
 ];
 
-export const HERO_ITEMS = MENU_ITEMS.filter((item) => [1, 2, 3, 4, 5].includes(item.id));
+const HERO_IDS = new Set([1, 2, 3, 4, 5]);
+
+const getHeroImgById = (id) => (HERO_IDS.has(id) ? `/resources/images/component/main/${id}.png` : null);
+
+export const HERO_ITEMS = MENU_ITEMS.filter((item) => HERO_IDS.has(item.id)).map((item) => ({
+  ...item,
+  heroImg: getHeroImgById(item.id) ?? item.img,
+}));

@@ -2,27 +2,33 @@ import { HERO_ITEMS } from "./menu-data.js";
 
 (() => {
   const showcaseData = HERO_ITEMS;
-  if (!showcaseData || showcaseData.length === 0) return;
+  if (!showcaseData?.length) return;
 
   const $hero = document.querySelector("#hero");
   if (!$hero) return;
 
+  // imgs
   const $curImg = $hero.querySelector(".hero__img--current");
   const $nextImg = $hero.querySelector(".hero__img--next");
 
+  // wraps (회전/opacity 담당)
   const $curWrap = $hero.querySelector(".hero__imgWrap--current");
   const $nextWrap = $hero.querySelector(".hero__imgWrap--next");
 
+  // movers (이동 변수 담당 ⭐⭐⭐ 중요)
+  const $curMover = $curWrap.querySelector(".hero__mover");
+  const $nextMover = $nextWrap.querySelector(".hero__mover");
+
+  // text
   const $category = $hero.querySelector("[data-hero='category']");
   const $title = $hero.querySelector("[data-hero='title']");
   const $price = $hero.querySelector("[data-hero='price']");
   const $desc = $hero.querySelector("[data-hero='desc']");
   const $tags = $hero.querySelector("[data-hero='tags']");
   const $pick = $hero.querySelector("[data-hero='pick']");
-
   const $ctaBtns = Array.from($hero.querySelectorAll(".hero__cta .btn"));
 
-  // ✅ progress
+  // progress
   const $progressFill = $hero.querySelector(".hero__progress-fill");
   const $current = $hero.querySelector(".hero__current");
   const $total = $hero.querySelector(".hero__total");
@@ -32,32 +38,27 @@ import { HERO_ITEMS } from "./menu-data.js";
   let timer = null;
   const autoDelay = 4500;
 
-  const safeText = (el, value) => {
+  const getHeroSrc = (item) => item?.heroImg ?? item?.img ?? "";
+  const textEls = [$tags, $category, $title, $price, $pick, $desc].filter(Boolean);
+
+  function setMoveVars($mover, vars) {
+    gsap.set($mover, vars);
+  }
+
+  function resetState($wrap, $mover) {
+    gsap.set($wrap, { opacity: 1, rotateY: 0, rotateZ: 0, scale: 1 });
+    gsap.set($mover, {
+      "--sx": "0px",
+      "--sy": "0px",
+      "--px": "0px",
+      "--py": "0px",
+      "--fy": "0px",
+    });
+  }
+
+  function safeText(el, value) {
     if (!el) return;
     el.textContent = value ?? "";
-  };
-
-  function animateProgress(index) {
-    if (!$progressFill || !$current || !$total) return;
-
-    const total = showcaseData.length;
-
-    // 숫자 세팅
-    $current.textContent = String(index + 1).padStart(2, "0");
-    $total.textContent = String(total).padStart(2, "0");
-
-    // 기존 애니메이션 죽이기
-    gsap.killTweensOf($progressFill);
-
-    // width 초기화
-    gsap.set($progressFill, { width: "0%" });
-
-    // 4.5초 동안 채워짐
-    gsap.to($progressFill, {
-      width: "100%",
-      duration: 4.5,
-      ease: "none",
-    });
   }
 
   function updateText(item) {
@@ -74,151 +75,145 @@ import { HERO_ITEMS } from "./menu-data.js";
     if ($pick) $pick.style.display = item.pick ? "block" : "none";
   }
 
-  function setMotionVars(el, vars) {
-    if (!el) return;
-    gsap.set(el, vars);
-  }
+  function animateProgress(index) {
+    if (!$progressFill) return;
 
-  // 🔥 오프닝
-  function introAnim() {
-    const textEls = [$tags, $category, $title, $price, $pick, $desc].filter(Boolean);
+    const total = showcaseData.length;
+    $current.textContent = String(index + 1).padStart(2, "0");
+    $total.textContent = String(total).padStart(2, "0");
 
-    gsap.set(textEls, { opacity: 0, y: 16 });
-    gsap.set($ctaBtns, { opacity: 0, y: 18 });
-
-    gsap.set($curWrap, { rotateZ: -6, rotateY: -10, scale: 0.92 });
-    setMotionVars($curImg, { "--sx": "380px", "--sy": "40px" });
-
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-    tl.to($curWrap, { rotateZ: 0, rotateY: 0, scale: 1, duration: 0.9 }, 0);
-    tl.to($curImg, { "--sx": "0px", "--sy": "0px", duration: 0.9 }, 0);
-
-    tl.to(textEls, { opacity: 1, y: 0, duration: 0.35, stagger: 0.05 }, 0.3);
-    tl.to($ctaBtns, { opacity: 1, y: 0, duration: 0.3 }, 0.6);
-  }
-
-  // 🔥 전환
-  function transitionTo(nextIndex, dir = 1) {
-    if (isAnimating) return;
-    if (!$curImg || !$nextImg || !$curWrap || !$nextWrap) return;
-
-    isAnimating = true;
-
-    const nextItem = showcaseData[nextIndex];
-    const textEls = [$tags, $category, $title, $price, $pick, $desc].filter(Boolean);
-
-    $nextImg.src = nextItem.img;
-    $nextImg.style.visibility = "visible";
-
-    gsap.set($nextWrap, { opacity: 1, rotateY: dir * 15, scale: 0.96 });
-    setMotionVars($nextImg, { opacity: 0, "--sx": `${dir * 140}px` });
-
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.out" },
-      onComplete: () => {
-        $curImg.src = nextItem.img;
-        updateText(nextItem);
-        animateProgress(nextIndex);
-
-        currentIndex = nextIndex;
-
-        gsap.set($curWrap, { rotateY: 0, scale: 1 });
-        setMotionVars($curImg, { opacity: 1, "--sx": "0px" });
-
-        gsap.set($nextWrap, { opacity: 0, rotateY: 0, scale: 1 });
-        setMotionVars($nextImg, { opacity: 0, "--sx": "0px" });
-        $nextImg.style.visibility = "hidden";
-
-        isAnimating = false;
-      },
+    gsap.killTweensOf($progressFill);
+    gsap.set($progressFill, { width: "0%" });
+    gsap.to($progressFill, {
+      width: "100%",
+      duration: autoDelay / 1000,
+      ease: "none",
     });
-
-    // brightness flash
-    tl.to($hero, { filter: "brightness(0.92)", duration: 0.15 }, 0);
-    tl.to($hero, { filter: "brightness(1)", duration: 0.4 }, 0.25);
-
-    // 텍스트 OUT
-    tl.to(textEls, { opacity: 0, y: 12, duration: 0.2 }, 0);
-
-    // current OUT
-    tl.to($curWrap, { rotateY: -dir * 20, scale: 0.9, duration: 0.5 }, 0);
-    tl.to($curImg, { opacity: 0, "--sx": `${-dir * 100}px`, duration: 0.5 }, 0);
-
-    // next IN
-    tl.to($nextWrap, { rotateY: 0, scale: 1, duration: 0.7 }, 0.08);
-    tl.to($nextImg, { opacity: 1, "--sx": "0px", duration: 0.7 }, 0.08);
-
-    // 텍스트 IN
-    tl.to(textEls, { opacity: 1, y: 0, duration: 0.3 }, 0.35);
   }
 
-  const goNext = () => transitionTo((currentIndex + 1) % showcaseData.length, 1);
+  function textIn() {
+    gsap.fromTo(textEls, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: "power3.out" });
 
-  const startAuto = () => {
-    stopAuto();
-    timer = setInterval(goNext, autoDelay);
-  };
+    gsap.fromTo($ctaBtns, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", delay: 0.1 });
+  }
 
-  const stopAuto = () => {
-    if (timer) clearInterval(timer);
-    timer = null;
-  };
+  function textOut() {
+    gsap.to([...textEls, ...$ctaBtns], {
+      opacity: 0,
+      y: 10,
+      duration: 0.2,
+      ease: "power2.in",
+    });
+  }
 
-  function init() {
-    updateText(showcaseData[0]);
+  // ⭐ 첫 로딩: 오른쪽 밖 → 슝
+  function intro() {
+    const first = showcaseData[0];
+
+    updateText(first);
     animateProgress(0);
 
-    $curImg.src = showcaseData[0].img;
-    $nextImg.src = showcaseData[1]?.img ?? showcaseData[0].img;
+    $curImg.src = getHeroSrc(first);
+    $nextImg.src = getHeroSrc(showcaseData[1] ?? first);
+
+    gsap.set($nextWrap, { opacity: 0 });
     $nextImg.style.visibility = "hidden";
 
-    setMotionVars($curImg, {
-      opacity: 1,
-      "--sx": "0px",
-      "--sy": "0px",
-      "--px": "0px",
-      "--py": "0px",
-      "--fy": "0px",
-    });
+    resetState($curWrap, $curMover);
+
+    gsap.set($curWrap, { rotateY: 10, scale: 0.96 });
+    setMoveVars($curMover, { "--sx": "900px" });
+
+    const tl = gsap.timeline();
+
+    tl.to($curMover, { "--sx": "0px", duration: 0.85, ease: "power3.out" }, 0);
+    tl.to($curWrap, { rotateY: 0, scale: 1, duration: 0.85, ease: "power3.out" }, 0);
+    tl.add(() => textIn(), 0.2);
 
     // floating
-    gsap.to($curImg, {
+    gsap.to($curMover, {
       "--fy": "10px",
       duration: 2.6,
       yoyo: true,
       repeat: -1,
       ease: "sine.inOut",
+      delay: 1,
+    });
+  }
+
+  // ⭐ 전환: 왼쪽으로 빠짐 + 오른쪽에서 등장
+  function transitionTo(nextIndex) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const nextItem = showcaseData[nextIndex];
+
+    $nextImg.src = getHeroSrc(nextItem);
+    $nextImg.style.visibility = "visible";
+
+    resetState($nextWrap, $nextMover);
+
+    gsap.set($nextWrap, { rotateY: -8, scale: 0.96, opacity: 1 });
+    setMoveVars($nextMover, { "--sx": "900px" });
+
+    gsap.killTweensOf($curMover);
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        $curImg.src = getHeroSrc(nextItem);
+
+        updateText(nextItem);
+        animateProgress(nextIndex);
+
+        currentIndex = nextIndex;
+
+        resetState($curWrap, $curMover);
+        gsap.set($nextWrap, { opacity: 0 });
+        $nextImg.style.visibility = "hidden";
+
+        // floating 재시작
+        gsap.to($curMover, {
+          "--fy": "10px",
+          duration: 2.6,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut",
+          delay: 0.3,
+        });
+
+        isAnimating = false;
+      },
     });
 
-    // parallax
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (canHover) {
-      $hero.addEventListener("mousemove", (e) => {
-        if (isAnimating) return;
-        const r = $hero.getBoundingClientRect();
-        const nx = (e.clientX - r.left) / r.width - 0.5;
-        const ny = (e.clientY - r.top) / r.height - 0.5;
+    textOut();
 
-        gsap.to($curImg, {
-          "--px": `${nx * 18}px`,
-          "--py": `${ny * 14}px`,
-          duration: 0.35,
-          ease: "power2.out",
-        });
-      });
+    tl.to($curMover, { "--sx": "-500px", duration: 0.6, ease: "power3.inOut" }, 0);
+    tl.to($curWrap, { opacity: 0, scale: 0.9, rotateY: 6, duration: 0.6 }, 0);
 
-      $hero.addEventListener("mouseleave", () => {
-        gsap.to($curImg, {
-          "--px": "0px",
-          "--py": "0px",
-          duration: 0.4,
-          ease: "power2.out",
-        });
-      });
-    }
+    tl.to($nextMover, { "--sx": "0px", duration: 0.8, ease: "power3.out" }, 0.1);
+    tl.to($nextWrap, { rotateY: 0, scale: 1, duration: 0.8 }, 0.1);
 
-    introAnim();
+    tl.add(() => textIn(), 0.3);
+  }
+
+  const goNext = () => transitionTo((currentIndex + 1) % showcaseData.length);
+
+  function startAuto() {
+    stopAuto();
+    timer = setInterval(goNext, autoDelay);
+  }
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+  }
+
+  function init() {
+    resetState($curWrap, $curMover);
+    resetState($nextWrap, $nextMover);
+    gsap.set($nextWrap, { opacity: 0 });
+    $nextImg.style.visibility = "hidden";
+
+    intro();
     startAuto();
   }
 
