@@ -29,6 +29,13 @@ $accent: #ffe600;
 $accent-hover: #ffcc00;
 $accent-soft: #fffbe6;
 
+// ===== Usage Tokens =====
+$color-brand: $primary-60;
+$color-action: $primary-50;
+$color-support: $secondary;
+$color-highlight: $accent;
+$color-danger: $primary-80;
+
 // Neon gradients
 $grad-primary: linear-gradient(90deg, $primary-60 0%, #ff1744 55%, #ff3ec9 100%);
 $grad-cyber: linear-gradient(135deg, rgba(255, 0, 51, 0.35), rgba(0, 240, 255, 0.18));

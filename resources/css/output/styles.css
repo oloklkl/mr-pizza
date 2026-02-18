@@ -997,7 +997,7 @@ button {
 }
 #header .header__side--left .hamburger.active span {
   background: #fff;
-  box-shadow: 0 0 8px rgba(255, 0, 51, 0.6);
+  box-shadow: 0 0 6px rgba(255, 0, 51, 0.6);
 }
 #header .header__side--left .hamburger.active span:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
@@ -1118,7 +1118,8 @@ button {
 #header .header__side--right .header__utils .icon {
   width: 20px;
   height: 20px;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
+  stroke: rgba(255, 255, 255, 0.7);
 }
 @media (max-width: 767px) {
   #header .header__side--right .header__utils .icon {
@@ -1127,9 +1128,12 @@ button {
   }
 }
 #header .header__side--right .header__utils .icon:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.1);
+  stroke: #fff;
+  filter: drop-shadow(0 0 4px #ff1a47) drop-shadow(0 0 12px rgba(255, 26, 71, 0.6));
+}
+#header .header__side--right .header__utils .icon:active {
   stroke: #ff0033;
-  filter: drop-shadow(0 0 6px rgba(255, 0, 51, 0.5));
 }
 @media (max-width: 767px) {
   #header .header__side--right .header__utils .search,

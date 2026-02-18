@@ -59,13 +59,13 @@
       &.active {
         span {
           background: $white;
-          box-shadow: 0 0 8px rgba(255, 0, 51, 0.6);
+          box-shadow: 0 0 6px rgba($color-brand, 0.6);
         }
 
         span:nth-child(1) {
           transform: translateY(9px) rotate(45deg);
-          background: $primary-60;
-          box-shadow: 0 0 6px rgba(255, 0, 51, 0.6);
+          background: $color-brand;
+          box-shadow: 0 0 6px rgba($color-brand, 0.6);
         }
 
         span:nth-child(2) {
@@ -74,8 +74,8 @@
 
         span:nth-child(3) {
           transform: translateY(-9px) rotate(-45deg);
-          background: $primary-60;
-          box-shadow: 0 0 6px rgba(255, 0, 51, 0.6);
+          background: $color-brand;
+          box-shadow: 0 0 6px rgba($color-brand, 0.6);
         }
       }
     }
@@ -188,7 +188,8 @@
       .icon {
         width: 20px;
         height: 20px;
-        transition: transform 0.2s ease;
+        transition: all 0.3s ease;
+        stroke: rgba(255, 255, 255, 0.7);
 
         @include mobile {
           width: 22px;
@@ -196,9 +197,13 @@
         }
 
         &:hover {
-          transform: translateY(-2px);
-          stroke: $primary-60;
-          filter: drop-shadow(0 0 6px rgba(255, 0, 51, 0.5));
+          transform: translateY(-2px) scale(1.1);
+          stroke: $white;
+          filter: drop-shadow(0 0 4px $color-action) drop-shadow(0 0 12px rgba($color-action, 0.6));
+        }
+
+        &:active {
+          stroke: $color-brand;
         }
       }
 

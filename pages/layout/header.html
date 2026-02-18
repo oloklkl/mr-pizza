@@ -9,25 +9,25 @@
 
   <div class="header__main">
     <div class="header__left">
-      <nav class="gnb gnb--left" aria-label="Primary">
+      <nav class="gnb gnb--left" aria-label="Primary Left">
         <ul>
-          <li><a href="#">MENU</a></li>
-          <li><a href="#">DROP</a></li>
+          <li><a href="/pages/menu.html">MENU</a></li>
+          <li><a href="/pages/drop.html">DROP</a></li>
         </ul>
       </nav>
     </div>
 
     <h1 class="logo">
-      <a href="#">
+      <a href="/pages/index.html">
         <img src="/resources/images/pattern/common/logo.svg" alt="Mr.Pizza" />
       </a>
     </h1>
 
     <div class="header__right">
-      <nav class="gnb gnb--right" aria-label="Primary">
+      <nav class="gnb gnb--right" aria-label="Primary Right">
         <ul>
-          <li><a href="#">STORE</a></li>
-          <li><a href="#">ABOUT</a></li>
+          <li><a href="/pages/store.html">STORE</a></li>
+          <li><a href="/pages/about.html">ABOUT</a></li>
         </ul>
       </nav>
     </div>
@@ -36,8 +36,12 @@
   <div class="header__side header__side--right">
     <div class="header__utils" aria-label="Utilities">
       <button type="button" aria-label="Search"><i data-lucide="search" class="icon search"></i></button>
-      <button type="button" aria-label="Cart"><i data-lucide="shopping-cart" class="icon"></i></button>
-      <button type="button" aria-label="Account"><i data-lucide="user-round" class="icon user"></i></button>
+      <a href="/pages/cart/cart.html" class="icon-btn" aria-label="Cart">
+        <i data-lucide="shopping-cart" class="icon"></i>
+      </a>
+      <a href="/pages/auth/login.html" class="icon-btn" aria-label="Account">
+        <i data-lucide="user-round" class="icon user"></i>
+      </a>
     </div>
   </div>
 </div>
