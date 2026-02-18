@@ -245,6 +245,113 @@
 }
 // 모바일 메뉴 끝
 
+// 🌫️ 미세먼지(톤다운) - LEFT
+$dust-left:
+  radial-gradient(0.4px 0.4px at 3% 28%, rgba(200, 180, 210, 0.35), transparent), radial-gradient(0.5px 0.5px at 6% 32%, rgba(190, 170, 200, 0.3), transparent), radial-gradient(0.4px 0.4px at 4% 35%, rgba(205, 185, 215, 0.28), transparent), radial-gradient(0.6px 0.6px at 7% 30%, rgba(185, 165, 195, 0.35), transparent), radial-gradient(0.4px 0.4px at 5% 26%, rgba(210, 190, 220, 0.3), transparent), radial-gradient(0.5px 0.5px at 8% 38%, rgba(195, 175, 205, 0.32), transparent), radial-gradient(0.4px 0.4px at 2% 33%, rgba(200, 180, 210, 0.28), transparent),
+  radial-gradient(0.6px 0.6px at 6% 40%, rgba(185, 165, 195, 0.32), transparent), radial-gradient(0.3px 0.3px at 4% 30%, rgba(205, 185, 215, 0.25), transparent), radial-gradient(0.5px 0.5px at 7% 36%, rgba(195, 175, 205, 0.28), transparent), radial-gradient(0.4px 0.4px at 3% 42%, rgba(200, 180, 210, 0.26), transparent), radial-gradient(0.3px 0.3px at 9% 29%, rgba(185, 165, 195, 0.22), transparent), radial-gradient(0.5px 0.5px at 5% 37%, rgba(210, 190, 220, 0.28), transparent), radial-gradient(0.4px 0.4px at 8% 27%, rgba(195, 175, 205, 0.26), transparent);
+
+// 🌫️ 미세먼지(톤다운) - MID (텍스트 영역 피해서)
+$dust-mid:
+  radial-gradient(0.4px 0.4px at 47% 24%, rgba(195, 175, 205, 0.3), transparent), radial-gradient(0.5px 0.5px at 51% 26%, rgba(200, 180, 210, 0.32), transparent), radial-gradient(0.4px 0.4px at 49% 28%, rgba(185, 165, 195, 0.28), transparent), radial-gradient(0.6px 0.6px at 55% 25%, rgba(205, 185, 215, 0.32), transparent), radial-gradient(0.4px 0.4px at 53% 30%, rgba(195, 175, 205, 0.3), transparent), radial-gradient(0.5px 0.5px at 58% 22%, rgba(210, 190, 220, 0.32), transparent), radial-gradient(0.4px 0.4px at 61% 26%, rgba(185, 165, 195, 0.28), transparent),
+  radial-gradient(0.6px 0.6px at 48% 20%, rgba(200, 180, 210, 0.32), transparent), radial-gradient(0.3px 0.3px at 50% 29%, rgba(195, 175, 205, 0.25), transparent), radial-gradient(0.5px 0.5px at 56% 23%, rgba(205, 185, 215, 0.28), transparent), radial-gradient(0.4px 0.4px at 52% 27%, rgba(185, 165, 195, 0.26), transparent), radial-gradient(0.3px 0.3px at 59% 24%, rgba(200, 180, 210, 0.22), transparent), radial-gradient(0.5px 0.5px at 60% 29%, rgba(200, 180, 210, 0.3), transparent);
+
+// 🌫️ 미세먼지(톤다운) - RIGHT
+$dust-right:
+  radial-gradient(0.4px 0.4px at 78% 84%, rgba(180, 160, 190, 0.3), transparent), radial-gradient(0.5px 0.5px at 82% 87%, rgba(170, 150, 180, 0.32), transparent), radial-gradient(0.4px 0.4px at 85% 85%, rgba(185, 165, 195, 0.28), transparent), radial-gradient(0.6px 0.6px at 80% 88%, rgba(175, 155, 185, 0.32), transparent), radial-gradient(0.4px 0.4px at 84% 89%, rgba(180, 160, 190, 0.3), transparent), radial-gradient(0.5px 0.5px at 87% 82%, rgba(170, 150, 180, 0.32), transparent), radial-gradient(0.3px 0.3px at 79% 86%, rgba(185, 165, 195, 0.25), transparent),
+  radial-gradient(0.5px 0.5px at 83% 85%, rgba(175, 155, 185, 0.28), transparent), radial-gradient(0.4px 0.4px at 86% 88%, rgba(180, 160, 190, 0.28), transparent), radial-gradient(0.3px 0.3px at 81% 83%, rgba(170, 150, 180, 0.22), transparent);
+
+// 🎨 우주 네온 팔레트(자주 쓰는 값)
+$star-red-strong: rgba(255, 70, 110, 0.95);
+$star-red: rgba(255, 70, 110, 0.9);
+$star-red-soft: rgba(255, 70, 110, 0.7);
+
+$star-blue: rgba(70, 170, 255, 0.85);
+$star-blue-soft: rgba(70, 170, 255, 0.65);
+
+// ⭐ 큰 별(네온) - LEFT
+$stars-left:
+  radial-gradient(2px 2px at 3% 28%, $star-red-soft, transparent),
+  radial-gradient(1.5px 1.5px at 6% 32%, $star-red-strong, transparent),
+  radial-gradient(1.2px 1.2px at 4% 35%, $star-red-soft, transparent),
+  radial-gradient(2.2px 2.2px at 5% 26%, $star-red, transparent),
+  radial-gradient(1.5px 1.5px at 8% 38%, $star-blue-soft, transparent),
+  radial-gradient(1.8px 1.8px at 2% 33%, $star-red-soft, transparent),
+  // 노란 영역 보강
+  radial-gradient(1.6px 1.6px at 8% 58%, $star-red, transparent),
+  radial-gradient(1.2px 1.2px at 14% 62%, $star-blue-soft, transparent),
+  radial-gradient(2px 2px at 18% 70%, $star-red-strong, transparent),
+  radial-gradient(1.4px 1.4px at 22% 66%, $star-red-soft, transparent),
+  radial-gradient(1.8px 1.8px at 12% 76%, $star-red, transparent),
+  // 텍스트 근처
+  radial-gradient(1px 1px at 22% 65%, $star-blue-soft, transparent),
+  radial-gradient(1px 1px at 25% 72%, $star-red-soft, transparent),
+  radial-gradient(1.2px 1.2px at 28% 42%, $star-blue-soft, transparent),
+  radial-gradient(1.4px 1.4px at 26% 50%, $star-red-soft, transparent);
+
+// ⭐ 큰 별(네온) - MID
+$stars-mid-top:
+  radial-gradient(1.8px 1.8px at 45% 18%, $star-red-soft, transparent),
+  radial-gradient(1.5px 1.5px at 50% 20%, $star-red-soft, transparent),
+  radial-gradient(2px 2px at 54% 19%, $star-red, transparent),
+  radial-gradient(1.2px 1.2px at 48% 21%, $star-blue-soft, transparent),
+  radial-gradient(1.8px 1.8px at 60% 18%, $star-red, transparent),
+  radial-gradient(1.5px 1.5px at 42% 23%, $star-red-soft, transparent),
+  radial-gradient(2px 2px at 46% 22%, $star-blue-soft, transparent),
+  radial-gradient(1.8px 1.8px at 52% 22%, $star-red, transparent),
+  radial-gradient(1.2px 1.2px at 56% 23%, $star-blue-soft, transparent),
+  radial-gradient(1.5px 1.5px at 58% 24%, $star-red-soft, transparent),
+  radial-gradient(2.2px 2.2px at 62% 23%, $star-red, transparent),
+  radial-gradient(0.8px 0.8px at 60% 55%, $star-red-soft, transparent),
+  radial-gradient(1px 1px at 63% 58%, $star-blue-soft, transparent),
+  radial-gradient(0.8px 0.8px at 58% 62%, $star-red-soft, transparent),
+  // 버튼 아래
+  radial-gradient(1.6px 1.6px at 44% 78%, $star-red, transparent),
+  radial-gradient(2px 2px at 52% 82%, $star-red-strong, transparent),
+  radial-gradient(1.4px 1.4px at 58% 76%, $star-red-soft, transparent),
+  radial-gradient(1.2px 1.2px at 48% 74%, $star-blue-soft, transparent);
+
+$stars-mid-gap:
+  radial-gradient(2px 2px at 2.5% 42%, $star-red-strong, transparent),
+  radial-gradient(1.6px 1.6px at 2% 46%, $star-red, transparent),
+  radial-gradient(1.4px 1.4px at 3.5% 48%, $star-blue-soft, transparent),
+  radial-gradient(1.8px 1.8px at 1.8% 52%, $star-red, transparent),
+  radial-gradient(1.3px 1.3px at 4% 54%, $star-red-soft, transparent),
+  radial-gradient(1.2px 1.2px at 2% 36%, $star-red-soft, transparent),
+  radial-gradient(1px 1px at 3.5% 34%, $star-blue-soft, transparent),
+  radial-gradient(2px 2px at 7% 62%, $star-red, transparent),
+  radial-gradient(1.6px 1.6px at 11% 63%, $star-blue-soft, transparent),
+  radial-gradient(1.4px 1.4px at 10% 67%, $star-red-soft, transparent),
+  radial-gradient(1.2px 1.2px at 12% 68%, $star-blue-soft, transparent),
+  // 성운도 같이 이동
+  radial-gradient(16px 24px at 3% 48%, rgba(255, 70, 110, 0.07), transparent 65%),
+  radial-gradient(2.2px 2.2px at 46% 56%, $star-red, transparent),
+  radial-gradient(1.8px 1.8px at 50% 54%, $star-red, transparent),
+  radial-gradient(1.6px 1.6px at 44% 58%, $star-red-soft, transparent),
+  radial-gradient(2.4px 2.4px at 40% 66%, $star-red-strong, transparent),
+  radial-gradient(1.8px 1.8px at 38% 60%, $star-red, transparent),
+  radial-gradient(1.6px 1.6px at 42% 72%, $star-red-soft, transparent),
+  radial-gradient(1.2px 1.2px at 45% 64%, $star-blue-soft, transparent),
+  radial-gradient(1.1px 1.1px at 47% 68%, $star-red-soft, transparent),
+  radial-gradient(1.3px 1.3px at 43% 70%, $star-red-soft, transparent),
+  radial-gradient(12px 12px at 44% 63%, rgba(255, 70, 110, 0.08), transparent 60%),
+  radial-gradient(16px 16px at 41% 68%, rgba(255, 70, 110, 0.06), transparent 60%);
+
+// ⭐ 큰 별(네온) - RIGHT
+$stars-right:
+  radial-gradient(1.8px 1.8px at 78% 84%, $star-red, transparent),
+  radial-gradient(2.2px 2.2px at 82% 87%, $star-red-strong, transparent),
+  radial-gradient(1.5px 1.5px at 85% 85%, $star-red-soft, transparent),
+  radial-gradient(1.8px 1.8px at 88% 83%, $star-red, transparent),
+  radial-gradient(1.2px 1.2px at 80% 88%, $star-red-soft, transparent),
+  radial-gradient(2.2px 2.2px at 84% 89%, $star-red-strong, transparent),
+  radial-gradient(1.5px 1.5px at 87% 82%, $star-blue-soft, transparent),
+  radial-gradient(1.8px 1.8px at 81% 85%, $star-red, transparent),
+  // 하단 보강
+  radial-gradient(1.8px 1.8px at 78% 86%, $star-blue, transparent),
+  radial-gradient(2.2px 2.2px at 86% 90%, $star-red-strong, transparent),
+  radial-gradient(1.4px 1.4px at 92% 82%, $star-red-soft, transparent),
+  radial-gradient(1.2px 1.2px at 84% 78%, $star-blue-soft, transparent);
+
 // hero-section
 .hero {
   position: relative;
@@ -261,21 +368,65 @@
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    background:
+  // 🔻 전체 톤을 조금 더 어둡게(붉은기 눌림)
+      radial-gradient(ellipse at 70% 50%, rgba(35, 8, 16, 0.22) 0%, transparent 42%),
+      radial-gradient(ellipse at 55% 25%, rgba(40, 10, 18, 0.26) 0%, transparent 48%),
+      radial-gradient(ellipse at 85% 80%, rgba(30, 8, 14, 0.3) 0%, transparent 52%),
+      // 🔥 왼쪽 “붉은 성운” 대신 “쿨톤 딥” 살짝
+      radial-gradient(ellipse at 18% 55%, rgba(10, 18, 35, 0.28) 0%, transparent 58%);
 
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: $dust-left, $dust-mid, $dust-right;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      filter: blur(0.1px);
+      mix-blend-mode: screen;
+      animation: dustTwinkle 8s ease-in-out infinite;
+    }
+
+    @keyframes dustTwinkle {
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    // ✅ 큰 별 레이어 (글로우 효과)
     &::after {
       content: "";
       position: absolute;
-      right: 10%;
-      top: 52%;
-      width: 900px;
-      height: 520px;
-      transform: translateY(-50%) rotate(-12deg);
-      background: radial-gradient(circle at 30% 40%, rgba(255, 0, 51, 0.35), transparent 60%), radial-gradient(circle at 70% 60%, rgba(255, 62, 201, 0.22), transparent 62%), radial-gradient(circle at 60% 30%, rgba(0, 240, 255, 0.18), transparent 65%);
-      filter: blur(38px);
+      inset: 0;
+      pointer-events: none;
+      background-image: $stars-left, $stars-mid-top, $stars-mid-gap, $stars-right;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
       opacity: 0.9;
       mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: 1;
+      filter: drop-shadow(0 0 3px rgba(255, 70, 110, 0.6)) drop-shadow(0 0 6px rgba(255, 70, 110, 0.4)) drop-shadow(0 0 10px rgba(70, 170, 255, 0.25));
+
+      animation: starTwinkle 5s ease-in-out infinite;
+    }
+
+    @keyframes starTwinkle {
+      0%,
+      100% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 2px rgba(255, 70, 110, 0.5)) drop-shadow(0 0 4px rgba(255, 70, 110, 0.35)) drop-shadow(0 0 6px rgba(70, 170, 255, 0.2));
+      }
+
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 4px rgba(255, 70, 110, 0.75)) drop-shadow(0 0 8px rgba(255, 70, 110, 0.55)) drop-shadow(0 0 12px rgba(70, 170, 255, 0.35));
+      }
     }
 
     .hero__imgWrap {
@@ -285,53 +436,95 @@
       transform-style: preserve-3d;
       perspective: 1000px;
       pointer-events: none;
-    }
 
-    .hero__img--next {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .hero__img--current {
-      opacity: 1;
-      visibility: visible;
-    }
+      .hero__mover {
+        width: 100%;
+        height: 100%;
+        will-change: transform, opacity;
+        transform: translate3d(calc(var(--sx, 0px) + var(--px, 0px)), calc(var(--sy, 0px) + var(--py, 0px) + var(--fy, 0px)), 0);
 
-    .hero__img {
-      --sx: 0px; // slide x
-      --sy: 0px; // slide y
-      --px: 0px; // parallax x
-      --py: 0px; // parallax y
-      --fy: 0px; // floating y
+        .hero__imgFx {
+          position: absolute;
+          right: -13%;
+          top: 45%;
+          transform: translateY(-50%) scale(1.05);
+          transform-origin: 70% 50%;
+          width: min(2000px, 70vw);
+          filter: drop-shadow(0 0 6px rgba(255, 50, 70, 0.95)) drop-shadow(0 0 12px rgba(255, 40, 60, 0.4));
 
-      position: absolute;
-      right: -10%;
-      top: 45%;
-      transform-origin: 70% 50%;
+          @include mobile {
+            right: -5%;
+            top: 55%;
+          }
 
-      transform: translateY(-50%) scale(1.2) translate3d(calc(var(--sx) + var(--px)), calc(var(--sy) + var(--py) + var(--fy)), 0);
+          &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            z-index: -2;
+            filter: drop-shadow(0 60px 120px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 28px rgba(255, 50, 70, 0.32));
+            opacity: 0.65;
+            transform: scale(0.63);
+          }
 
-      width: min(2000px, 70vw);
-      height: auto;
-      z-index: 2;
-      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
-
-      @include mobile {
-        right: -5%;
-        top: 55%;
-        transform: translateY(-50%) scale(1.1) translate3d(calc(var(--sx) + var(--px)), calc(var(--sy) + var(--py) + var(--fy)), 0);
+          .hero__img {
+            display: block;
+            width: 100%;
+            height: auto;
+          }
+        }
       }
     }
   }
   // hero__bg 끝
   //////////////////////////////
 
+  // hero__bg-glow 시작
+  .hero__bg-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        // ✅ 추가: 왼쪽 → 좌하단으로 이어지는 성운 띠(아주 약하게)
+      radial-gradient(800px 420px at 22% 70%, rgba(255, 70, 110, 0.1), transparent 60%),
+      radial-gradient(900px 520px at 28% 78%, rgba(70, 170, 255, 0.06), transparent 65%),
+      radial-gradient(450px 400px at 53% 27%, rgba(180, 50, 100, 0.22), transparent 63%),
+      radial-gradient(420px 350px at 83% 84%, rgba(200, 30, 80, 0.35), transparent 70%),
+      // 🔻 왼쪽 - 채도 낮춘 딥 버건디
+      radial-gradient(520px 480px at 8% 40%, rgba(140, 20, 50, 0.28), transparent 70%),
+      radial-gradient(420px 380px at 10% 38%, rgba(110, 15, 45, 0.22), transparent 65%),
+      radial-gradient(600px 500px at 15% 50%, rgba(40, 60, 120, 0.15), transparent 75%),
+      // 🔻 중앙 위 - 거의 와인톤
+      radial-gradient(500px 450px at 53% 27%, rgba(120, 25, 55, 0.18), transparent 65%),
+      // 🔻 오른쪽 아래 - 피자 받쳐주는 은은한 톤
+      radial-gradient(450px 380px at 83% 84%, rgba(130, 20, 50, 0.28), transparent 70%);
+
+    filter: blur(130px);
+    opacity: 0.65;
+    mix-blend-mode: screen;
+    animation: glowPulse 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowPulse {
+    0% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0.95;
+      transform: scale(1.03);
+    }
+  }
+  // hero__bg-glow 끝
+
   // hero__headline 시작
   .hero__headline {
     position: absolute;
     left: 40px;
     top: 20px;
-    z-index: 1;
+    z-index: 2;
     margin: 0;
     pointer-events: none;
 
@@ -373,7 +566,8 @@
   }
 
   .hero__content {
-    z-index: 3;
+    position: relative;
+    z-index: 2;
 
     .hero__title,
     .hero__category,
@@ -403,8 +597,13 @@
         letter-spacing: -0.01em;
         line-height: 1.15;
         font-weight: 700;
-        color: $accent;
         margin-bottom: 10px;
+        color: $accent;
+        // filter: drop-shadow(0 0 20px rgba(255, 0, 51, 0.4));
+        text-shadow:
+          0 0 6px rgba(255, 0, 51, 0.7),
+          0 0 18px rgba(255, 0, 51, 0.5),
+          0 0 40px rgba(255, 0, 51, 0.3);
 
         @include tablet-only {
           font-size: 4.8rem;
@@ -451,7 +650,7 @@
 
     // hero__cta 시작
     .hero__cta {
-      margin-top: 230px;
+      margin-top: 200px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
@@ -461,20 +660,24 @@
       }
 
       .btn {
+        position: relative;
         @include flexCenter;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 1.5rem;
+        background: rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: none;
         backdrop-filter: blur(6px);
+        overflow: hidden;
 
-        width: 500px;
-        height: 100px;
+        width: 450px;
+        height: 95px;
 
         font-family: $font-base;
         font-size: 3.5rem;
         line-height: 1;
-        cursor: pointer;
 
         border-radius: 999px;
         letter-spacing: 0.02em;
@@ -486,6 +689,36 @@
           box-shadow 0.25s ease,
           filter 0.15s ease,
           transform 0.2s ease;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          padding: 1px; // 라인 두께
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+          -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0.35; // 안쪽 라인 광택
+          pointer-events: none;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          pointer-events: none;
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 45%);
+          opacity: 0.35;
+        }
+
+        &:hover {
+          transform: translateY(-1px);
+        }
 
         &:active {
           transform: scale(0.95);
@@ -533,38 +766,76 @@
       }
 
       .btn-primary {
-        background: $primary-60;
         color: $white;
-        border: 1px solid transparent;
+        background: rgba(10, 10, 14, 0.85);
+        border: 2px solid rgba(255, 0, 51, 0.6);
 
-        @include glow(255, 0, 51, 0.55, 0.35);
-
-        &:hover {
-          background: $primary-70;
-          @include glow(255, 0, 51, 0.75, 0.55, 14px, 36px);
-        }
-
-        .icon {
-          stroke: $white;
-        }
-      }
-
-      .btn-outline {
-        background: transparent;
-        color: $secondary;
-        border: 1px solid rgba(0, 240, 255, 0.75);
-
-        @include glow(0, 240, 255, 0.18, 0.1);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 0, 51, 0.35),
+          0 0 10px rgba(255, 0, 51, 0.65),
+          0 0 28px rgba(255, 0, 51, 0.35);
 
         &:hover {
-          background: $secondary;
-          color: $black;
-          border-color: transparent;
-          @include glow(0, 240, 255, 0.6, 0.35, 14px, 34px);
+          box-shadow:
+            0 0 18px rgba(255, 0, 51, 0.85),
+            0 0 45px rgba(255, 0, 51, 0.55);
+        }
+
+        &:active {
+          box-shadow:
+            0 0 12px rgba(255, 0, 51, 0.22),
+            inset 0 0 0 1px rgba(255, 0, 51, 0.25);
+        }
+
+        span {
+          color: $white;
+          text-shadow:
+            0 0 4px rgba(255, 255, 255, 0.9),
+            0 0 8px rgba(255, 0, 51, 0.9),
+            0 0 18px rgba(255, 0, 51, 0.8),
+            0 0 32px rgba(255, 0, 51, 0.6),
+            0 0 60px rgba(255, 0, 51, 0.4);
         }
 
         .icon {
           stroke: currentColor;
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 12px rgba(255, 0, 51, 0.8)) drop-shadow(0 0 24px rgba(255, 0, 51, 0.6));
+        }
+      }
+
+      .btn-outline {
+        color: $white;
+        background: transparent;
+        border: 2px solid rgba(0, 240, 255, 0.6);
+
+        box-shadow:
+          0 0 12px rgba(0, 240, 255, 0.6),
+          0 0 30px rgba(0, 240, 255, 0.35);
+
+        &:hover {
+          box-shadow:
+            0 0 18px rgba(0, 240, 255, 0.85),
+            0 0 45px rgba(0, 240, 255, 0.55);
+        }
+
+        &:active {
+          box-shadow:
+            0 0 12px rgba(0, 240, 255, 0.18),
+            inset 0 0 0 1px rgba(0, 240, 255, 0.18);
+        }
+
+        span {
+          color: $white;
+          text-shadow:
+            0 0 4px rgba(255, 255, 255, 0.7),
+            0 0 10px rgba(0, 240, 255, 0.8),
+            0 0 22px rgba(0, 240, 255, 0.6),
+            0 0 40px rgba(0, 240, 255, 0.35);
+        }
+
+        .icon {
+          stroke: currentColor;
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 12px rgba(0, 240, 255, 0.8)) drop-shadow(0 0 24px rgba(0, 240, 255, 0.55));
         }
       }
     }
