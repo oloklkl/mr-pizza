@@ -1,62 +1,150 @@
-// 변수 설정
+// =======================================================
+//  Base Colors (Core)
+// =======================================================
 
-$white: #fff;
-$black: #111;
-$dark: #0f0f10;
+$white: #ffffff;
+$black: #111111;
+$dark: #0f0f10; // 다크 테마 기본 배경 톤
 
-// Brand Colors
+// =======================================================
+//  Brand Color System
+// =======================================================
 
-// Primary (Neon Red Scale)
+// Primary (Neon Red Scale) - 브랜드 핵심 컬러
 $primary-5: #fff5f7;
 $primary-10: #ffe6ec;
 $primary-20: #ffb3c2;
 $primary-30: #ff8099;
 $primary-40: #ff4d70;
 $primary-50: #ff1a47;
-$primary-60: #ff0033; // base
-$primary-70: #cc0029; // hover
-$primary-80: #99001f; // pressed
+$primary-60: #ff0033; // Brand Base
+$primary-70: #cc0029; // Hover
+$primary-80: #99001f; // Active / Pressed
 $primary-90: #660014;
 $primary-100: #33000a;
 
-// Secondary (Electric Cyan)
+// Secondary (Electric Cyan) - 인터랙션 / 보조 강조
 $secondary: #00f0ff;
 $secondary-hover: #00c8d6;
 $secondary-soft: #e6fdff;
 
-// Accent (Neon Yellow)
+// Accent (Neon Yellow) - 하이라이트 / 가격 강조
 $accent: #ffe600;
 $accent-hover: #ffcc00;
 $accent-soft: #fffbe6;
 
-// ===== Usage Tokens =====
+// =======================================================
+//  Usage Tokens (역할 기반 컬러)
+// =======================================================
+
+// 브랜드 상징 영역 (로고, 강조 타이틀 등)
 $color-brand: $primary-60;
+
+// 사용자 행동 유도 (CTA 버튼 등)
 $color-action: $primary-50;
+
+// 보조 인터랙션 (focus, 링크 강조 등)
 $color-support: $secondary;
+
+// 하이라이트 요소 (가격, 뱃지 등)
 $color-highlight: $accent;
+
+// 위험 / 삭제 / 경고
 $color-danger: $primary-80;
 
-// Neon gradients
+// =======================================================
+//  Background & Surface (Dark Theme)
+// =======================================================
+
+// 전체 페이지 기본 배경 (다크 베이스)
+$bg-base: $grad-dark;
+
+// 섹션 구분용 다크 배경
+$bg-section: #141416;
+
+// 카드 / 모달 / 패널 배경
+$surface: #101012;
+
+// =======================================================
+//  Gradients
+// =======================================================
+
+// 브랜드 네온 그라데이션
 $grad-primary: linear-gradient(90deg, $primary-60 0%, #ff1744 55%, #ff3ec9 100%);
+
+// 레드 + 사이버 블루 믹스
 $grad-cyber: linear-gradient(135deg, rgba(255, 0, 51, 0.35), rgba(0, 240, 255, 0.18));
+
+// 다크 테마 배경용 그라데이션
 $grad-dark: linear-gradient(180deg, #0b0b0c 0%, $dark 45%, #0a0a0a 100%);
 
-// Background / Surface
-$bg-base: #fbfaf8; // 전체 페이지 배경 (웜톤)
-$bg-section: #f5f4f2; // 섹션 구분 배경
-$surface: #ffffff; // 카드, 모달
+// =======================================================
+//  Grayscale (Dark UI 기준 텍스트 체계)
+// =======================================================
 
-// Grayscale
-$gray-0: #ffffff; // 카드, 기본 배경
-$gray-5: #fafaf9; // 아주 연한 배경
-$gray-10: #f5f4f2; // 섹션 배경
-$gray-20: #e8e6e2; // 디바이더, 연한 보더
-$gray-40: #b9b3aa; // 보더, 비활성
-$gray-60: #6e6a64; // 텍스트 기본
-$gray-70: #4d4a45; // body text, detail
-$gray-80: #2a2825; // 제목, 강조 텍스트
-$gray-90: #141312; // strong title
-$gray-100: #000000; // 블랙
+// 기본 텍스트 (화이트)
+$gray-0: #ffffff;
+
+// 보조 텍스트 (연한 화이트)
+$gray-20: #e8e6e2;
+
+// 비활성 / 설명 텍스트
+$gray-60: #6e6a64;
+
+// 제목 / 강조 텍스트
+$gray-90: #141312;
+
+// 완전 블랙
+$gray-100: #000000;
+
+// =======================================================
+//  State Tokens (인터랙션 상태)
+// =======================================================
+
+// Hover 상태
+$color-hover: $primary-70;
+
+// Active / Pressed 상태
+$color-active: $primary-80;
+
+// Focus 라인 (입력창, 버튼 포커스)
+$color-focus: $secondary;
+
+// Disabled 상태
+$color-disabled-bg: #2a2a2d;
+$color-disabled-text: $gray-60;
+
+// Border 기본값
+$border-default: rgba(255, 255, 255, 0.1);
+
+// Border hover
+$border-hover: rgba($color-action, 0.5);
+
+// =======================================================
+//  Shadow & Glow Tokens
+// =======================================================
+
+// 기본 카드 그림자 (다크 UI용)
+$shadow-surface: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+// 약한 네온 glow (hover용)
+$glow-soft: 0 0 8px rgba($color-action, 0.4);
+
+// 기본 네온 glow
+$glow-primary: 0 0 12px rgba($color-brand, 0.6);
+
+// 강한 네온 glow (CTA / 강조 버튼)
+$glow-strong:
+  0 0 10px rgba($color-brand, 0.8),
+  0 0 30px rgba($color-brand, 0.4);
+
+// Cyan focus glow
+$glow-focus:
+  0 0 0 2px rgba($color-focus, 0.4),
+  0 0 12px rgba($color-focus, 0.5);
+
+// Yellow highlight glow
+$glow-highlight: 0 0 12px rgba($color-highlight, 0.6);
 
 //font weight
 $font-light: 300 !default;
