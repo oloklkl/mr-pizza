@@ -19,7 +19,7 @@ a {
 
   &:hover {
     text-decoration: none;
-    color: $color-support; // or $color-action
+    color: inherit;
   }
 }
 
