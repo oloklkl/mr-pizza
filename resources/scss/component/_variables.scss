@@ -53,19 +53,6 @@ $color-highlight: $accent;
 $color-danger: $primary-80;
 
 // =======================================================
-//  Background & Surface (Dark Theme)
-// =======================================================
-
-// 전체 페이지 기본 배경 (다크 베이스)
-$bg-base: $grad-dark;
-
-// 섹션 구분용 다크 배경
-$bg-section: #141416;
-
-// 카드 / 모달 / 패널 배경
-$surface: #101012;
-
-// =======================================================
 //  Gradients
 // =======================================================
 
@@ -77,6 +64,19 @@ $grad-cyber: linear-gradient(135deg, rgba(255, 0, 51, 0.35), rgba(0, 240, 255, 0
 
 // 다크 테마 배경용 그라데이션
 $grad-dark: linear-gradient(180deg, #0b0b0c 0%, $dark 45%, #0a0a0a 100%);
+
+// =======================================================
+//  Background & Surface (Dark Theme)
+// =======================================================
+
+// 전체 페이지 기본 배경 (다크 베이스)
+$bg-base: $grad-dark;
+
+// 섹션 구분용 다크 배경
+$bg-section: #141416;
+
+// 카드 / 모달 / 패널 배경
+$surface: #101012;
 
 // =======================================================
 //  Grayscale (Dark UI 기준 텍스트 체계)
@@ -178,7 +178,7 @@ $line-height-none: 1 !default;
 $line-height-base: 1.5 !default;
 
 // grid & padding
-$grid: 1820px !default;
+$grid: 1720px !default;
 
 $p-desktop: 60px !default; // 1400px 이상
 $p-laptop: 40px !default; // 1000px ~ 1399px

@@ -31,7 +31,15 @@ button {
 .icon svg {
   width: 2.4rem;
   height: 2.4rem;
-  color: $white;
+  stroke: rgba(255, 255, 255, 0.75);
+  transition:
+    stroke 0.2s ease,
+    filter 0.2s ease;
+}
+
+.icon:hover svg {
+  stroke: $color-action;
+  filter: $glow-soft;
 }
 
 #skip-nav {

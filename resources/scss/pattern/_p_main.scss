@@ -85,6 +85,7 @@
       border: 0;
       cursor: pointer;
       z-index: 5;
+      transition: all 0.3s ease;
 
       span {
         position: absolute;
@@ -107,8 +108,8 @@
       }
 
       &:hover span {
-        background: $primary-60;
-        box-shadow: 0 0 8px rgba(255, 0, 51, 0.6);
+        stroke: $white;
+        filter: drop-shadow(0 0 4px $color-action) drop-shadow(0 0 12px rgba($color-action, 0.6));
       }
     }
   }
@@ -539,6 +540,7 @@ $stars-right:
       font-size: 18rem;
       font-weight: 800;
       color: transparent;
+      letter-spacing: -0.02em;
       -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
       opacity: 0.8;
       margin-left: -50px;
@@ -650,7 +652,7 @@ $stars-right:
 
     // hero__cta 시작
     .hero__cta {
-      margin-top: 200px;
+      margin-top: 100px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
