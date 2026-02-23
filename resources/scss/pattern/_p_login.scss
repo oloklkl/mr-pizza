@@ -1,3 +1,6 @@
+/* =========================
+   Login Theme Keyframes
+========================= */
 @keyframes neon-breathe {
   0%,
   100% {
@@ -8,16 +11,23 @@
   }
 }
 
+/* prefers-reduced-motion: 로그인 카드 로고 애니메이션만 끔 */
 @media (prefers-reduced-motion: reduce) {
-  .auth-card__brand svg {
+  .auth-card--login .auth-card__brand svg {
     animation: none;
   }
 }
 
+/* =========================
+   Page Background
+========================= */
 .auth--login {
   background-image: url("/resources/images/component/auth/auth-bg.png");
 }
 
+/* =========================
+   Card (Login)
+========================= */
 .auth-card--login {
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.35) inset,
@@ -34,370 +44,433 @@
   .auth-card__sheen {
     background: linear-gradient(120deg, transparent 0%, rgba(255, 160, 170, 0) 42%, rgba(255, 210, 220, 0.24) 50%, rgba(255, 160, 170, 0) 58%, transparent 100%);
   }
+}
 
-  .auth-card__brand {
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
+/* =========================
+   Brand (Logo)
+========================= */
+.auth-card--login .auth-card__brand {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 
-    svg {
-      width: 20rem;
-      height: auto;
-      display: block;
-      animation: neon-breathe 2.8s ease-in-out infinite;
-      transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
-      will-change: filter, transform;
-    }
+  svg {
+    width: 20rem;
+    height: auto;
+    display: block;
 
-    &:hover svg {
-      animation-play-state: paused;
-      transform: translateY(-1px) scale(1.01);
-      filter: drop-shadow(0 0 4px rgba(255, 0, 51, 0.7)) drop-shadow(0 0 16px rgba(255, 0, 51, 0.5));
-    }
+    animation: neon-breathe 2.8s ease-in-out infinite;
+    transition:
+      transform 0.2s ease,
+      filter 0.2s ease;
+    will-change: filter, transform;
   }
 
-  .auth-card__title {
-    position: relative;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-size: 2rem;
-    letter-spacing: 0.32em;
-    margin: 0 0 2.8rem;
+  &:hover svg {
+    animation-play-state: paused;
+    transform: translateY(-1px) scale(1.01);
+    filter: drop-shadow(0 0 4px rgba(255, 0, 51, 0.7)) drop-shadow(0 0 16px rgba(255, 0, 51, 0.5));
+  }
+}
 
-    color: rgba(255, 230, 232, 0.95);
-    text-shadow: 0 0 14px rgba(255, 0, 40, 0.32);
+/* =========================
+   Title
+========================= */
+.auth-card--login .auth-card__title {
+  position: relative;
+  margin: 0 0 2.8rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
 
-    &::before,
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.32em;
+
+  color: rgba(255, 230, 232, 0.95);
+  text-shadow: 0 0 14px rgba(255, 0, 40, 0.32);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 40, 70, 0.55) 40%, rgba(255, 0, 40, 0.42) 60%, transparent 100%);
+
+    box-shadow: 0 0 12px rgba(255, 0, 40, 0.28);
+    opacity: 0.9;
+  }
+}
+
+/* =========================
+   Form Layer
+========================= */
+.auth-card--login .auth-form {
+  position: relative;
+  z-index: 2;
+}
+
+/* 공통 유틸: sr-only */
+.auth-card--login .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================
+   Fields
+========================= */
+.auth-card--login .auth-field {
+  position: relative;
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.auth-card--login .auth-field__icon {
+  position: absolute;
+  left: 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: rgba(255, 215, 220, 0.85);
+  }
+}
+
+.auth-card--login .auth-field__input {
+  width: 100%;
+  height: 5.2rem;
+  padding: 0 1.6rem 0 4.4rem;
+  border-radius: 6px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 240, 242, 0.95);
+
+  outline: none;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: rgba(255, 240, 242, 0.95);
+    transition: background-color 9999s ease-out 0s;
+
+    box-shadow:
+      0 0 0 30px rgba(255, 255, 255, 0.05) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.28) inset,
+      0 0 18px rgba(255, 0, 40, 0.14);
+
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  &::placeholder {
+    color: rgba(255, 205, 210, 0.45);
+  }
+
+  &:focus {
+    border-color: rgba(255, 40, 70, 0.78);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow:
+      0 0 0 3px rgba(255, 40, 70, 0.16),
+      0 0 26px rgba(255, 0, 40, 0.34);
+  }
+}
+
+/* =========================
+   Remember me (Checkbox Row)
+========================= */
+.auth-card--login .auth-row {
+  margin-top: 1.4rem;
+  @include flexCenter;
+  justify-content: flex-start;
+}
+
+/* 실제 input은 숨김 */
+.auth-card--login .auth-row .auth-check__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+/* 라벨(클릭영역) */
+.auth-card--login .auth-row .auth-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+
+  font-size: 1.3rem;
+  color: rgba(255, 215, 220, 0.82);
+
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 가짜 박스 */
+.auth-card--login .auth-row .auth-check__box {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 0.4rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+
+  position: relative;
+  display: inline-block;
+
+  transform: translateY(-0.05rem);
+}
+
+/* 체크됐을 때 테두리/글로우(레드 유지) */
+.auth-card--login .auth-row .auth-check__input:checked + .auth-check .auth-check__box {
+  border-color: rgba(255, 40, 70, 0.88);
+  box-shadow: 0 0 16px rgba(255, 0, 40, 0.32);
+}
+
+/* ✅ 체크표시(화이트 유지) */
+.auth-card--login .auth-row .auth-check__input:checked + .auth-check .auth-check__box::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 1rem;
+
+  border-right: 2px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.95);
+
+  transform: translateY(-65%) rotate(40deg);
+}
+
+/* =========================
+   Primary Button (Login)
+========================= */
+.auth-card--login .auth-btn--primary {
+  background: rgba(255, 25, 50, 0.17);
+  border: 1px solid rgba(255, 40, 70, 0.92);
+  color: rgba(255, 235, 238, 0.98);
+
+  box-shadow:
+    0 0 28px rgba(255, 0, 40, 0.36),
+    0 0 52px rgba(255, 0, 40, 0.22);
+
+  &:hover {
+    background: rgba(255, 25, 50, 0.25);
+    border-color: rgba(255, 40, 70, 1);
+    box-shadow:
+      0 0 36px rgba(255, 0, 40, 0.5),
+      0 0 66px rgba(255, 0, 40, 0.3);
+  }
+}
+
+/* =========================
+   Social
+========================= */
+.auth-card--login .auth-social {
+  margin-top: 1.8rem;
+  text-align: center;
+}
+
+.auth-card--login .auth-social__divider {
+  position: relative;
+  margin: 1.6rem 0 1.4rem;
+
+  span {
+    display: inline-block;
+    padding: 0 1.2rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 3.2rem);
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent, rgba(255, 40, 70, 0.22), transparent);
+    opacity: 0.9;
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+}
+
+.auth-card--login .auth-social__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.auth-card--login .auth-social__btn {
+  position: relative;
+  --hover-glow: rgba(255, 0, 40, 0.15);
+
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 10px;
+
+  display: grid;
+  place-items: center;
+
+  text-decoration: none;
+  cursor: not-allowed;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 40, 70, 0.22);
+    box-shadow: 0 0 18px var(--hover-glow);
+  }
+
+  &:hover .auth-social__icon {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
+  }
+
+  img {
+    width: 2.2rem;
+    height: 2.2rem;
+    opacity: 0.85;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  /* tooltip */
+  .auth-social__tooltip {
+    position: absolute;
+    left: 50%;
+    top: -3.4rem;
+    transform: translateX(-50%) translateY(-6px);
+
+    padding: 0.55rem 0.9rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+
+    color: rgba(255, 220, 230, 0.85);
+    background: rgba(15, 0, 4, 0.95);
+    border: 1px solid rgba(255, 40, 70, 0.25);
+    border-radius: 6px;
+
+    box-shadow: 0 0 12px rgba(255, 0, 40, 0.12);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+
     &::after {
       content: "";
-      flex: 1;
-      height: 1px;
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%) rotate(45deg);
 
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 40, 70, 0.55) 40%, rgba(255, 0, 40, 0.42) 60%, transparent 100%);
+      width: 8px;
+      height: 8px;
 
-      box-shadow: 0 0 12px rgba(255, 0, 40, 0.28);
-      opacity: 0.9;
+      background: rgba(15, 0, 4, 0.95);
+      border-right: 1px solid rgba(255, 40, 70, 0.22);
+      border-bottom: 1px solid rgba(255, 40, 70, 0.22);
     }
   }
 
-  .auth-form {
-    position: relative;
-    z-index: 2;
+  &:hover .auth-social__tooltip,
+  &:focus-visible .auth-social__tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
 
-    .auth-field {
-      position: relative;
-      margin-top: 1.4rem;
-      display: flex;
-      align-items: center;
+.auth-card--login .auth-social__btn--naver {
+  color: rgba(255, 255, 255, 0.18);
 
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
+  .naver-n {
+    transform: translateX(-0.8px);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
 
-      &__icon {
-        position: absolute;
-        left: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        opacity: 0.8;
+  &:hover {
+    color: #03c75a;
+  }
+}
 
-        svg {
-          width: 2rem;
-          height: 2rem;
-          color: rgba(255, 215, 220, 0.85);
-        }
-      }
+.auth-card--login .auth-social__btn--kakao {
+  color: rgba(255, 255, 255, 0.18);
 
-      &__input {
-        width: 100%;
-        height: 5.2rem;
-        padding: 0 1.6rem 0 4.4rem;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        color: rgba(255, 240, 242, 0.95);
+  &:hover {
+    color: #fee500;
+  }
+}
 
-        outline: none;
+/* =========================
+   Bottom Links
+========================= */
+.auth-card--login .auth-links {
+  margin-top: 1.8rem;
+  text-align: center;
+  font-size: 1.3rem;
+  color: rgba(255, 200, 205, 0.55);
 
-        transition:
-          border-color 0.25s ease,
-          box-shadow 0.25s ease,
-          background 0.25s ease;
+  span {
+    margin: 10px;
+  }
 
-        &::placeholder {
-          color: rgba(255, 205, 210, 0.45);
-        }
+  a {
+    color: rgba(255, 225, 230, 0.82);
+    text-decoration: none;
 
-        &:focus {
-          border-color: rgba(255, 40, 70, 0.78);
-          background: rgba(255, 255, 255, 0.07);
-          box-shadow:
-            0 0 0 3px rgba(255, 40, 70, 0.16),
-            0 0 26px rgba(255, 0, 40, 0.34);
-        }
-      }
-    }
-
-    .auth-row {
-      margin-top: 1.4rem;
-      @include flexCenter;
-      justify-content: flex-start;
-
-      .auth-check__input {
-        position: absolute;
-        opacity: 0;
-        width: 1px;
-        height: 1px;
-      }
-
-      .auth-check {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.9rem;
-        font-size: 1.3rem;
-        color: rgba(255, 215, 220, 0.82);
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .auth-check__box {
-        width: 1.8rem;
-        height: 1.8rem;
-        border-radius: 0.4rem;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        background: rgba(255, 255, 255, 0.05);
-        position: relative;
-        display: inline-block;
-        transform: translateY(-0.05rem);
-      }
-
-      .auth-check__input:checked + .auth-check .auth-check__box {
-        border-color: rgba(255, 40, 70, 0.88);
-        box-shadow: 0 0 16px rgba(255, 0, 40, 0.32);
-      }
-
-      .auth-check__input:checked + .auth-check .auth-check__box::after {
-        content: "";
-        position: absolute;
-        left: 0.5rem;
-        top: 50%;
-        width: 0.5rem;
-        height: 1rem;
-        border-right: 2px solid rgba(255, 185, 190, 0.95);
-        border-bottom: 2px solid rgba(255, 185, 190, 0.95);
-        transform: translateY(-65%) rotate(40deg);
-      }
-    }
-
-    .auth-btn--primary {
-      background: rgba(255, 25, 50, 0.17);
-      border: 1px solid rgba(255, 40, 70, 0.92);
-      color: rgba(255, 235, 238, 0.98);
-
-      box-shadow:
-        0 0 28px rgba(255, 0, 40, 0.36),
-        0 0 52px rgba(255, 0, 40, 0.22);
-
-      &:hover {
-        background: rgba(255, 25, 50, 0.25);
-        border-color: rgba(255, 40, 70, 1);
-        box-shadow:
-          0 0 36px rgba(255, 0, 40, 0.5),
-          0 0 66px rgba(255, 0, 40, 0.3);
-      }
-    }
-
-    .auth-social {
-      margin-top: 1.8rem;
-      text-align: center;
-
-      &__divider {
-        position: relative;
-        margin: 1.6rem 0 1.4rem;
-
-        span {
-          display: inline-block;
-          padding: 0 1.2rem;
-          font-size: 1.2rem;
-          letter-spacing: 0.08em;
-          color: rgba(255, 255, 255, 0.5);
-          background: rgba(0, 0, 0, 0.35);
-          border-radius: 999px;
-          backdrop-filter: blur(6px);
-        }
-
-        &::before,
-        &::after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          width: calc(50% - 3.2rem);
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255, 40, 70, 0.22), transparent);
-          opacity: 0.9;
-          transform: translateY(-50%);
-        }
-
-        &::before {
-          left: 0;
-        }
-        &::after {
-          right: 0;
-        }
-      }
-
-      &__buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1.2rem;
-      }
-
-      &__btn {
-        position: relative;
-        --hover-glow: rgba(255, 0, 40, 0.15);
-
-        width: 4.2rem;
-        height: 4.2rem;
-        border-radius: 10px;
-        display: grid;
-        place-items: center;
-        text-decoration: none;
-        cursor: not-allowed;
-
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease,
-          border-color 0.2s ease,
-          background 0.2s ease;
-
-        &:hover .auth-social__icon {
-          opacity: 1;
-          filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
-        }
-
-        img {
-          width: 2.2rem;
-          height: 2.2rem;
-          opacity: 0.85;
-          transition:
-            transform 0.2s ease,
-            opacity 0.2s ease;
-        }
-
-        .auth-social__tooltip {
-          position: absolute;
-          left: 50%;
-          top: -3.4rem; /* ✅ 위로 */
-          transform: translateX(-50%) translateY(-6px);
-
-          padding: 0.55rem 0.9rem;
-          font-size: 1.1rem;
-          letter-spacing: 0.04em;
-          white-space: nowrap;
-
-          color: rgba(255, 220, 230, 0.85);
-          background: rgba(15, 0, 4, 0.95);
-          border: 1px solid rgba(255, 40, 70, 0.25);
-          border-radius: 6px;
-
-          box-shadow: 0 0 12px rgba(255, 0, 40, 0.12);
-
-          opacity: 0;
-          pointer-events: none;
-          transition:
-            opacity 0.2s ease,
-            transform 0.2s ease;
-
-          &::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -4px;
-            transform: translateX(-50%) rotate(45deg);
-            width: 8px;
-            height: 8px;
-            background: rgba(15, 0, 4, 0.95);
-            border-right: 1px solid rgba(255, 40, 70, 0.22);
-            border-bottom: 1px solid rgba(255, 40, 70, 0.22);
-          }
-        }
-
-        &--naver {
-          color: rgba(255, 255, 255, 0.18);
-
-          .naver-n {
-            transform: translateX(-0.8px);
-            transform-box: fill-box;
-            transform-origin: center;
-          }
-
-          &:hover {
-            color: #03c75a;
-          }
-        }
-
-        &--kakao {
-          color: rgba(255, 255, 255, 0.18);
-
-          &:hover {
-            color: #fee500;
-          }
-        }
-
-        &:hover .auth-social__tooltip,
-        &:focus-visible .auth-social__tooltip {
-          opacity: 1;
-          transform: translateX(-50%) translateY(0);
-        }
-
-        &:hover {
-          transform: translateY(-1px);
-          background: rgba(255, 255, 255, 0.06);
-          border-color: rgba(255, 40, 70, 0.22);
-          box-shadow: 0 0 18px var(--hover-glow);
-        }
-      }
-    }
-
-    .auth-links {
-      margin-top: 1.8rem;
-      text-align: center;
-      font-size: 1.3rem;
-      color: rgba(255, 200, 205, 0.55);
-
-      span {
-        margin: 10px;
-      }
-
-      a {
-        color: rgba(255, 225, 230, 0.82);
-        text-decoration: none;
-
-        &:hover {
-          color: rgba(255, 200, 205, 1);
-          text-shadow: 0 0 14px rgba(255, 0, 40, 0.3);
-        }
-      }
+    &:hover {
+      color: rgba(255, 200, 205, 1);
+      text-shadow: 0 0 14px rgba(255, 0, 40, 0.3);
     }
   }
 }
