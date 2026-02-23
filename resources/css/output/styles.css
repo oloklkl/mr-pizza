@@ -1686,16 +1686,18 @@ button {
    Card (Login)
 ========================= */
 .auth-card--login {
+  --red: 255, 0, 40;
+  --text: 255, 230, 232;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35) inset, 0 0 30px rgba(255, 0, 40, 0.22);
 }
 .auth-card--login::before {
-  background: linear-gradient(160deg, rgba(255, 90, 110, 0.55), rgba(255, 0, 40, 0.85), rgba(255, 40, 70, 0.45), rgba(255, 0, 30, 0.9));
+  background: linear-gradient(160deg, rgba(var(--red), 0.55), rgba(var(--red), 0.18), rgba(var(--red), 0.45), rgba(var(--red), 0.6));
 }
 .auth-card--login::after {
-  background: linear-gradient(180deg, rgba(255, 80, 100, 0.35), rgba(255, 40, 70, 0.22), rgba(255, 0, 40, 0.18));
+  background: linear-gradient(180deg, rgba(var(--red), 0.35), rgba(var(--red), 0.22), rgba(var(--red), 0.18));
 }
 .auth-card--login .auth-card__sheen {
-  background: linear-gradient(120deg, transparent 0%, rgba(255, 160, 170, 0) 42%, rgba(255, 210, 220, 0.24) 50%, rgba(255, 160, 170, 0) 58%, transparent 100%);
+  background: linear-gradient(120deg, transparent 0%, rgba(var(--text), 0) 42%, rgba(var(--text), 0.22) 50%, rgba(var(--text), 0) 58%, transparent 100%);
 }
 
 /* =========================
@@ -2089,6 +2091,11 @@ button {
   background: linear-gradient(180deg, rgba(var(--cyan), 0.35), rgba(var(--cyan), 0.22), rgba(var(--cyan), 0.18));
 }
 .auth-card--signup .auth-card__sheen {
+  inset: -40% -80%;
+  opacity: 0.75;
+  filter: blur(0.8px);
+  mix-blend-mode: screen;
+  will-change: transform;
   background: linear-gradient(120deg, transparent 0%, rgba(var(--text), 0) 42%, rgba(var(--text), 0.22) 50%, rgba(var(--text), 0) 58%, transparent 100%);
 }
 .auth-card--signup {
