@@ -95,6 +95,8 @@
   .auth-field {
     position: relative;
     margin-top: 1.4rem;
+    display: flex;
+    align-items: center;
 
     .sr-only {
       position: absolute;
@@ -110,9 +112,11 @@
 
     &__icon {
       position: absolute;
-      left: 1.4rem;
-      top: 50%;
-      transform: translateY(-50%);
+      left: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
       opacity: 0.8;
 
       svg {

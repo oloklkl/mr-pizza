@@ -1721,6 +1721,8 @@ button {
 .auth-card--login .auth-field {
   position: relative;
   margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
 }
 .auth-card--login .auth-field .sr-only {
   position: absolute;
@@ -1735,9 +1737,11 @@ button {
 }
 .auth-card--login .auth-field__icon {
   position: absolute;
-  left: 1.4rem;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   opacity: 0.8;
 }
 .auth-card--login .auth-field__icon svg {
@@ -1968,6 +1972,40 @@ button {
 .auth-card--login .auth-links a:hover {
   color: rgb(255, 200, 205);
   text-shadow: 0 0 14px rgba(255, 0, 40, 0.3);
+}
+
+.auth--signup {
+  background-image: url("/resources/images/component/auth/signup-bg.png");
+}
+
+.auth-card--signup {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35) inset, 0 0 30px rgba(0, 200, 255, 0.22);
+}
+.auth-card--signup::before {
+  background: linear-gradient(160deg, rgba(80, 220, 255, 0.55), rgba(0, 180, 255, 0.85), rgba(0, 140, 220, 0.45), rgba(0, 200, 255, 0.9));
+}
+.auth-card--signup::after {
+  background: linear-gradient(180deg, rgba(0, 200, 255, 0.35), rgba(0, 150, 220, 0.22), rgba(0, 120, 200, 0.18));
+}
+.auth-card--signup .auth-card__sheen {
+  background: linear-gradient(120deg, transparent 0%, rgba(180, 240, 255, 0) 42%, rgba(200, 255, 255, 0.25) 50%, rgba(180, 240, 255, 0) 58%, transparent 100%);
+}
+
+.auth--cart {
+  background-image: url("/resources/images/component/auth/cart-bg.png");
+}
+
+.auth-card--cart {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35) inset, 0 0 35px rgba(255, 230, 0, 0.28);
+}
+.auth-card--cart::before {
+  background: linear-gradient(160deg, rgba(255, 245, 120, 0.6), rgba(255, 230, 0, 0.9), rgba(255, 200, 0, 0.5), rgba(255, 215, 0, 0.95));
+}
+.auth-card--cart::after {
+  background: linear-gradient(180deg, rgba(255, 235, 0, 0.4), rgba(255, 210, 0, 0.25), rgba(255, 190, 0, 0.18));
+}
+.auth-card--cart .auth-card__sheen {
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 200, 0) 42%, rgba(255, 255, 180, 0.28) 50%, rgba(255, 255, 200, 0) 58%, transparent 100%);
 }
 
 #header {
