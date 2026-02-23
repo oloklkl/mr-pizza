@@ -66,3 +66,121 @@ button {
     }
   }
 }
+
+.auth {
+  @include flexCenter;
+  min-height: 100vh;
+  padding: 10rem 2.4rem;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-card__sheen {
+    animation: none !important;
+    opacity: 0.25 !important;
+  }
+}
+
+@keyframes authSheen {
+  0% {
+    transform: translateX(-35%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(35%);
+    opacity: 0;
+  }
+}
+
+.auth-card {
+  position: relative;
+  width: min(52rem, 92vw);
+  padding: 4.2rem 4rem 3.6rem;
+  z-index: 1;
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35) inset,
+    0 0 30px rgba(0, 0, 0, 0.35);
+
+  @include mobile {
+    padding: 3.6rem 2.4rem 3rem;
+  }
+
+  /* ✅ 공통 네온 링(색은 각 페이지 modifier에서 지정) */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    @include ring-mask(1.5px);
+
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ✅ 공통 안쪽 링(색은 각 페이지 modifier에서 지정) */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border-radius: calc(18px - 7px);
+
+    @include ring-mask(1.2px);
+
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ✅ 공통 sheen(색은 각 페이지 modifier에서 지정) */
+  .auth-card__sheen {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    @include ring-mask(1.5px);
+
+    pointer-events: none;
+    z-index: 2;
+
+    transform: translateX(-35%);
+    opacity: 0.85;
+    mix-blend-mode: screen;
+    filter: blur(0.3px);
+
+    animation: authSheen 5s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  /* ✅ 공통: 내용은 항상 위로 */
+  > *:not(.auth-card__sheen) {
+    position: relative;
+    z-index: 3;
+  }
+}

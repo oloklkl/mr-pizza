@@ -105,3 +105,18 @@
     0 0 $blur1 rgba($r, $g, $b, $a1),
     0 0 $blur2 rgba($r, $g, $b, $a2);
 }
+
+@mixin ring-mask($thickness: 1px) {
+  padding: $thickness;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
