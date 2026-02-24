@@ -58,10 +58,11 @@
   text-decoration: none;
 
   svg {
+    position: relative;
+    left: -8px;
     width: 20rem;
     height: auto;
     display: block;
-
     animation: neon-breathe 2.8s ease-in-out infinite;
     transition:
       transform 0.2s ease,

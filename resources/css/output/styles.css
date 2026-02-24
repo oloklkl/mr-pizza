@@ -1709,6 +1709,8 @@ button {
   text-decoration: none;
 }
 .auth-card--login .auth-card__brand svg {
+  position: relative;
+  left: -8px;
   width: 20rem;
   height: auto;
   display: block;
@@ -2109,6 +2111,8 @@ button {
   text-decoration: none;
 }
 .auth-card--signup .auth-card__brand svg {
+  position: relative;
+  left: -6px;
   width: 20rem;
   height: auto;
   display: block;
