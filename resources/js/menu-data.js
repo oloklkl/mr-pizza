@@ -635,14 +635,6 @@ export const RAW_ITEMS = [
 
 const HERO_IDS = new Set([1, 2, 3, 4, 5]);
 
-const getHeroImgById = (id) => (HERO_IDS.has(id) ? `/resources/images/component/main/${id}.png` : null);
-
-export const HERO_ITEMS = MENU_ITEMS.filter((item) => HERO_IDS.has(item.id)).map((item) => ({
-  ...item,
-  heroImg: getHeroImgById(item.id) ?? item.img,
-}));
-
-//////////////
 const LINE_DEFAULTS = {
   suncrust: {
     defaultEdge: "thin",
@@ -662,3 +654,17 @@ const withDefaults = (item) => ({
 });
 
 export const MENU_ITEMS = RAW_ITEMS.map(withDefaults);
+
+export const HERO_ITEMS = MENU_ITEMS.filter((item) => HERO_IDS.has(Number(item.id))).map((item) => {
+  const id = Number(item.id);
+  return {
+    ...item,
+    heroImg: `../resources/images/component/main/${id}.png`,
+  };
+});
+
+console.log(
+  "MENU_ITEMS ids:",
+  MENU_ITEMS.map((v) => [v.id, typeof v.id]),
+);
+console.log("HERO_ITEMS:", HERO_ITEMS);
