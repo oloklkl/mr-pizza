@@ -1658,6 +1658,487 @@ button {
   opacity: 0.9;
 }
 
+@keyframes grainFloat {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(-1%, 1%, 0);
+  }
+  50% {
+    transform: translate3d(1%, -1%, 0);
+  }
+  75% {
+    transform: translate3d(-1%, -1%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-end__grain {
+    animation: none !important;
+  }
+}
+/* =========================
+   ABOUT PAGE (cinematic + subtle neon)
+   ========================= */
+/* 페이지 래퍼 */
+.about {
+  background: linear-gradient(180deg, #0b0b0c 0%, #0f0f10 45%, #0a0a0a 100%);
+  color: rgba(255, 255, 255, 0.86);
+  overflow: hidden;
+  /* 공통 inner */
+}
+.about [class$=__inner] {
+  width: min(1200px, 100% - 48px);
+  margin: 0 auto;
+}
+@media (max-width: 767px) {
+  .about [class$=__inner] {
+    width: calc(100% - 32px);
+  }
+}
+
+/* ---------- HERO ---------- */
+.about-hero {
+  position: relative;
+  min-height: 88vh;
+  padding: 120px 0 90px;
+  display: grid;
+  place-items: center;
+}
+@media (min-width: 768px) and (max-width: 1399px) {
+  .about-hero {
+    min-height: 78vh;
+    padding: 110px 0 80px;
+  }
+}
+@media (max-width: 767px) {
+  .about-hero {
+    min-height: 72vh;
+    padding: 96px 0 72px;
+  }
+}
+.about-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.about-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.05);
+  transform: scale(1.04);
+  will-change: transform;
+}
+.about-hero__bg {
+  /* 시네마틱 오버레이 */
+}
+.about-hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(900px 480px at 25% 38%, rgba(255, 255, 255, 0.09), transparent 60%), radial-gradient(900px 520px at 75% 65%, rgba(255, 26, 71, 0.12), transparent 65%), linear-gradient(180deg, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0.46) 50%, rgba(0, 0, 0, 0.78) 100%);
+  pointer-events: none;
+}
+.about-hero__inner {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  align-self: center;
+}
+.about-hero__title {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 5.2rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 720px;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+}
+@media (min-width: 768px) and (max-width: 1399px) {
+  .about-hero__title {
+    font-size: 4.6rem;
+  }
+}
+@media (max-width: 767px) {
+  .about-hero__title {
+    font-size: 3.6rem;
+  }
+}
+.about-hero__sub {
+  margin-top: 14px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.18em;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.62);
+  text-transform: uppercase;
+}
+.about-hero {
+  /* refined neon line */
+}
+.about-hero__line {
+  margin-top: 24px;
+  width: 340px;
+  height: 2px; /* 1px 말고 2px */
+  position: relative;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 25%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 75%, transparent 100%);
+}
+@media (max-width: 767px) {
+  .about-hero__line {
+    width: 220px;
+  }
+}
+.about-hero__line::before {
+  /* 🔥 네온 코어 */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 26, 71, 0.15) 20%, rgba(255, 26, 71, 0.8) 50%, rgba(255, 26, 71, 0.15) 80%, transparent 100%);
+  filter: blur(0.5px);
+}
+.about-hero__line::after {
+  /* ✨ 소프트 외곽 글로우 */
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: -3px;
+  bottom: -3px;
+  background: radial-gradient(ellipse at center, rgba(255, 26, 71, 0.35), transparent 70%);
+  filter: blur(6px);
+  opacity: 0.5;
+}
+.about-hero__scroll {
+  margin-top: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.14em;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.58);
+  text-transform: uppercase;
+}
+.about-hero__scroll .icon svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+}
+.about-hero__scroll:hover {
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 0 10px rgba(255, 26, 71, 0.22);
+}
+
+/* ---------- VALUES ---------- */
+.about-values {
+  padding: 90px 0 110px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.92) 100%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .about-values {
+    padding: 70px 0 90px;
+  }
+}
+.about-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 767px) {
+  .about-values__grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.value-card {
+  --red: 255, 0, 40;
+  --text: 255, 230, 232;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35) inset, 0 0 30px rgba(255, 0, 40, 0.22);
+  transform: translateZ(0);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+  will-change: transform;
+}
+.value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 26, 71, 0.14);
+}
+.value-card:hover .value-card__body::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.value-card:hover .value-card__title {
+  text-shadow: 0 0 18px rgba(255, 26, 71, 0.18);
+}
+.value-card:hover .value-card__en {
+  color: rgba(255, 255, 255, 0.72);
+}
+.value-card {
+  /* subtle grain */
+}
+.value-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(900px 600px at 30% 30%, rgba(255, 255, 255, 0.05), transparent 60%);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1;
+}
+.value-card {
+  /* hover neon frame */
+}
+.value-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+.value-card:hover::after {
+  border-color: rgba(255, 26, 71, 0.22);
+  box-shadow: 0 0 22px rgba(255, 26, 71, 0.12), inset 0 0 18px rgba(255, 26, 71, 0.06);
+  background: radial-gradient(900px 520px at 30% 20%, rgba(255, 26, 71, 0.1), transparent 55%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(var(--red), 0.1) 55%, rgba(var(--red), 0.16) 100%);
+  transition: 260ms ease;
+}
+.value-card:hover .value-card__title {
+  text-shadow: 0 0 18px rgba(255, 26, 71, 0.18);
+}
+.value-card:hover .value-card__en {
+  color: rgba(255, 255, 255, 0.72);
+}
+.value-card__media {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  z-index: 0;
+  margin-bottom: -3px;
+}
+@media (min-width: 768px) and (max-width: 1399px) {
+  .value-card__media {
+    height: 240px;
+  }
+}
+.value-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  filter: none;
+  transition: none;
+}
+.value-card__media::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.78) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.value-card__body {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  margin-top: -3px;
+  padding-top: 25px;
+  padding: 22px 22px 24px;
+  background: rgba(0, 0, 0, 0.18);
+}
+@media (max-width: 767px) {
+  .value-card__body {
+    padding: 20px 18px 22px;
+  }
+}
+.value-card__body::after {
+  content: "";
+  display: block;
+  width: min(220px, 72%);
+  height: 2px;
+  margin: 16px auto 0;
+  border-radius: 999px;
+  opacity: 0;
+  transform: scaleX(0.65);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 26, 71, 0.15) 18%, rgba(255, 26, 71, 0.95) 50%, rgba(255, 26, 71, 0.15) 82%, transparent 100%);
+  box-shadow: 0 0 14px rgba(255, 26, 71, 0.18), 0 0 28px rgba(255, 26, 71, 0.12);
+  transition: 260ms ease;
+}
+.value-card__title {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 2.4rem;
+  margin-top: 2px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.9);
+}
+.value-card__en {
+  margin-top: 6px;
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  margin-top: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.56);
+}
+.value-card__desc {
+  margin-top: 14px;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.68);
+  min-height: 44px;
+}
+
+/* ---------- END ---------- */
+.about-end {
+  position: relative;
+  padding: 120px 0 140px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .about-end {
+    padding: 90px 0 110px;
+  }
+}
+.about-end__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.about-end__bg img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.08) saturate(1.02);
+  transform: scale(1.04);
+  will-change: transform;
+}
+.about-end__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(900px 520px at 50% 55%, rgba(255, 26, 71, 0.14), transparent 60%), linear-gradient(180deg, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0.52) 45%, rgba(0, 0, 0, 0.88) 100%);
+  pointer-events: none;
+}
+.about-end__bg .about-end__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 400ms ease;
+  background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0px, rgba(255, 255, 255, 0.06) 1px, transparent 2px, transparent 4px), repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0px, rgba(0, 0, 0, 0.06) 1px, transparent 2px, transparent 5px);
+  filter: blur(0.6px);
+  transform: translateZ(0);
+  will-change: transform;
+  animation: grainFloat 7s steps(6) infinite;
+}
+.about-end.is-inview .about-end__grain {
+  opacity: 0.08;
+}
+.about-end__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.about-end__quote {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 2.8rem;
+  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.55);
+}
+@media (max-width: 767px) {
+  .about-end__quote {
+    font-size: 2.6rem;
+  }
+}
+.about-end__sub {
+  margin-top: 2.4rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+.about-end__actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Neon button (subtle) ---------- */
+.about-end__actions .btn-neon {
+  min-width: 30rem;
+}
+
+.btn-neon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 5.4rem;
+  padding: 0 2.2rem;
+  border-radius: 8px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  background: rgba(255, 25, 50, 0.17);
+  border: 1px solid rgba(255, 40, 70, 0.92);
+  color: rgba(255, 235, 238, 0.98);
+  box-shadow: 0 0 28px rgba(255, 0, 40, 0.36), 0 0 52px rgba(255, 0, 40, 0.22);
+}
+.btn-neon:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 25, 50, 0.25);
+  border-color: rgb(255, 40, 70);
+  box-shadow: 0 0 36px rgba(255, 0, 40, 0.5), 0 0 66px rgba(255, 0, 40, 0.3);
+}
+.btn-neon:active {
+  transform: translateY(-1px);
+}
+.btn-neon--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+.btn-neon--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 40, 70, 0.65);
+  box-shadow: 0 0 22px rgba(255, 0, 40, 0.22), 0 14px 36px rgba(0, 0, 0, 0.45);
+}
+
 /* =========================
    Login Theme Keyframes
 ========================= */

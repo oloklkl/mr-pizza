@@ -1,0 +1,540 @@
+@keyframes grainFloat {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(-1%, 1%, 0);
+  }
+  50% {
+    transform: translate3d(1%, -1%, 0);
+  }
+  75% {
+    transform: translate3d(-1%, -1%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-end__grain {
+    animation: none !important;
+  }
+}
+
+/* =========================
+   ABOUT PAGE (cinematic + subtle neon)
+   ========================= */
+
+/* 페이지 래퍼 */
+.about {
+  background: $bg-base;
+  color: rgba($white, 0.86);
+  overflow: hidden;
+
+  /* 공통 inner */
+  [class$="__inner"] {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+
+    @include mobile {
+      width: calc(100% - 32px);
+    }
+  }
+}
+
+/* ---------- HERO ---------- */
+.about-hero {
+  position: relative;
+  min-height: 88vh;
+  padding: 120px 0 90px;
+  display: grid;
+  place-items: center;
+
+  @include tablet-only {
+    min-height: 78vh;
+    padding: 110px 0 80px;
+  }
+
+  @include mobile {
+    min-height: 72vh;
+    padding: 96px 0 72px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.05);
+      transform: scale(1.04); // 살짝 줌인 (나중에 JS로 천천히 움직이면 더 좋음)
+      will-change: transform;
+    }
+
+    /* 시네마틱 오버레이 */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(900px 480px at 25% 38%, rgba($white, 0.09), transparent 60%), radial-gradient(900px 520px at 75% 65%, rgba($color-action, 0.12), transparent 65%), linear-gradient(180deg, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0.46) 50%, rgba(0, 0, 0, 0.78) 100%);
+      pointer-events: none;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    align-self: center;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 5.2rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: rgba($white, 0.92);
+    max-width: 720px;
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+
+    @include tablet-only {
+      font-size: 4.6rem;
+    }
+    @include mobile {
+      font-size: 3.6rem;
+    }
+  }
+
+  &__sub {
+    margin-top: 14px;
+    font-family: $font-display;
+    letter-spacing: 0.18em;
+    font-size: 1.2rem;
+    color: rgba($white, 0.62);
+    text-transform: uppercase;
+  }
+
+  /* refined neon line */
+  &__line {
+    margin-top: 24px;
+    width: 340px;
+    height: 2px; /* 1px 말고 2px */
+    position: relative;
+
+    background: linear-gradient(90deg, transparent 0%, rgba($white, 0.06) 25%, rgba($white, 0.12) 50%, rgba($white, 0.06) 75%, transparent 100%);
+
+    @include mobile {
+      width: 220px;
+    }
+
+    &::before {
+      /* 🔥 네온 코어 */
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background: linear-gradient(90deg, transparent 0%, rgba($color-action, 0.15) 20%, rgba($color-action, 0.8) 50%, rgba($color-action, 0.15) 80%, transparent 100%);
+
+      filter: blur(0.5px);
+    }
+
+    &::after {
+      /* ✨ 소프트 외곽 글로우 */
+      content: "";
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: -3px;
+      bottom: -3px;
+
+      background: radial-gradient(ellipse at center, rgba($color-action, 0.35), transparent 70%);
+
+      filter: blur(6px);
+      opacity: 0.5;
+    }
+  }
+
+  &__scroll {
+    margin-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-display;
+    letter-spacing: 0.14em;
+    font-size: 1.1rem;
+    color: rgba($white, 0.58);
+    text-transform: uppercase;
+
+    .icon svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.85;
+    }
+
+    &:hover {
+      color: rgba($white, 0.82);
+      text-shadow: 0 0 10px rgba($color-action, 0.22);
+    }
+  }
+}
+
+/* ---------- VALUES ---------- */
+.about-values {
+  padding: 90px 0 110px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.92) 100%);
+  height: 100vh;
+  @include flexCenter;
+
+  @include mobile {
+    padding: 70px 0 90px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+}
+
+.value-card {
+  --red: 255, 0, 40;
+  --text: 255, 230, 232;
+
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35) inset,
+    0 0 30px rgba(255, 0, 40, 0.22);
+  transform: translateZ(0);
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+  will-change: transform;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+    border-color: rgba($color-action, 0.14);
+  }
+
+  &:hover .value-card__body::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  &:hover .value-card__title {
+    text-shadow: 0 0 18px rgba($color-action, 0.18);
+  }
+
+  &:hover .value-card__en {
+    color: rgba($white, 0.72);
+  }
+
+  /* subtle grain */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(900px 600px at 30% 30%, rgba($white, 0.05), transparent 60%);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* hover neon frame */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    @include ring-mask(1.5px);
+
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  &:hover::after {
+    border-color: rgba($color-action, 0.22);
+    box-shadow:
+      0 0 22px rgba($color-action, 0.12),
+      inset 0 0 18px rgba($color-action, 0.06);
+    background: radial-gradient(900px 520px at 30% 20%, rgba($color-action, 0.1), transparent 55%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(var(--red), 0.1) 55%, rgba(var(--red), 0.16) 100%);
+    transition: 260ms ease;
+  }
+
+  &:hover .value-card__title {
+    text-shadow: 0 0 18px rgba($color-action, 0.18);
+  }
+
+  &:hover .value-card__en {
+    color: rgba($white, 0.72);
+  }
+
+  &__media {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    z-index: 0;
+    margin-bottom: -3px;
+
+    @include tablet-only {
+      height: 240px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.78) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &__body {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    margin-top: -3px;
+    padding-top: calc(22px + 3px);
+    padding: 22px 22px 24px;
+    background: rgba(0, 0, 0, 0.18);
+
+    @include mobile {
+      padding: 20px 18px 22px;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+
+      width: min(220px, 72%);
+      height: 2px;
+      margin: 16px auto 0;
+      border-radius: 999px;
+
+      opacity: 0;
+      transform: scaleX(0.65);
+
+      background: linear-gradient(90deg, transparent 0%, rgba($color-action, 0.15) 18%, rgba($color-action, 0.95) 50%, rgba($color-action, 0.15) 82%, transparent 100%);
+
+      box-shadow:
+        0 0 14px rgba($color-action, 0.18),
+        0 0 28px rgba($color-action, 0.12);
+
+      transition: 260ms ease;
+    }
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 2.4rem;
+    margin-top: 2px;
+    letter-spacing: -0.02em;
+    color: rgba($white, 0.9);
+  }
+
+  &__en {
+    margin-top: 6px;
+    font-family: $font-display;
+    font-size: 1.1rem;
+    margin-top: 8px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba($white, 0.56);
+  }
+
+  &__desc {
+    margin-top: 14px;
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: rgba($white, 0.68);
+    min-height: 44px; // 멘트 길이 달라도 카드 높이 균형
+  }
+}
+
+/* ---------- END ---------- */
+.about-end {
+  position: relative;
+  padding: 120px 0 140px;
+  min-height: 100vh;
+  @include flexCenter;
+
+  @include mobile {
+    padding: 90px 0 110px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+
+    img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.08) saturate(1.02);
+      transform: scale(1.04);
+      will-change: transform;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(900px 520px at 50% 55%, rgba($color-action, 0.14), transparent 60%), linear-gradient(180deg, rgba(0, 0, 0, 0.76) 0%, rgba(0, 0, 0, 0.52) 45%, rgba(0, 0, 0, 0.88) 100%);
+      pointer-events: none;
+    }
+
+    .about-end__grain {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      mix-blend-mode: soft-light;
+      transition: opacity 400ms ease;
+
+      background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0px, rgba(255, 255, 255, 0.06) 1px, transparent 2px, transparent 4px), repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0px, rgba(0, 0, 0, 0.06) 1px, transparent 2px, transparent 5px);
+
+      filter: blur(0.6px);
+      transform: translateZ(0);
+      will-change: transform;
+
+      animation: grainFloat 7s steps(6) infinite;
+    }
+  }
+
+  &.is-inview {
+    .about-end__grain {
+      opacity: 0.08;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  &__quote {
+    font-family: $font-heading;
+    font-size: 2.8rem;
+    line-height: 1.6;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: rgba($white, 0.92);
+    text-shadow: 0 3px 24px rgba(0, 0, 0, 0.55);
+
+    @include mobile {
+      font-size: 2.6rem;
+    }
+  }
+
+  &__sub {
+    margin-top: 2.4rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba($white, 0.45);
+  }
+
+  &__actions {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- Neon button (subtle) ---------- */
+.about-end__actions .btn-neon {
+  min-width: 30rem;
+}
+
+.btn-neon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  height: 5.4rem;
+  padding: 0 2.2rem;
+
+  border-radius: 8px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+
+  background: rgba(255, 25, 50, 0.17);
+  border: 1px solid rgba(255, 40, 70, 0.92);
+  color: rgba(255, 235, 238, 0.98);
+
+  box-shadow:
+    0 0 28px rgba(255, 0, 40, 0.36),
+    0 0 52px rgba(255, 0, 40, 0.22);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 25, 50, 0.25);
+    border-color: rgba(255, 40, 70, 1);
+    box-shadow:
+      0 0 36px rgba(255, 0, 40, 0.5),
+      0 0 66px rgba(255, 0, 40, 0.3);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &--ghost {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 40, 70, 0.65);
+      box-shadow:
+        0 0 22px rgba(255, 0, 40, 0.22),
+        0 14px 36px rgba(0, 0, 0, 0.45);
+    }
+  }
+}
