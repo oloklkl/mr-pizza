@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mr.Pizza | 메뉴</title>
+    <title>Mr.Pizza | MENU</title>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="페이지 제목" />
     <meta property="og:description" content="페이지 설명" />
@@ -74,134 +74,204 @@
         <section class="menu-hero">
           <h1 class="menu-hero__title">MENU</h1>
           <div class="inner menu-hero__inner">
-            <p class="menu-hero__desc">미스터피자 인기 메뉴를 만나보세요!</p>
+            <div class="menu-tabs" role="tablist" aria-label="메뉴 카테고리">
+              <div class="menu-tabs__rail" aria-hidden="true"></div>
 
-            <div class="menu-hero__tabs">
-              <button type="button" class="is-active">ALL</button>
-              <button>클래식</button>
-              <button>프리미엄</button>
-              <button>썬크러스트</button>
-              <button>사이드</button>
+              <button type="button" class="menu-tabs__btn is-active" role="tab" aria-selected="true" data-filter="all">ALL</button>
+
+              <button type="button" class="menu-tabs__btn" role="tab" aria-selected="false" data-filter="pizza">피자</button>
+
+              <button type="button" class="menu-tabs__btn" role="tab" aria-selected="false" data-filter="side">사이드</button>
+
+              <button type="button" class="menu-tabs__btn" role="tab" aria-selected="false" data-filter="set">세트</button>
             </div>
           </div>
         </section>
 
-        <section class="menu-list">
-          <div class="inner menu-list__inner">
-            <div class="menu-list__head">
-              <h2 class="menu-list__title">ALL</h2>
-            </div>
+        <!-- 구역형 쇼케이스 -->
+        <section class="menu-showcase" aria-label="메뉴 리스트">
+          <div class="inner menu-showcase__inner">
+            <!-- Best -->
+            <section class="menu-block" id="best" data-group="pizza">
+              <header class="menu-block__head">
+                <h2 class="menu-block__title">Best</h2>
+                <div class="menu-block__line" aria-hidden="true"></div>
+              </header>
 
-            <div class="menu-grid">
-              <!-- 카드 1 -->
-              <article class="menu-card-wrap">
-                <span class="menu-badge menu-badge--new">NEW</span>
-                <article class="menu-card is-cut">
-                  <a class="menu-card__thumb" href="#">
-                    <img src="/resources/images/component/menu/1.png" alt="스페셜콰트로" />
+              <div class="menu-grid">
+                <article class="menu-item" data-type="pizza">
+                  <a class="menu-item__link" href="#" aria-label="미스터트리오 자세히 보기">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-premium/pizza_premium_02.png" alt="미스터트리오" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">미스터트리오</h3>
+                      <p class="menu-item__price">L 39,500</p>
+                    </div>
                   </a>
-
-                  <div class="menu-card__body">
-                    <h3 class="menu-card__name">스페셜콰트로</h3>
-
-                    <div class="menu-card__meta">
-                      <span class="menu-card__price">L 29,500 · M 23,900</span>
-                    </div>
-
-                    <div class="menu-card__actions">
-                      <a class="menu-card__btn" href="#">자세히 보기</a>
-                    </div>
-                  </div>
                 </article>
-              </article>
 
-              <article class="menu-card-wrap">
-                <span class="menu-badge menu-badge--best">BEST</span>
-                <article class="menu-card is-cut">
-                  <a class="menu-card__thumb" href="#">
-                    <img src="/resources/images/component/menu/2.png" alt="미스터트리오" />
+                <article class="menu-item" data-type="pizza">
+                  <a class="menu-item__link" href="#" aria-label="스페셜콰트로 자세히 보기">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-premium/pizza_premium_01.png" alt="스페셜콰트로" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">스페셜콰트로</h3>
+                      <p class="menu-item__price">L 39,500</p>
+                    </div>
                   </a>
-
-                  <div class="menu-card__body">
-                    <h3 class="menu-card__name">미스터트리오</h3>
-
-                    <div class="menu-card__meta">
-                      <span class="menu-card__price">L 39,500 · M 32,500</span>
-                    </div>
-
-                    <div class="menu-card__actions">
-                      <a class="menu-card__btn" href="#">자세히 보기</a>
-                    </div>
-                  </div>
                 </article>
-              </article>
-              <!-- 카드 반복 -->
-            </div>
 
-            <div class="menu-pagination">
-              <button type="button" class="menu-pagination__btn" aria-label="Previous">‹</button>
-              <button type="button" class="menu-pagination__num is-active">1</button>
-              <button type="button" class="menu-pagination__num">2</button>
-              <button type="button" class="menu-pagination__num">3</button>
-              <button type="button" class="menu-pagination__btn" aria-label="Next">›</button>
-            </div>
-            <div class="menu-list__bottom-line"></div>
+                <article class="menu-item" data-type="pizza">
+                  <a class="menu-item__link" href="#" aria-label="더블 치즈 자세히 보기">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-classic/pizza_classic_02.png" alt="더블 치즈" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">더블 치즈</h3>
+                      <p class="menu-item__price">L 28,900</p>
+                    </div>
+                  </a>
+                </article>
+              </div>
+            </section>
+
+            <!-- 프리미엄 -->
+            <section class="menu-block" id="premium" data-group="pizza">
+              <header class="menu-block__head">
+                <h2 class="menu-block__title">프리미엄</h2>
+                <div class="menu-block__line" aria-hidden="true"></div>
+              </header>
+
+              <div class="menu-grid">
+                <article class="menu-item" data-type="pizza">
+                  <a class="menu-item__link" href="#" aria-label="미스터트리오 자세히 보기">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-premium/pizza_premium_02.png" alt="미스터트리오" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">미스터트리오</h3>
+                      <p class="menu-item__price">L 39,500</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="menu-item" data-type="pizza">
+                  <a class="menu-item__link" href="#" aria-label="스페셜콰트로 자세히 보기">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-premium/pizza_premium_01.png" alt="스페셜콰트로" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">스페셜콰트로</h3>
+                      <p class="menu-item__price">L 39,500</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="menu-item" data-type="pizza">
+                  <a class="menu-item__link" href="#" aria-label="더블 치즈 자세히 보기">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-classic/pizza_classic_02.png" alt="더블 치즈" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">더블 치즈</h3>
+                      <p class="menu-item__price">L 28,900</p>
+                    </div>
+                  </a>
+                </article>
+              </div>
+            </section>
+
+            <!-- 콤보/세트 -->
+            <section class="menu-block" id="combo" data-group="set">
+              <header class="menu-block__head">
+                <h2 class="menu-block__title">세트</h2>
+                <div class="menu-block__line" aria-hidden="true"></div>
+              </header>
+
+              <div class="menu-grid">
+                <article class="menu-item menu-item--set" data-type="set">
+                  <a class="menu-item__link" href="#">
+                    <div class="set-card">
+                      <img class="set-main" src="../resources/images/component/menu/special-set/special_set_01.png" alt="쉬림프골드 세트 메인" />
+
+                      <div class="set-options" aria-hidden="true">
+                        <img class="set-opt set-opt--wing" src="../resources/images/component/menu/salad-side/salad_side_05.png" alt="핫윙" />
+                        <img class="set-opt set-opt--pasta" src="../resources/images/component/menu/pasta-rice/pasta_rice_03.png" alt="오븐치즈 미트 스파게티" />
+                      </div>
+                    </div>
+
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">쉬림프골드(골드엣지)+홈샐러드(6구)+윙8/오븐</h3>
+                      <p class="menu-item__price">40,200~</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="menu-item menu-item--set" data-type="set">
+                  <a class="menu-item__link" href="#">
+                    <div class="set-card">
+                      <img class="set-main" src="../resources/images/component/menu/special-set/special_set_02.png" alt="쉬림프골드 세트 메인" />
+
+                      <div class="set-options" aria-hidden="true">
+                        <img class="set-opt set-opt--wing" src="../resources/images/component/menu/salad-side/salad_side_05.png" alt="핫윙" />
+                        <img class="set-opt set-opt--pasta" src="../resources/images/component/menu/pasta-rice/pasta_rice_03.png" alt="오븐치즈 미트 스파게티" />
+                      </div>
+                    </div>
+
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">쉬림프골드(골드엣지)+홈샐러드(6구)+윙8/오븐</h3>
+                      <p class="menu-item__price">40,200~</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="menu-item menu-item--set" data-type="set">
+                  <a class="menu-item__link" href="#">
+                    <div class="set-card">
+                      <img class="set-main" src="../resources/images/component/menu/special-set/special_set_02.png" alt="쉬림프골드 세트 메인" />
+
+                      <div class="set-options" aria-hidden="true">
+                        <img class="set-opt set-opt--wing" src="../resources/images/component/menu/salad-side/salad_side_05.png" alt="핫윙" />
+                        <img class="set-opt set-opt--pasta" src="../resources/images/component/menu/pasta-rice/pasta_rice_03.png" alt="오븐치즈 미트 스파게티" />
+                      </div>
+                    </div>
+
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">쉬림프골드(골드엣지)+홈샐러드(6구)+윙8/오븐</h3>
+                      <p class="menu-item__price">40,200~</p>
+                    </div>
+                  </a>
+                </article>
+              </div>
+            </section>
+
+            <!-- 사이드 -->
+            <section class="menu-block" id="side" data-group="side">
+              <header class="menu-block__head">
+                <h2 class="menu-block__title">사이드</h2>
+                <div class="menu-block__line" aria-hidden="true"></div>
+              </header>
+
+              <div class="menu-grid">
+                <article class="menu-item" data-type="side">
+                  <a class="menu-item__link" href="#">
+                    <img class="menu-item__img" src="../resources/images/component/menu/pizza-sand/pizza_sand_01.png" alt="피자샌드" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">피자샌드</h3>
+                      <p class="menu-item__price">6,900</p>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="menu-item" data-type="side">
+                  <a class="menu-item__link" href="#">
+                    <img class="menu-item__img" src="../resources/images/component/menu/salad-side/salad_side_01.png" alt="미트치즈프라이즈" />
+                    <div class="menu-item__info">
+                      <h3 class="menu-item__name">미트치즈프라이즈</h3>
+                      <p class="menu-item__price">6,900</p>
+                    </div>
+                  </a>
+                </article>
+              </div>
+            </section>
           </div>
         </section>
 
-        <section class="menu-reco" aria-label="추천 사이드 메뉴 배너">
-          <div class="inner menu-reco__inner">
-            <div class="menu-reco__grid">
-              <!-- 카드 1 -->
-              <article class="reco-card reco-card--left">
-                <div class="reco-card__content">
-                  <h3 class="reco-card__title">사이드도 메인처럼<br />완성도 있게</h3>
-                  <p class="reco-card__desc">
-                    치킨, 윙, 스틱까지<br />
-                    피자와 가장 잘 어울리는 조합
-                  </p>
-
-                  <a class="reco-card__btn" href="./menu.html#side">사이드 메뉴 보기 <span aria-hidden="true">›</span></a>
-                </div>
-
-                <div class="reco-card__media" aria-hidden="true">
-                  <img src="/resources/images/component/menu/side-1.png" alt="" />
-                </div>
-
-                <span class="reco-card__spark reco-card__spark--red" aria-hidden="true"></span>
-                <span class="reco-card__spark reco-card__spark--blue" aria-hidden="true"></span>
-              </article>
-
-              <!-- 카드 2 -->
-              <article class="reco-card reco-card--right">
-                <div class="reco-card__content">
-                  <h3 class="reco-card__title">혼자 먹기 딱 좋은<br />퍼스널 & 세트</h3>
-                  <p class="reco-card__desc">
-                    1인용 피자부터 가볍게 즐기는 세트까지<br />
-                    부담 없이 즐겨보세요
-                  </p>
-
-                  <a class="reco-card__btn" href="./menu.html#combo">세트 메뉴 보기 <span aria-hidden="true">›</span></a>
-                </div>
-
-                <div class="reco-card__media" aria-hidden="true">
-                  <img src="/resources/images/component/menu/side-2.png" alt="" />
-                </div>
-
-                <!-- 옵션: 우상단 콜라 같은 작은 소품 이미지 -->
-                <div class="reco-card__float" aria-hidden="true">
-                  <img src="/resources/images/component/menu/cola.png" alt="" />
-                </div>
-
-                <span class="reco-card__spark reco-card__spark--red" aria-hidden="true"></span>
-                <span class="reco-card__spark reco-card__spark--blue" aria-hidden="true"></span>
-              </article>
-            </div>
-          </div>
-        </section>
+        <!-- (선택) 하단 장식 라인 -->
+        <div class="menu-bottom-line" aria-hidden="true"></div>
       </main>
 
-      <!-- <footer id="footer" include-html="./layout/footer.html"></footer> -->
+      <footer id="footer" include-html="./layout/footer.html"></footer>
     </div>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
