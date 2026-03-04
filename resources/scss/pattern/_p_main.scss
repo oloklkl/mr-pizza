@@ -87,7 +87,12 @@
       z-index: 5;
       transition: all 0.3s ease;
 
+      &:hover span {
+        filter: drop-shadow(0 0 4px $color-action) drop-shadow(0 0 12px rgba($color-action, 0.6));
+      }
+
       span {
+        display: block;
         position: absolute;
         top: 50%;
         left: 0;
@@ -105,11 +110,6 @@
 
       span:nth-child(2) {
         transform: translateY(-50%) rotate(-45deg);
-      }
-
-      &:hover span {
-        stroke: $white;
-        filter: drop-shadow(0 0 4px $color-action) drop-shadow(0 0 12px rgba($color-action, 0.6));
       }
     }
   }
@@ -664,9 +664,6 @@ $stars-right:
       .btn {
         position: relative;
         @include flexCenter;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         gap: 1.5rem;
         background: rgba(0, 0, 0, 0.18);
         border: 1px solid rgba(255, 255, 255, 0.06);
@@ -697,15 +694,20 @@ $stars-right:
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          padding: 1px; // 라인 두께
+          padding: 1px;
           background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+          opacity: 0.35;
+          pointer-events: none;
+
+          mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          mask-composite: exclude; /* spec */
+
           -webkit-mask:
             linear-gradient(#000 0 0) content-box,
             linear-gradient(#000 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          opacity: 0.35; // 안쪽 라인 광택
-          pointer-events: none;
+          -webkit-mask-composite: xor; /* webkit */
         }
 
         &::after {
