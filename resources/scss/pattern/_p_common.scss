@@ -183,26 +183,109 @@ button {
     position: relative;
     z-index: 3;
   }
+}
 
-  .auth-form {
-    .auth-btn {
-      width: 100%;
-      height: 5.4rem;
-      margin-top: 2.4rem;
-      border-radius: 8px;
-      font-size: 1.7rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+.auth-btn {
+  width: 100%;
+  height: 5.4rem;
+  margin-top: 2.4rem;
+  border-radius: 8px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease,
-        border-color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
 
-      &:hover {
-        transform: translateY(-2px);
-      }
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+%setCardLayered {
+  .set-card {
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 1.2rem;
+    isolation: isolate;
+
+    transform: scale(1.12);
+    transform-origin: 50% 50%;
+    will-change: transform; // ✅ 추가
+  }
+
+  .set-main {
+    width: min(280px, 86%);
+    height: auto;
+    display: block;
+
+    transform-origin: 50% 50%; // ✅ 추가(선택)
+    will-change: transform; // ✅ 추가(선택)
+
+    filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.55));
+    transition:
+      transform 260ms ease,
+      filter 260ms ease;
+  }
+
+  .set-options {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: scale(0.92);
+    transform-origin: right center;
+    will-change: transform; // ✅ 추가(선택)
+  }
+
+  .set-opt {
+    position: absolute;
+    height: auto;
+    display: block; // ✅ 추가(혹시 브라우저 기본 inline 이미지면)
+    max-width: 100%; // ✅ 추가(안전)
+    will-change: transform; // ✅ 추가
+
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.55));
+    transform-origin: right center;
+    transition:
+      transform 260ms ease,
+      filter 260ms ease,
+      opacity 260ms ease;
+  }
+
+  .set-opt--wing {
+    top: 10%;
+    right: 6%;
+    width: min(110px, 34%);
+    transform: rotate(-4deg);
+  }
+
+  .set-opt--pasta {
+    bottom: 6%;
+    right: 2%;
+    width: min(140px, 42%);
+    transform: rotate(6deg);
+  }
+
+  @include mobile {
+    .set-main {
+      width: min(220px, 78%);
+    }
+
+    .set-opt--wing {
+      width: min(96px, 36%);
+      top: 12%;
+      right: 4%;
+    }
+
+    .set-opt--pasta {
+      width: min(120px, 44%);
+      bottom: 6%;
+      right: 0%;
     }
   }
 }

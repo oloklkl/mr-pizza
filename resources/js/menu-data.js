@@ -28,6 +28,24 @@ export const EDGE_PRICE_MAP = {
   },
 };
 
+export const PIZZA_LINE_LABELS = {
+  premium: "프리미엄",
+  classic: "클래식",
+  suncrust: "씬크러스트",
+  solo: "1인용",
+};
+
+export const SIDE_LINE_LABELS = {
+  pizzasand: "피자샌드",
+  pasta: "파스타 & 라이스",
+  salad: "샐러드 & 사이드",
+  drink: "음료",
+};
+
+export const SET_LINE_LABELS = {
+  special: "특제 세트",
+};
+
 export const RAW_ITEMS = [
   {
     id: 1,
@@ -40,6 +58,8 @@ export const RAW_ITEMS = [
     desc: "포테이토골드 · 쉬림프골드 · 콰트로치즈 · 스윗고구마를 한 판에 담은 미스터피자 대표 믹스.",
     tags: ["NEW", "SIGNATURE", "4 QUARTERS"],
     line: "premium",
+    isBest: true,
+    isBestCandidate: true,
     defaultEdge: "gold",
     allowedEdges: ["gold", "signature", "egg", "cream", "cheesecap"],
     originInfo: "미트토핑: 돼지고기(지방일부/국산), 쇠고기(호주산), 베이컨: 돼지고기(외국산)",
@@ -59,6 +79,8 @@ export const RAW_ITEMS = [
     pick: "세 가지 시그니처의 완성형 조합",
     desc: "풍성한 토핑과 깊은 풍미가 어우러진 트리플 레이어. 고기, 치즈, 소스의 밸런스를 한 번에 즐기는 프리미엄 블렌드.",
     tags: ["TRIO", "PREMIUM", "BALANCED"],
+    isBest: true,
+    isBestCandidate: true,
     defaultEdge: "gold",
     allowedEdges: ["gold", "signature", "egg", "cream", "cheesecap"],
     originInfo: "미트토핑: 돼지고기(국산), 쇠고기(호주산), 치즈: 외국산",
@@ -78,6 +100,8 @@ export const RAW_ITEMS = [
     pick: "꽃처럼 피어난 스테이크의 존재감",
     desc: "육즙 가득 스테이크와 치즈 블라썸이 만나 비주얼과 맛을 동시에 압도하는 시그니처.",
     tags: ["STEAK", "BLOSSOM", "SIGNATURE"],
+    isBest: true,
+    isBestCandidate: true,
     defaultEdge: "gold",
     allowedEdges: ["gold", "signature", "egg", "cream", "cheesecap"],
     originInfo: "스테이크: 쇠고기(호주산), 치즈: 외국산",
@@ -153,6 +177,7 @@ export const RAW_ITEMS = [
     pick: "치즈의 본질에 집중하다",
     desc: "두 배로 녹아내리는 치즈의 풍미. 불필요한 장식 없이 깊고 진한 고소함을 그대로 담은 클래식의 정석.",
     tags: ["CHEESE", "CLASSIC", "RICH"],
+    isNew: true,
     defaultEdge: "origin",
     allowedEdges: ["origin", "signature", "cheesecap"],
     originInfo: "치즈: 외국산",
@@ -172,6 +197,7 @@ export const RAW_ITEMS = [
     pick: "탱글한 쉬림프의 정석",
     desc: "버터 갈릭의 고소함과 풍성한 치즈가 어우러진 깊이 있는 프리미엄 씨푸드.",
     tags: ["BEST", "SEAFOOD", "BUTTER GARLIC"],
+    isSignature: true,
     defaultEdge: "gold",
     allowedEdges: ["gold", "signature", "egg", "cream", "cheesecap"],
     originInfo: "새우: 베트남산, 치즈: 외국산",
@@ -191,6 +217,7 @@ export const RAW_ITEMS = [
     pick: "두툼한 감자의 정석, 변함없는 베스트",
     desc: "크리미한 감자무스와 고소한 베이컨, 달콤한 소스가 어우러진 미스터피자의 시그니처 클래식.",
     tags: ["BEST", "POTATO", "SIGNATURE"],
+    isSignature: true,
     defaultEdge: "gold",
     allowedEdges: ["gold", "signature", "egg", "cream"],
     originInfo: "미트토핑: 돼지고기(지방일부/국산), 쇠고기(호주산), 베이컨: 돼지고기(외국산)",
@@ -546,7 +573,7 @@ export const RAW_ITEMS = [
     id: 201,
     img: "/resources/images/component/menu/pizza-sand/pizza_sand_01.png",
     category: "피자샌드",
-    line: "sand",
+    line: "pizzasand",
     title: "콤비네이션 샌드",
     price: "6,900",
     pick: "피자의 맛을 간편하게 즐기는 한 입 샌드",
@@ -584,7 +611,7 @@ export const RAW_ITEMS = [
     id: 401,
     img: "/resources/images/component/menu/salad-side/salad_side_01.png",
     category: "샐러드&사이드",
-    line: "side",
+    line: "salad",
     title: "미트치즈프라이즈",
     price: "6,900",
     pick: "고기와 치즈가 듬뿍 올라간 사이드 끝판왕",
@@ -620,8 +647,10 @@ export const RAW_ITEMS = [
   {
     id: 601,
     img: "/resources/images/component/menu/special-set/special_set_01.png",
-    category: "특제세트",
-    line: "set",
+    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    category: "특제 세트",
+    type: "set",
+    line: "special",
     title: "쉬림프골드(골드엣지)+홈샐러드(6구)+윙8/오븐",
     price: "M 40,200 · L 45,200",
     pick: "한 번에 즐기는 인기 조합 세트",
