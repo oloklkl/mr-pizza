@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr.Pizza | DROP</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="페이지 제목" />
+    <meta property="og:description" content="페이지 설명" />
+    <meta property="og:image" content="http://www.mysite.com/article/article1_featured_image.jpg" />
+    <meta property="og:url" content="http://www.mysite.com/article/article1.html" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="페이지 제목" />
+    <meta name="twitter:description" content="페이지 설명" />
+    <meta name="twitter:image" content="http://www.mysite.com/article/article1.html" />
+    <meta name="twitter:domain" content="사이트 명" />
+
+    <link rel="shortcut icon" href="http://www.mysite.com/favicon.ico" />
+    <!-- Google Fonts: Montserrat / Playfair Display -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" />
+
+    <!-- Pretendard (Variable) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="../resources/css/pattern_css.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script defer src="../resources/js/include.js"></script>
+    <script defer src="../resources/js/ui-pattern.js"></script>
+    <script defer src="../resources/js/drop.js"></script>
+  </head>
+  <body>
+    <div id="skip-nav">
+      <a href="#gnb">메뉴 바로가기</a>
+      <a href="#container">본문 바로가기</a>
+    </div>
+    <div id="wrap">
+      <header id="header" include-html="./layout/header.html"></header>
+
+      <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <div class="mobile-menu__content">
+          <button class="mobile-menu__close" type="button" aria-label="Close menu">
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav class="mobile-menu__nav">
+            <ul>
+              <li><a href="#">MENU</a></li>
+              <li><a href="#">DROP</a></li>
+              <li><a href="#">STORE</a></li>
+              <li><a href="#">ABOUT</a></li>
+            </ul>
+          </nav>
+
+          <div class="mobile-menu__utils" aria-label="Account and search">
+            <a href="/pages/cart/cart.html" class="mobile-menu__util" aria-label="Cart">
+              <i data-lucide="shopping-bag" class="icon"></i>
+              <span>CART</span>
+            </a>
+            <a href="/pages/auth/login.html" class="mobile-menu__util" aria-label="Login">
+              <i data-lucide="user-round" class="icon"></i>
+              <span>LOGIN</span>
+            </a>
+          </div>
+
+          <div class="mobile-menu__footer">
+            <p class="mobile-tagline">MR.PIZZA</p>
+            <p class="mobile-year">EST. 1990 · REIMAGINED 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <main id="container">
+        <section class="drop-hero" aria-label="DROP Hero">
+          <div class="drop-shimmer" aria-hidden="true"></div>
+          <div class="drop-noise" aria-hidden="true"></div>
+
+          <div class="drop-petals" aria-hidden="true">
+            <span class="petal p1"></span>
+            <span class="petal p2"></span>
+            <span class="petal p3"></span>
+            <span class="petal p4"></span>
+            <span class="petal p5"></span>
+            <span class="petal p6"></span>
+          </div>
+
+          <div class="drop-hero__inner">
+            <!-- LEFT: copy -->
+            <div class="drop-hero__copy">
+              <p class="drop-hero__eyebrow">LIMITED EDITION</p>
+              <p class="drop-hero__season">2026 SPRING COLLECTION</p>
+
+              <h1 class="drop-hero__title">BERRY BLOSSOM</h1>
+              <p class="drop-hero__subtitle">베리 블로썸 쉬림프 피자</p>
+
+              <p class="drop-hero__desc">
+                달콤한 베리와 탱글한 쉬림프의 만남.<br />
+                봄 시즌 한정으로 선보이는 프리미엄 컬렉션.
+              </p>
+
+              <p class="drop-hero__date"><span class="drop-hero__date-value">2026.05.01</span> <span aria-hidden="true">|</span> SPRING SEASON ONLY</p>
+
+              <a class="drop-hero__cta" href="#notify">
+                <span class="drop-hero__cta-text">사전 알림 받기</span>
+
+                <span class="drop-hero__cta-icon">
+                  <i data-lucide="chevron-right"></i>
+                  <i data-lucide="chevron-right"></i>
+                </span>
+              </a>
+            </div>
+
+            <!-- RIGHT: visual -->
+            <div class="drop-hero__visual" aria-hidden="true">
+              <!-- 피자 png 자리 -->
+              <div class="drop-ground-shadow" aria-hidden="true"></div>
+              <img class="drop-hero__pizza" src="../resources/images/component/drop/drop-pizza.png" alt="" loading="eager" decoding="async" />
+
+              <!-- 🌸 바닥 벚꽃 -->
+              <div class="drop-petals-ground" aria-hidden="true">
+                <span class="petal g1"></span>
+                <span class="petal g2"></span>
+                <span class="petal g3"></span>
+                <span class="petal g4"></span>
+                <span class="petal g5"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTTOM: countdown -->
+          <div class="drop-count">
+            <div class="drop-count__inner">
+              <div class="drop-count__grid" role="timer" aria-live="polite">
+                <div class="drop-count__item">
+                  <div class="drop-count__num" id="dd">03</div>
+                  <div class="drop-count__label">DAYS</div>
+                </div>
+                <div class="drop-count__divider" aria-hidden="true"></div>
+
+                <div class="drop-count__item">
+                  <div class="drop-count__num" id="hh">14</div>
+                  <div class="drop-count__label">HOURS</div>
+                </div>
+                <div class="drop-count__divider" aria-hidden="true"></div>
+
+                <div class="drop-count__item">
+                  <div class="drop-count__num" id="mm">22</div>
+                  <div class="drop-count__label">MINUTES</div>
+                </div>
+                <div class="drop-count__divider" aria-hidden="true"></div>
+
+                <div class="drop-count__item">
+                  <div class="drop-count__num" id="ss">57</div>
+                  <div class="drop-count__label">SECONDS</div>
+                </div>
+              </div>
+
+              <p class="drop-count__note">출시일 <strong>2026.05.01 AM 10:00</strong></p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

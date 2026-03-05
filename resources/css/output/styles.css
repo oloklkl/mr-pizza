@@ -2390,6 +2390,704 @@ button {
     transform: scale(0.92);
   }
 }
+@keyframes dropSparkle {
+  0% {
+    opacity: 0.55;
+    filter: blur(0.2px);
+  }
+  50% {
+    opacity: 0.95;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0.55;
+    filter: blur(0.2px);
+  }
+}
+@keyframes dropShimmer {
+  from {
+    background-position: -120% 0;
+  }
+  to {
+    background-position: 120% 0;
+  }
+}
+/* =========================================================
+   DROP - BERRY BLOSSOM
+========================================================= */
+/* palette */
+.drop {
+  color: rgba(255, 245, 240, 0.95);
+  background: #120b10;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+.drop-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(120deg, transparent 40%, rgba(255, 255, 255, 0.14) 50%, transparent 60%);
+  background-size: 220% 100%;
+  animation: dropShimmer 10s linear infinite;
+  opacity: 0.35;
+}
+
+.drop-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  padding-bottom: clamp(24px, 4vw, 56px);
+  /* 상단 메뉴바가 고정이면 padding-top 조절 */
+  padding: clamp(64px, 7vw, 92px) 0 0;
+  /* ✅ 벚꽃 배경 */
+}
+.drop-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/resources/images/component/drop/drop-bg.png") center/cover no-repeat;
+  filter: saturate(1.06) contrast(1.02);
+  transform: scale(1.02);
+  z-index: 0;
+}
+.drop-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(980px 600px at 55% 34%, rgba(255, 235, 245, 0.26), transparent 64%), radial-gradient(1200px 820px at 50% 58%, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.18)), linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.05) 38%, rgba(0, 0, 0, 0.12));
+}
+
+.drop-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: url("/resources/images/component/drop/noise.png") repeat;
+  opacity: 0.035;
+  transform: translate3d(var(--noise-x, 0px), var(--noise-y, 0px), 0);
+  will-change: transform;
+}
+
+.drop-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  --wind-x: 0px;
+  --wind-y: 0px;
+}
+
+.petal {
+  position: absolute;
+  top: -12%;
+  width: 16px;
+  height: 12px;
+  border-radius: 14px 14px 14px 0;
+  background: rgba(255, 215, 225, 0.65);
+  box-shadow: 0 0 18px rgba(255, 190, 205, 0.18);
+  filter: blur(0.1px);
+  --repel-x: 0px;
+  --repel-y: 0px;
+  opacity: 0.85;
+  /* ✅ 떨어지는 건 keyframes(transform) 담당 */
+  animation-name: petalFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /* ✅ 바람은 translate로 얹기(충돌 X) */
+  translate: calc(var(--wind-x) + var(--repel-x)) calc(var(--wind-y) + var(--repel-y));
+  will-change: translate;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(18deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(0, 120vh, 0) rotate(320deg);
+    opacity: 0;
+  }
+}
+/* 📱 모바일: 바람 끄기 */
+@media (max-width: 767px) {
+  .drop-petals {
+    --wind-x: 0px;
+    --wind-y: 0px;
+  }
+  .petal {
+    --repel-x: 0px;
+    --repel-y: 0px;
+    translate: 0px 0px;
+  }
+}
+/* 각 잎 랜덤 배치/속도 */
+.p1 {
+  left: 8%;
+  animation-duration: 9.5s;
+  animation-delay: 0s;
+  opacity: 0.7;
+}
+
+.p2 {
+  left: 24%;
+  animation-duration: 11.5s;
+  animation-delay: 1.2s;
+  width: 14px;
+  height: 10px;
+  opacity: 0.9;
+}
+
+.p3 {
+  left: 46%;
+  animation-duration: 10.2s;
+  animation-delay: 0.6s;
+  opacity: 0.6;
+}
+
+.p4 {
+  left: 62%;
+  animation-duration: 12.2s;
+  animation-delay: 2s;
+  width: 18px;
+  height: 13px;
+  opacity: 0.8;
+}
+
+.p5 {
+  left: 78%;
+  animation-duration: 9.8s;
+  animation-delay: 1.6s;
+  opacity: 0.75;
+}
+
+.p6 {
+  left: 90%;
+  animation-duration: 12.8s;
+  animation-delay: 0.8s;
+  width: 15px;
+  height: 11px;
+}
+
+/* 흔들림(좌우 드리프트) */
+.p1,
+.p3,
+.p5 {
+  animation-name: petalFall, petalDriftA;
+}
+
+.p2,
+.p4,
+.p6 {
+  animation-name: petalFall, petalDriftB;
+}
+
+@keyframes petalDriftA {
+  0% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: 22px;
+  }
+  100% {
+    margin-left: -10px;
+  }
+}
+@keyframes petalDriftB {
+  0% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: -18px;
+  }
+  100% {
+    margin-left: 12px;
+  }
+}
+.petal {
+  animation-duration: inherit, 3.8s;
+  animation-delay: inherit, 0s;
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: linear, ease-in-out;
+}
+
+.drop-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100% - 48px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(22px, 4vw, 56px);
+  align-items: center;
+}
+.drop-hero__inner::before {
+  content: "";
+  position: absolute;
+  inset: -40px -40px -40px -40px;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(2px 2px at 12% 32%, rgba(255, 255, 255, 0.22), transparent 60%), radial-gradient(1.5px 1.5px at 22% 58%, rgba(255, 255, 255, 0.18), transparent 60%), radial-gradient(2px 2px at 38% 20%, rgba(255, 225, 235, 0.2), transparent 60%), radial-gradient(1.5px 1.5px at 56% 44%, rgba(255, 255, 255, 0.16), transparent 60%), radial-gradient(2px 2px at 72% 30%, rgba(255, 225, 235, 0.18), transparent 60%), radial-gradient(1.5px 1.5px at 84% 62%, rgba(255, 255, 255, 0.14), transparent 60%), radial-gradient(2px 2px at 90% 18%, rgba(255, 225, 235, 0.18), transparent 60%);
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  animation: dropSparkle 3.4s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(var(--sparkle-shift, 0px, 0px), 0);
+  transition: transform 0.14s ease-out;
+}
+
+/* LEFT copy */
+.drop-hero__copy {
+  max-width: 520px;
+  filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.22));
+}
+
+.drop-hero__eyebrow {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 2rem;
+  color: rgba(255, 230, 235, 0.8);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.drop-hero__eyebrow {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 1.2rem;
+  color: rgba(255, 230, 235, 0.8);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.drop-hero__season {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-size: 1.3rem;
+  color: rgba(255, 230, 235, 0.68);
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.drop-hero__title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: clamp(3.6rem, 5.2vw, 5.2rem);
+  line-height: 0.98;
+  margin: 0 0 10px;
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(255, 210, 220, 0.35), 0 0 34px rgba(255, 160, 190, 0.25);
+}
+
+@media (min-width: 768px) and (max-width: 1399px) {
+  .drop-hero__title {
+    white-space: normal;
+  }
+}
+@media (max-width: 767px) {
+  .drop-hero__title {
+    white-space: normal;
+  }
+}
+.drop-hero__subtitle {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: clamp(2rem, 2.2vw, 3rem);
+  margin: 0 0 18px;
+  color: rgba(255, 240, 245, 0.92);
+  text-shadow: 0 0 18px rgba(255, 180, 200, 0.16);
+}
+
+.drop-hero__desc {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: rgba(255, 240, 245, 0.78);
+  margin: 0 0 20px;
+}
+
+.drop-hero__date {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: 1.3rem;
+  color: rgba(255, 230, 235, 0.78);
+  margin: 0 0 22px;
+  text-transform: uppercase;
+}
+.drop-hero__date .drop-hero__date-value {
+  letter-spacing: 0.06em;
+  color: rgba(255, 245, 245, 0.95);
+  text-shadow: 0 0 12px rgba(255, 180, 200, 0.35), 0 0 24px rgba(255, 140, 180, 0.25);
+}
+
+/* CTA button */
+.drop-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: rgba(255, 245, 245, 0.92);
+  background: rgba(255, 140, 170, 0.22);
+  border: 1px solid rgba(255, 200, 215, 0.6);
+  box-shadow: 0 0 18px rgba(255, 150, 180, 0.22), 0 0 44px rgba(255, 120, 165, 0.16);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.drop-hero__cta:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 150, 180, 0.28);
+  box-shadow: 0 0 20px rgba(255, 180, 200, 0.35), 0 0 50px rgba(255, 140, 180, 0.25);
+}
+.drop-hero__cta:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* 텍스트 */
+.drop-hero__cta-text {
+  transition: transform 0.25s ease;
+}
+
+.drop-hero__cta:hover .drop-hero__cta-text {
+  transform: translateX(2px);
+}
+
+/* 아이콘 wrapper */
+.drop-hero__cta-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lucide SVG */
+.drop-hero__cta-icon svg {
+  position: absolute;
+  transform-origin: center;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+/* 기본 아이콘 */
+.drop-hero__cta-icon svg:first-child {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* 숨겨진 아이콘 */
+.drop-hero__cta-icon svg:last-child {
+  transform: translateX(-12px);
+  opacity: 0;
+}
+
+/* hover 애니메이션 */
+.drop-hero__cta:hover .drop-hero__cta-icon svg:first-child {
+  transform: translateX(12px);
+  opacity: 0;
+}
+
+.drop-hero__cta:hover .drop-hero__cta-icon svg:last-child {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* RIGHT visual */
+.drop-hero__visual {
+  position: relative;
+  min-height: clamp(320px, 40vw, 520px);
+  perspective: 1200px;
+}
+.drop-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: -80px;
+  background: radial-gradient(circle at 60% 50%, rgba(255, 180, 200, 0.18), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.drop-ground-shadow {
+  position: absolute;
+  left: 58%;
+  top: 64%;
+  /* ✅ 기기별로 조절할 값들 */
+  --gs-offset-x: 0px;
+  --gs-offset-y: 0px;
+  --gs-w: 420px;
+  --gs-h: 120px;
+  width: var(--gs-w);
+  height: var(--gs-h);
+  transform: translate(-50%, -50%) translate3d(calc(var(--gs-x, 0px) + var(--gs-offset-x)), calc(var(--gs-y, 0px) + var(--gs-offset-y)), 0);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0));
+  filter: blur(10px);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: transform 0.18s ease, filter 0.25s ease, opacity 0.25s ease;
+}
+
+/* hover 시 "퍼짐" */
+.drop-hero__visual:hover .drop-ground-shadow {
+  filter: blur(14px);
+  opacity: 0.42;
+}
+
+.drop-hero__pizza {
+  position: absolute;
+  right: clamp(-12px, -2vw, 0px); /* ✅ 오른쪽으로 더 붙임 */
+  top: 50%;
+  --pizza-offset-y: 0px;
+  --pizza-x: 0px;
+  --pizza-y: 0px;
+  --pizza-tilt-x: 0deg;
+  --pizza-tilt-y: 0deg;
+  --shadow-x: 0px;
+  --shadow-y: 0px;
+  transform: translateY(calc(-50% + var(--pizza-offset-y))) translate3d(var(--pizza-x), var(--pizza-y), 0) rotateX(var(--pizza-tilt-x)) rotateY(var(--pizza-tilt-y));
+  transform-style: preserve-3d;
+  width: min(780px, 56vw);
+  max-width: none;
+  height: auto;
+  filter: drop-shadow(calc(var(--shadow-x)) calc(10px + var(--shadow-y)) 18px rgba(0, 0, 0, 0.24)) drop-shadow(0 0 16px rgba(255, 175, 195, 0.1));
+  transition: transform 0.35s ease, filter 0.35s ease;
+  will-change: transform;
+}
+
+.drop-hero__visual:hover .drop-hero__pizza {
+  transform: translateY(calc(-50% + var(--pizza-offset-y) - 10px)) translate3d(var(--pizza-x), var(--pizza-y), 0) rotateX(var(--pizza-tilt-x)) rotateY(var(--pizza-tilt-y)) scale(1.01);
+  opacity: 0.98;
+}
+
+/* =========================================================
+   GROUND PETALS
+========================================================= */
+.drop-petals-ground {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+/* 기본 꽃잎 스타일 재사용 */
+.drop-petals-ground .petal {
+  position: absolute;
+  width: 18px;
+  height: 12px;
+  border-radius: 14px 14px 14px 0;
+  background: rgba(255, 215, 225, 0.75);
+  box-shadow: 0 0 12px rgba(255, 180, 200, 0.18);
+  transform: rotate(25deg);
+}
+
+/* 위치 살짝 랜덤 */
+.g1 {
+  left: 30%;
+  bottom: 6px;
+  transform: rotate(22deg);
+  opacity: 0.8;
+}
+
+.g2 {
+  left: 42%;
+  bottom: 12px;
+  transform: rotate(-18deg);
+  opacity: 0.9;
+}
+
+.g3 {
+  left: 50%;
+  bottom: 2px;
+  transform: rotate(38deg);
+  opacity: 0.7;
+}
+
+.g4 {
+  left: 58%;
+  bottom: 10px;
+  transform: rotate(-30deg);
+  opacity: 0.8;
+}
+
+.g5 {
+  left: 66%;
+  bottom: 4px;
+  transform: rotate(12deg);
+  opacity: 0.75;
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+.drop-count {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100% - 48px);
+  margin: 0 auto;
+  padding: clamp(14px, 2.2vw, 22px) 0 clamp(26px, 3vw, 40px);
+}
+
+.drop-count__inner {
+  border-top: 1px solid rgba(255, 220, 230, 0.25);
+  padding-top: clamp(18px, 2.6vw, 26px);
+}
+
+.drop-count__grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(10px, 2vw, 18px);
+  width: min(820px, 100%);
+  margin: 0 auto;
+  /* 살짝 유리 느낌 */
+  padding: clamp(14px, 2.2vw, 18px) clamp(14px, 3vw, 22px);
+  border-radius: 18px;
+  background: rgba(255, 170, 190, 0.085);
+  border: 1px solid rgba(255, 220, 230, 0.24);
+  box-shadow: inset 0 0 0 1px rgba(255, 230, 235, 0.06), 0 0 22px rgba(0, 0, 0, 0.26), 0 0 60px rgba(255, 170, 190, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.drop-count__item {
+  text-align: center;
+}
+
+.drop-count__num {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: clamp(2.125rem, 5vw, 3.625rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 210, 220, 0.25);
+}
+
+.drop-count__label {
+  margin-top: 8px;
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 230, 235, 0.7);
+  text-transform: uppercase;
+}
+
+.drop-count__divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 220, 230, 0.25);
+  box-shadow: 0 0 18px rgba(255, 160, 190, 0.14);
+}
+
+.drop-count__note {
+  margin: 18px auto 0;
+  text-align: center;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  color: rgba(255, 235, 240, 0.78);
+}
+.drop-count__note strong {
+  font-family: "Montserrat", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 245, 245, 0.92);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (min-width: 768px) and (max-width: 1399px) {
+  .drop-hero__inner {
+    gap: 18px;
+  }
+  .drop-hero__copy {
+    max-width: 100%;
+    text-align: center;
+  }
+  .drop-hero__pizza {
+    width: min(680px, 78vw);
+    --pizza-offset-y: 200px;
+  }
+  .drop-ground-shadow {
+    --gs-offset-y: 200px;
+    --gs-w: 460px;
+    --gs-h: 135px;
+    opacity: 0.5;
+  }
+  .drop-hero__title {
+    white-space: normal;
+  }
+  .drop-count {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 32px;
+    width: min(1180px, 100% - 48px);
+    margin: 0 auto;
+    padding: 0;
+  }
+  .drop-petals-ground {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .drop-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .drop-hero__desc {
+    font-size: 14px;
+  }
+  .drop-hero__cta {
+    width: 100%;
+    justify-content: center;
+  }
+  .drop-count__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    border-radius: 16px;
+  }
+  .drop-count__divider {
+    display: none;
+  }
+  .drop-hero__pizza {
+    width: min(560px, 86vw);
+    --pizza-offset-y: -35px;
+  }
+  .drop-ground-shadow {
+    --gs-offset-y: -35px;
+    --gs-w: 360px;
+    --gs-h: 110px;
+    opacity: 0.48;
+  }
+  .drop-hero__title {
+    white-space: normal;
+  }
+}
 @keyframes grainFloat {
   0% {
     transform: translate3d(0, 0, 0);
