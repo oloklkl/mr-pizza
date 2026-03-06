@@ -8,7 +8,7 @@ import {
 } from "./menu-data.js";
 
 /* =========================================================
-   1. 데이터 정규화 (씬/1인 thin 고정)
+   1. 데이터 정규화
 ========================================================= */
 const LINE_DEFAULTS = {
   suncrust: { defaultEdge: "thin", edgeLocked: true, allowedEdges: ["thin"] },
@@ -34,7 +34,7 @@ const descEl = modal?.querySelector(".menu-modal__desc");
 const imgEl = modal?.querySelector(".menu-modal__img");
 const priceEl = modal?.querySelector(".menu-modal__price-val");
 
-const sizeBtns = modal?.querySelectorAll("[data-size]") ?? [];
+const sizeBtns = [...(modal?.querySelectorAll("[data-size]") ?? [])];
 const qtyBtns = modal?.querySelectorAll("[data-qty]") ?? [];
 const qtyVal = modal?.querySelector("[data-qty-val]");
 
@@ -43,15 +43,17 @@ const nutritionEl = modal?.querySelector("[data-nutrition]");
 const allergyEl = modal?.querySelector("[data-allergy]");
 
 const edgeWrap = modal?.querySelector("[data-edge-wrap]");
-const edgeSection = modal?.querySelector("[data-edge-section]"); // ✅ 추가: 엣지 섹션 통째로 제어
+const edgeSection = modal?.querySelector("[data-edge-section]");
 const badgeEl = modal?.querySelector("[data-badge]");
 
 const orderBtns = modal?.querySelectorAll("[data-order]") ?? [];
 
 const tabBtns = document.querySelectorAll(".menu-tabs__btn");
 const showcaseInner = document.querySelector(".menu-showcase__inner");
-
 const ALL_ORIGINAL_HTML = showcaseInner?.innerHTML ?? "";
+
+/* ✅ 사이즈 섹션 묶음 찾기 */
+const sizeSection = modal?.querySelector("[data-size-section]") || sizeBtns[0]?.closest(".menu-modal__section") || sizeBtns[0]?.closest(".menu-modal__group") || sizeBtns[0]?.parentElement?.closest(".menu-modal__section") || sizeBtns[0]?.parentElement;
 
 /* =========================================================
    3. 상태
@@ -64,12 +66,14 @@ let lastActiveEl = null;
 let orderType = "delivery";
 
 /* =========================================================
-   4. line 분류
+   4. 분류
 ========================================================= */
 const PIZZA_LINES = new Set(["premium", "classic", "suncrust", "solo"]);
 const SIDE_LINES = new Set(["pizzasand", "pasta", "salad", "drink"]);
-const SET_LINES = new Set(["special"]); // ✅ special만
+const SET_LINES = new Set(["special"]);
+
 const isDrinkLine = (line) => String(line) === "drink";
+const isSoloLine = (line) => String(line) === "solo";
 const isSetLine = (line) => SET_LINES.has(String(line));
 
 /* =========================================================
@@ -106,17 +110,13 @@ function poolByType(type) {
   const t = String(type).toLowerCase();
   if (t === "pizza") return MENU_ITEMS.filter((i) => PIZZA_LINES.has(i.line));
   if (t === "side") return MENU_ITEMS.filter((i) => SIDE_LINES.has(i.line));
-  if (t === "set") return MENU_ITEMS.filter((i) => isSetLine(i.line)); // ✅ set 탭은 special만
+  if (t === "set") return MENU_ITEMS.filter((i) => isSetLine(i.line));
   return MENU_ITEMS;
 }
 
 /* =========================================================
    5.1 배지
 ========================================================= */
-/**
- * 우선순위: NEW > BEST > SIGNATURE
- * 필요하면 순서만 바꿔도 됨.
- */
 function getBadgeLabel(item) {
   if (!item) return null;
   if (item.isNew) return "NEW";
@@ -136,50 +136,225 @@ function renderBadge(el, item) {
   }
   el.style.display = "";
   el.textContent = label;
-  // ✅ 스타일 분기용 (CSS: [data-badge-kind="new"] 등)
   el.dataset.badgeKind = label.toLowerCase();
 }
 
 /* =========================================================
-   6. 가격/사이즈
+   6. 가격/사이즈 파싱
+   - M/L
+   - S
+   - 500ml / 1.25L
+   - 4조각 / 8조각
+   - 단일 가격
 ========================================================= */
-function parsePriceStringToBasePrice(priceStr) {
-  const s = String(priceStr ?? "").trim();
+function labelToSizeKey(label) {
+  const raw = String(label ?? "").trim();
+  const upper = raw.toUpperCase();
 
-  const pairs = [...s.matchAll(/([SML])\s*([\d,]+)/g)].map((m) => [m[1], Number(m[2].replaceAll(",", ""))]);
-  if (pairs.length) return Object.fromEntries(pairs);
+  if (["S", "M", "L"].includes(upper)) return upper;
+  if (/^\d+\s*ML$/i.test(raw)) return raw.replace(/[^\d]/g, "");
+  if (/^\d+(\.\d+)?\s*L$/i.test(raw)) return String(Math.round(parseFloat(raw) * 1000));
+  if (/^\d+\s*조각$/.test(raw)) return raw.replace(/[^\d]/g, "");
 
-  const num = s.match(/[\d,]+/);
-  if (num) {
-    const v = Number(num[0].replaceAll(",", ""));
-    return { M: v };
-  }
-  return { M: 0 };
+  return "ONE";
 }
 
-function pickDefaultSize(basePrice) {
-  if (basePrice.S != null) return "S";
-  if (basePrice.M != null) return "M";
-  return Object.keys(basePrice)[0] ?? "M";
+function normalizeSizeLabel(label, key) {
+  const raw = String(label ?? "").trim();
+  if (raw) return raw;
+  if (key === "ONE") return "기본";
+  return key;
+}
+
+function parsePriceString(priceStr) {
+  const raw = String(priceStr ?? "").trim();
+
+  if (!raw) {
+    return {
+      basePrice: { ONE: 0 },
+      sizeOptions: [{ key: "ONE", label: "기본", price: 0 }],
+    };
+  }
+
+  const chunks = raw
+    .split("·")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  const parsed = chunks
+    .map((chunk) => {
+      const match = chunk.match(/^(.*?)([\d,]+)$/);
+      if (!match) return null;
+
+      const label = match[1].trim();
+      const price = Number(match[2].replaceAll(",", ""));
+      const key = labelToSizeKey(label);
+
+      return {
+        key,
+        label: normalizeSizeLabel(label, key),
+        price,
+      };
+    })
+    .filter(Boolean);
+
+  if (!parsed.length) {
+    const onlyNum = raw.match(/[\d,]+/);
+    const price = onlyNum ? Number(onlyNum[0].replaceAll(",", "")) : 0;
+    return {
+      basePrice: { ONE: price },
+      sizeOptions: [{ key: "ONE", label: "기본", price }],
+    };
+  }
+
+  return {
+    basePrice: Object.fromEntries(parsed.map((opt) => [opt.key, opt.price])),
+    sizeOptions: parsed,
+  };
+}
+
+function pickDefaultSize(item) {
+  return item?.sizeOptions?.[0]?.key ?? "ONE";
+}
+
+function getPriceBySize(item, sizeKey) {
+  return item?.basePrice?.[sizeKey] ?? 0;
+}
+
+/* ✅ 카드 리스트용 가격 표시
+   - 옵션 2개 이상: 최소가~
+   - 옵션 1개: 가격만
+========================================================= */
+function formatCardPrice(item) {
+  const raw = String(item?.price ?? "").trim();
+  if (!raw) return "";
+
+  const normalized = item?.sizeOptions ? item : normalizeItem(item);
+  const options = normalized?.sizeOptions ?? [];
+
+  if (options.length > 1) {
+    const minPrice = Math.min(...options.map((opt) => Number(opt.price || 0)));
+    return `${minPrice.toLocaleString("ko-KR")}~`;
+  }
+
+  if (options.length === 1) {
+    return `${Number(options[0].price).toLocaleString("ko-KR")}`;
+  }
+
+  return raw;
+}
+
+/* =========================================================
+   6.1 nutrition
+========================================================= */
+function getNutritionForSize(item, sizeKey) {
+  const info = item?.nutritionInfo;
+  if (!info || typeof info !== "object") return null;
+
+  if (info[sizeKey] && typeof info[sizeKey] === "object") return info[sizeKey];
+
+  const compactKey = String(sizeKey).replace(/[^\dA-Z]/gi, "");
+  if (info[compactKey] && typeof info[compactKey] === "object") return info[compactKey];
+
+  for (const fallbackKey of ["ONE", "DEFAULT", "BASIC"]) {
+    if (info[fallbackKey] && typeof info[fallbackKey] === "object") return info[fallbackKey];
+  }
+
+  if ("kcal" in info || "protein" in info || "sodium" in info || "sugar" in info) {
+    return info;
+  }
+
+  return null;
+}
+
+/* =========================================================
+   6.2 사이즈 UI
+========================================================= */
+function getSizeLabelEl(btn) {
+  return btn.querySelector("[data-size-label]");
+}
+
+function getSizePriceEl(btn) {
+  return btn.querySelector("[data-size-price]");
+}
+
+function setSizeButtonContent(btn, opt) {
+  const labelEl = getSizeLabelEl(btn);
+  const priceElInBtn = getSizePriceEl(btn);
+
+  if (labelEl) {
+    labelEl.textContent = opt.label;
+  } else {
+    btn.dataset.label = opt.label;
+  }
+
+  if (priceElInBtn) {
+    priceElInBtn.textContent = formatKRW(opt.price);
+  }
+}
+
+function shouldShowSizeSection(item) {
+  const options = item?.sizeOptions ?? [];
+  if (options.length <= 1) return false;
+
+  if (isSoloLine(item?.line)) return false;
+
+  return true;
+}
+
+function syncSizeButtons() {
+  if (!currentItem || !sizeBtns.length) return;
+
+  const options = currentItem.sizeOptions ?? [];
+  const showSizeSection = shouldShowSizeSection(currentItem);
+
+  if (sizeSection) {
+    sizeSection.hidden = !showSizeSection;
+  }
+
+  sizeBtns.forEach((btn, index) => {
+    const opt = options[index];
+
+    if (!showSizeSection || !opt) {
+      btn.hidden = true;
+      btn.disabled = true;
+      btn.classList.remove("is-active");
+      return;
+    }
+
+    btn.hidden = false;
+    btn.disabled = false;
+    btn.dataset.size = opt.key;
+    setSizeButtonContent(btn, opt);
+    btn.classList.toggle("is-active", opt.key === size);
+  });
 }
 
 /* =========================================================
    7. 엣지
 ========================================================= */
 function getEdgePrice(edgeId) {
-  if (!currentItem) return 0;
-  return EDGE_PRICE_MAP?.[currentItem.line]?.[edgeId] ?? 0;
+  if (!currentItem || !edgeId) return 0;
+
+  if (EDGE_PRICE_MAP?.[edgeId]?.[size] != null) {
+    return EDGE_PRICE_MAP[edgeId][size];
+  }
+
+  if (EDGE_PRICE_MAP?.[currentItem.line]?.[edgeId]?.[size] != null) {
+    return EDGE_PRICE_MAP[currentItem.line][edgeId][size];
+  }
+
+  return 0;
 }
 
 function getEdgeLabel(edgeId) {
-  return EDGE_OPTIONS.find((o) => o.id === edgeId)?.label ?? edgeId;
+  const found = EDGE_OPTIONS.find((o) => o.id === edgeId || o.value === edgeId);
+  return found?.label ?? edgeId;
 }
 
 function renderEdges() {
   if (!edgeWrap || !currentItem) return;
 
-  // ✅ 피자가 아니면 섹션 자체가 hidden 처리될 거라서(아래 toggleEdgeSection),
-  // 여기서는 피자만 정상 렌더.
   const allowed = currentItem.allowedEdges ?? [];
   const locked = Boolean(currentItem.edgeLocked);
 
@@ -204,7 +379,7 @@ function renderEdges() {
 function updatePrice({ animate = true } = {}) {
   if (!currentItem || !priceEl) return;
 
-  const base = currentItem.basePrice?.[size] ?? 0;
+  const base = getPriceBySize(currentItem, size);
   const edgeAdd = PIZZA_LINES.has(String(currentItem.line)) ? getEdgePrice(selectedEdge) : 0;
   const total = (base + edgeAdd) * qty;
 
@@ -214,51 +389,45 @@ function updatePrice({ animate = true } = {}) {
 
 function updateNutrition() {
   if (!nutritionEl || !currentItem) return;
-  const n = currentItem.nutritionInfo?.[size];
+
+  const n = getNutritionForSize(currentItem, size);
   if (!n || typeof n !== "object") {
     nutritionEl.textContent = "-";
     return;
   }
-  nutritionEl.textContent = `(${size}) ${n.kcal ?? 0}kcal · 단백질 ${n.protein ?? 0}g · 나트륨 ${n.sodium ?? 0}mg`;
+
+  const parts = [];
+  if (n.kcal != null) parts.push(`${n.kcal}kcal`);
+  if (n.protein != null) parts.push(`단백질 ${n.protein}g`);
+  if (n.sodium != null) parts.push(`나트륨 ${n.sodium}mg`);
+  if (n.sugar != null) parts.push(`당류 ${n.sugar}g`);
+
+  nutritionEl.textContent = parts.length ? parts.join(" · ") : "-";
 }
 
-function renderSizePrices() {
-  const els = modal.querySelectorAll("[data-size-price]");
-  els.forEach((el) => {
-    const key = el.dataset.sizePrice;
-    const v = currentItem.basePrice?.[key];
-    el.textContent = v ? formatKRW(v) : "";
-  });
-}
-
-/** ✅ 모달 dataset: SCSS 타겟팅용 */
 function applyModalDataset(item) {
   if (!modal || !item) return;
 
   let kind = "pizza";
-  if (SIDE_LINES.has(item.line)) kind = item.line; // pizzasand/pasta/salad/drink
+  if (SIDE_LINES.has(item.line)) kind = item.line;
   if (isSetLine(item.line)) kind = "set";
 
   modal.dataset.kind = kind;
   modal.dataset.line = item.line ?? "";
 
-  if (isSetLine(item.line))
-    modal.dataset.setLine = item.line; // special
+  if (isSetLine(item.line)) modal.dataset.setLine = item.line;
   else delete modal.dataset.setLine;
 }
 
-/** ✅ 엣지 섹션: 피자만 보여주기 */
 function toggleEdgeSection(item) {
   if (!edgeSection) return;
 
   const isPizza = PIZZA_LINES.has(String(item?.line));
   edgeSection.hidden = !isPizza;
 
-  // 숨길 때 내부도 정리(안전)
   if (!isPizza && edgeWrap) edgeWrap.innerHTML = "";
 }
 
-/** ✅ 모달에서 stage 전환 */
 function renderMediaStages() {
   const pizzaStage = modal.querySelector(".pizza-stage");
   const setStage = modal.querySelector(".set-stage");
@@ -298,20 +467,12 @@ function renderContent() {
   if (allergyEl) allergyEl.textContent = currentItem.allergyInfo ?? "-";
 
   applyModalDataset(currentItem);
-
-  // ✅ BEST/NEW/SIGNATURE 배지 렌더
   renderBadge(badgeEl, currentItem);
-
   renderMediaStages();
-  renderSizePrices();
+  syncSizeButtons();
 
-  // ✅ 피자만 엣지 섹션 노출
   toggleEdgeSection(currentItem);
-
-  // ✅ 피자일 때만 렌더/이벤트 의미 있음
-  if (!edgeSection?.hidden) {
-    renderEdges();
-  }
+  if (!edgeSection?.hidden) renderEdges();
 
   updateNutrition();
   updatePrice({ animate: false });
@@ -327,11 +488,10 @@ function openModal(item) {
   qty = 1;
   if (qtyVal) qtyVal.textContent = 1;
 
-  size = pickDefaultSize(currentItem.basePrice);
+  size = pickDefaultSize(currentItem);
   selectedEdge = currentItem.defaultEdge ?? currentItem.allowedEdges?.[0] ?? null;
 
   setOrderType(orderType);
-
   renderContent();
 
   modal.classList.add("active");
@@ -349,8 +509,6 @@ function closeModal() {
    10. ALL 랜덤 채우기
 ========================================================= */
 function ensureCardBadgeSlot(articleEl) {
-  // ✅ 카드 HTML이 원래 배지 자리가 없으니, 필요할 때만 동적으로 넣음
-  // 위치: <a.menu-item__link> 맨 앞
   const link = articleEl.querySelector(".menu-item__link");
   if (!link) return null;
 
@@ -360,7 +518,6 @@ function ensureCardBadgeSlot(articleEl) {
   el = document.createElement("span");
   el.className = "menu-item__badge";
   el.setAttribute("data-badge", "");
-  // 클릭 영역 맨 앞에
   link.prepend(el);
   return el;
 }
@@ -387,18 +544,22 @@ function clearCardBadge(articleEl) {
 
 function setCardUI(articleEl, item) {
   articleEl.dataset.id = item.id;
-
-  // ✅ ALL 탭에서도 line이 박혀야 CSS가 먹음
   articleEl.dataset.line = item.line ?? "";
 
   const name = articleEl.querySelector(".menu-item__name");
   const price = articleEl.querySelector(".menu-item__price");
-  if (name) name.textContent = item.title ?? "";
-  if (price) price.textContent = item.price ?? "";
 
-  // 배지: 없으면 숨김, 있으면 생성해서 채움
+  if (name) name.textContent = item.title ?? "";
+  if (price) price.textContent = formatCardPrice(item);
+
   clearCardBadge(articleEl);
-  renderCardBadge(articleEl, item);
+
+  // ALL 탭에서는 배지 표시 안함
+  const isAllTab = document.querySelector(".menu-tabs__btn.is-active")?.dataset.filter === "all";
+
+  if (!isAllTab) {
+    renderCardBadge(articleEl, item);
+  }
 
   if (articleEl.classList.contains("menu-item--set") || articleEl.dataset.type === "set") {
     const main = articleEl.querySelector(".set-main");
@@ -416,7 +577,7 @@ function setCardUI(articleEl, item) {
 }
 
 function hydrateAll() {
-  ["premium", "combo", "side"].forEach((id) => {
+  ["best", "premium", "combo", "side"].forEach((id) => {
     const section = document.getElementById(id);
     if (!section) return;
 
@@ -425,26 +586,46 @@ function hydrateAll() {
 
     let pool = poolByType(type);
 
+    if (id === "best") {
+      pool = MENU_ITEMS.filter((i) => i.isBest);
+    }
+
     if (id === "side") {
       pool = pool.filter((i) => !isDrinkLine(i.line));
     }
 
-    // ✅ 프리미엄 섹션에 solo 제외
     if (id === "premium") {
       pool = pool.filter((i) => i.line !== "solo");
     }
 
     const shuffled = shuffleCopy(pool);
-    cards.forEach((card, i) => {
+
+    cards.forEach((cardEl, i) => {
       const item = shuffled[i] ?? randPick(pool);
-      if (item) setCardUI(card, item);
+      if (item) setCardUI(cardEl, item);
     });
   });
 }
 
 /* =========================================================
-   11. 탭
+   11. 탭 + 저장
 ========================================================= */
+const TAB_STORAGE_KEY = "mrpizza-menu-tab";
+
+function saveActiveTab(filter) {
+  try {
+    localStorage.setItem(TAB_STORAGE_KEY, filter);
+  } catch {}
+}
+
+function getSavedTab() {
+  try {
+    return localStorage.getItem(TAB_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
 function renderTab(filter) {
   showcaseInner.classList.toggle("is-pizza-compact", filter === "pizza");
 
@@ -462,10 +643,7 @@ function renderTab(filter) {
   if (filter === "set") groups = [["special", "특제 세트"]];
 
   groups.forEach(([line, label]) => {
-    const items =
-      filter === "set"
-        ? MENU_ITEMS.filter((i) => String(i.line) === String(line)) // special
-        : MENU_ITEMS.filter((i) => i.line === line);
+    const items = filter === "set" ? MENU_ITEMS.filter((i) => String(i.line) === String(line)) : MENU_ITEMS.filter((i) => i.line === line);
 
     if (!items.length) return;
 
@@ -486,12 +664,11 @@ function renderTab(filter) {
     items.forEach((item) => {
       const article = document.createElement("article");
       article.dataset.id = item.id;
-
-      // 공통 dataset
       article.dataset.type = filter;
       article.dataset.line = item.line ?? "";
 
-      const badge = getBadgeLabel(item); // ✅ 조건부 배지
+      const badge = filter === "all" ? null : getBadgeLabel(item);
+
       const badgeHTML = badge ? `<span class="menu-item__badge" data-badge data-badge-kind="${badge.toLowerCase()}">${badge}</span>` : "";
 
       if (filter === "set") {
@@ -500,6 +677,7 @@ function renderTab(filter) {
 
         const opts = item.setOptions ?? [];
         const title = item.title ?? "";
+
         article.innerHTML = `
           <a class="menu-item__link" href="#" aria-label="${title} 자세히 보기">
             ${badgeHTML}
@@ -513,21 +691,23 @@ function renderTab(filter) {
 
             <div class="menu-item__info">
               <h3 class="menu-item__name">${title}</h3>
-              <p class="menu-item__price">${item.price ?? ""}</p>
+              <p class="menu-item__price">${formatCardPrice(item)}</p>
             </div>
           </a>
         `;
       } else {
         article.className = "menu-item";
-
         const title = item.title ?? "";
+
         article.innerHTML = `
           <a class="menu-item__link" href="#" aria-label="${title} 자세히 보기">
             ${badgeHTML}
-            <img class="menu-item__img" src="${item.img ?? ""}" alt="${title}" />
+            <div class="menu-item__media">
+              <img class="menu-item__img" src="${item.img ?? ""}" alt="${title}" />
+            </div>
             <div class="menu-item__info">
               <h3 class="menu-item__name">${title}</h3>
-              <p class="menu-item__price">${item.price ?? ""}</p>
+              <p class="menu-item__price">${formatCardPrice(item)}</p>
             </div>
           </a>
         `;
@@ -540,24 +720,30 @@ function renderTab(filter) {
   });
 }
 
+function activateTab(filter) {
+  tabBtns.forEach((b) => {
+    const active = b.dataset.filter === filter;
+    b.classList.toggle("is-active", active);
+    b.setAttribute("aria-selected", String(active));
+  });
+
+  renderTab(filter);
+  saveActiveTab(filter);
+}
+
 tabBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    tabBtns.forEach((b) => {
-      b.classList.remove("is-active");
-      b.setAttribute("aria-selected", "false");
-    });
-    btn.classList.add("is-active");
-    btn.setAttribute("aria-selected", "true");
-    renderTab(btn.dataset.filter);
+    activateTab(btn.dataset.filter);
   });
 });
 
 /* =========================================================
-   12. 카드 클릭 (위임)
+   12. 카드 클릭
 ========================================================= */
 showcaseInner.addEventListener("click", (e) => {
   const article = e.target.closest(".menu-item");
   if (!article) return;
+
   e.preventDefault();
 
   const id = Number(article.dataset.id);
@@ -569,15 +755,21 @@ showcaseInner.addEventListener("click", (e) => {
    13. 기타 이벤트
 ========================================================= */
 closeBtn?.addEventListener("click", closeModal);
+
 modal?.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
+
 card?.addEventListener("click", (e) => e.stopPropagation());
 
 sizeBtns.forEach((btn) =>
   btn.addEventListener("click", () => {
+    if (btn.hidden || btn.disabled) return;
     size = btn.dataset.size;
-    setActive(sizeBtns, btn);
+    setActive(
+      sizeBtns.filter((b) => !b.hidden),
+      btn,
+    );
     updateNutrition();
     updatePrice();
   }),
@@ -591,7 +783,6 @@ orderBtns.forEach((btn) =>
 );
 
 edgeWrap?.addEventListener("click", (e) => {
-  // ✅ 피자 아니면 섹션이 hidden이라 클릭 자체가 거의 안 오지만, 안전하게 가드
   if (!currentItem || !PIZZA_LINES.has(String(currentItem.line))) return;
 
   const btn = e.target.closest("[data-edge]");
@@ -617,13 +808,18 @@ function setOrderType(next) {
 }
 
 function normalizeItem(raw) {
+  const { basePrice, sizeOptions } = parsePriceString(raw.price);
+
   return {
     ...raw,
-    basePrice: parsePriceStringToBasePrice(raw.price),
+    basePrice,
+    sizeOptions,
   };
 }
 
 /* =========================================================
    초기 실행
 ========================================================= */
-renderTab(document.querySelector(".menu-tabs__btn.is-active")?.dataset.filter ?? "all");
+const initialTab = getSavedTab() || document.querySelector(".menu-tabs__btn.is-active")?.dataset.filter || "all";
+
+activateTab(initialTab);
