@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr.Pizza | 장바구니</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mr.Pizza | 장바구니" />
+    <meta property="og:description" content="Mr.Pizza 장바구니 페이지" />
+    <meta property="og:image" content="http://www.mysite.com/article/article1_featured_image.jpg" />
+    <meta property="og:url" content="http://www.mysite.com/article/article1.html" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mr.Pizza | 장바구니" />
+    <meta name="twitter:description" content="Mr.Pizza 장바구니 페이지" />
+    <meta name="twitter:image" content="http://www.mysite.com/article/article1.html" />
+    <meta name="twitter:domain" content="Mr.Pizza" />
+
+    <link rel="icon" href="/resources/images/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/images/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/resources/images/favicon/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+    <link rel="stylesheet" href="../../resources/css/pattern_css.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script defer src="../../resources/js/include.js"></script>
+    <script defer src="../../resources/js/ui-pattern.js"></script>
+  </head>
+
+  <body>
+    <div id="skip-nav">
+      <a href="#gnb">메뉴 바로가기</a>
+      <a href="#container">본문 바로가기</a>
+    </div>
+
+    <div id="wrap">
+      <header id="header" include-html="../layout/header.html"></header>
+
+      <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <div class="mobile-menu__content">
+          <button class="mobile-menu__close" type="button" aria-label="Close menu">
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav class="mobile-menu__nav">
+            <ul>
+              <li><a href="#">MENU</a></li>
+              <li><a href="#">DROP</a></li>
+              <li><a href="#">STORE</a></li>
+              <li><a href="#">ABOUT</a></li>
+            </ul>
+          </nav>
+
+          <div class="mobile-menu__utils" aria-label="Account and search">
+            <a href="/pages/cart/cart.html" class="mobile-menu__util" aria-label="Cart">
+              <i data-lucide="shopping-bag" class="icon"></i>
+              <span>CART</span>
+            </a>
+            <a href="/pages/auth/login.html" class="mobile-menu__util" aria-label="Login">
+              <i data-lucide="user-round" class="icon"></i>
+              <span>LOGIN</span>
+            </a>
+          </div>
+
+          <div class="mobile-menu__footer">
+            <p class="mobile-tagline">MR.PIZZA</p>
+            <p class="mobile-year">EST. 1990 · REIMAGINED 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <main id="container" class="auth auth--cart">
+        <section class="auth-card auth-card--cart">
+          <span class="auth-card__sheen" aria-hidden="true"></span>
+
+          <div class="cart">
+            <header class="cart__header">
+              <h2 class="cart__title">장바구니</h2>
+            </header>
+
+            <div class="cart__type" role="tablist" aria-label="주문 방식 선택">
+              <button type="button" class="cart__type-btn is-active">
+                <i data-lucide="truck"></i>
+                <span>배달 주문</span>
+              </button>
+              <button type="button" class="cart__type-btn">
+                <i data-lucide="shopping-bag"></i>
+                <span>포장 주문</span>
+              </button>
+            </div>
+
+            <div class="cart__notice">
+              <p>* 예상 도착 시간: 45~55분</p>
+              <p>* 배달은 15,000원 이상 주문 가능합니다.</p>
+            </div>
+
+            <div class="cart__content">
+              <div class="cart__items"></div>
+
+              <div class="cart__bottom">
+                <section class="cart-benefit">
+                  <h3 class="cart__section-title">할인 및 적립</h3>
+
+                  <div class="cart-benefit__coming">
+                    <p class="cart-benefit__text">쿠폰 및 할인 적용 기능은 현재 준비 중입니다.</p>
+                  </div>
+
+                  <a href="/pages/menu.html" class="cart__continue"> 메뉴 더 보기 </a>
+                </section>
+
+                <section class="cart-summary">
+                  <h3 class="cart__section-title">주문 내역</h3>
+
+                  <dl class="cart-summary__list">
+                    <div class="cart-summary__row">
+                      <dt>총 상품 금액</dt>
+                      <dd data-cart-subtotal>₩0</dd>
+                    </div>
+                  </dl>
+
+                  <div class="cart-summary__total">
+                    <span>결제 예정 금액</span>
+                    <strong data-cart-total>₩0</strong>
+                  </div>
+
+                  <button type="button" class="cart-summary__pay">결제하기</button>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script type="module" src="../../resources/js/cart.js"></script>
+  </body>
+</html>
