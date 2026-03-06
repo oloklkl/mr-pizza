@@ -336,12 +336,27 @@ function syncSizeButtons() {
 function getEdgePrice(edgeId) {
   if (!currentItem || !edgeId) return 0;
 
-  if (EDGE_PRICE_MAP?.[edgeId]?.[size] != null) {
-    return EDGE_PRICE_MAP[edgeId][size];
+  const byEdge = EDGE_PRICE_MAP?.[edgeId];
+  const byLine = EDGE_PRICE_MAP?.[currentItem.line]?.[edgeId];
+
+  // 1) edgeId 바로 아래에 사이즈별 객체가 있는 경우
+  if (byEdge && typeof byEdge === "object" && byEdge[size] != null) {
+    return Number(byEdge[size]) || 0;
   }
 
-  if (EDGE_PRICE_MAP?.[currentItem.line]?.[edgeId]?.[size] != null) {
-    return EDGE_PRICE_MAP[currentItem.line][edgeId][size];
+  // 2) line > edgeId 아래에 사이즈별 객체가 있는 경우
+  if (byLine && typeof byLine === "object" && byLine[size] != null) {
+    return Number(byLine[size]) || 0;
+  }
+
+  // 3) line > edgeId 값이 숫자 하나인 경우
+  if (typeof byLine === "number") {
+    return byLine;
+  }
+
+  // 4) edgeId 값이 숫자 하나인 경우
+  if (typeof byEdge === "number") {
+    return byEdge;
   }
 
   return 0;
