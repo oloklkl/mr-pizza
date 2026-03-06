@@ -831,6 +831,82 @@ function normalizeItem(raw) {
     sizeOptions,
   };
 }
+/* =========================================================
+   장바구니 저장
+========================================================= */
+
+const CART_STORAGE_KEY = "mrpizza-cart";
+
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+}
+
+function addToCart(payload) {
+  const cart = getCart();
+
+  const found = cart.find((item) => item.id === payload.id && item.size === payload.size && (item.edge ?? null) === (payload.edge ?? null));
+
+  if (found) {
+    found.qty += payload.qty;
+  } else {
+    cart.push(payload);
+  }
+
+  saveCart(cart);
+}
+
+const addToCartBtn = modal?.querySelector(".menu-modal__cta");
+
+addToCartBtn?.addEventListener("click", () => {
+  if (!currentItem) return;
+
+  const payload = {
+    id: currentItem.id,
+    size,
+    qty,
+  };
+
+  if (PIZZA_LINES.has(String(currentItem.line))) {
+    payload.edge = selectedEdge ?? currentItem.defaultEdge ?? null;
+  }
+
+  addToCart(payload);
+  closeModal();
+  showCartToast();
+
+  console.log("장바구니 저장:", payload);
+});
+
+function showCartToast() {
+  let toast = document.querySelector(".cart-toast");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.className = "cart-toast";
+    toast.innerHTML = `
+      <p class="cart-toast__text">장바구니에 담았어요.</p>
+      <a href="/pages/cart/cart.html" class="cart-toast__link">장바구니 보기</a>
+    `;
+    document.body.appendChild(toast);
+  }
+
+  toast.classList.remove("is-show");
+  void toast.offsetWidth;
+  toast.classList.add("is-show");
+
+  clearTimeout(showCartToast._timer);
+  showCartToast._timer = setTimeout(() => {
+    toast.classList.remove("is-show");
+  }, 5000);
+}
 
 /* =========================================================
    초기 실행

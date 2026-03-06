@@ -1332,6 +1332,23 @@
     position: sticky;
     padding-top: 12px;
   }
+
+  .cart-toast {
+    right: 14px;
+    left: 14px;
+    bottom: 14px;
+    min-width: 0;
+    max-width: none;
+    padding: 13px 14px;
+  }
+
+  .cart-toast__text {
+    font-size: 1.3rem;
+  }
+
+  .cart-toast__link {
+    font-size: 1.25rem;
+  }
 }
 
 @include mobile {
@@ -1499,4 +1516,53 @@
 .menu-item[data-line="pasta"] .menu-item__img,
 .menu-item[data-line="salad"] .menu-item__img {
   max-height: 190px;
+}
+
+.cart-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1200;
+  min-width: 220px;
+  max-width: 320px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba($accent, 0.38);
+  background: rgba(10, 10, 10, 0.92);
+  color: $accent-soft;
+  box-shadow:
+    0 0 22px rgba($accent, 0.18),
+    inset 0 0 0 1px rgba($accent, 0.06);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+
+  &.is-show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.cart-toast__text {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.cart-toast__link {
+  display: inline-flex;
+  align-items: center;
+  color: $accent;
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: $accent-hover;
+  }
 }
