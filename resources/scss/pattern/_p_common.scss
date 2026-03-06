@@ -258,17 +258,31 @@ button {
   }
 
   .set-opt--wing {
-    top: 10%;
-    right: 6%;
-    width: min(110px, 34%);
+    top: 20%;
+    right: 20%;
+    width: min(92px, 30%);
     transform: rotate(-4deg);
   }
 
   .set-opt--pasta {
     bottom: 6%;
-    right: 2%;
-    width: min(140px, 42%);
+    right: 17%;
+    width: min(112px, 36%);
     transform: rotate(6deg);
+  }
+
+  @include tablet-only {
+    .set-opt--wing {
+      top: 25%;
+      right: 22%;
+      width: min(82px, 28%);
+    }
+
+    .set-opt--pasta {
+      right: 20%;
+      bottom: 15%;
+      width: min(100px, 34%);
+    }
   }
 
   @include mobile {
@@ -277,15 +291,11 @@ button {
     }
 
     .set-opt--wing {
-      width: min(96px, 36%);
-      top: 12%;
-      right: 4%;
+      width: min(78px, 34%);
     }
 
     .set-opt--pasta {
-      width: min(120px, 44%);
-      bottom: 6%;
-      right: 0%;
+      width: min(96px, 40%);
     }
   }
 }
