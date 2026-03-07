@@ -1,0 +1,134 @@
+/* =========================================================
+   Footer
+========================================================= */
+
+#footer {
+  .site-footer {
+    margin-top: 120px; 
+    padding: 60px 0 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: #070707;
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* =========================
+       Footer Navigation
+    ========================= */
+
+    &__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      flex-wrap: wrap;
+    }
+
+    &__nav-link {
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    &__divider {
+      opacity: 0.35;
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       Company Info
+    ========================= */
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+
+      color: rgba(220, 210, 180, 0.85);
+    }
+
+    &__address {
+      font-style: normal;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.55);
+
+      span {
+        margin: 0 6px;
+        opacity: 0.5;
+      }
+    }
+
+    /* =========================
+       Copyright
+    ========================= */
+
+    &__copyright {
+      margin-top: 10px;
+      padding-top: 28px;
+
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+      font-size: 1.2rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* =========================
+       Tablet
+    ========================= */
+
+    @include tablet-only {
+      padding: 56px 0 36px;
+
+      &__nav {
+        gap: 18px;
+      }
+    }
+
+    /* =========================
+       Mobile
+    ========================= */
+
+    @include mobile {
+      margin-top: 100px;
+      padding: 48px 0 32px;
+
+      &__inner {
+        gap: 40px;
+      }
+
+      &__nav {
+        gap: 14px;
+        font-size: 1.2rem;
+      }
+
+      &__address {
+        font-size: 1.25rem;
+        line-height: 1.8;
+      }
+    }
+  }
+}
