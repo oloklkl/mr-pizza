@@ -5,8 +5,31 @@ import { RAW_ITEMS, EDGE_PRICE_MAP } from "./menu-data.js";
 ========================================================= */
 
 const CART_STORAGE_KEY = "mrpizza-cart";
-const REDIRECT_AFTER_LOGIN_KEY = "mrpizza-redirect-after-login";
+const AUTH_STORAGE_KEY = "mrpizza-auth";
 const REMOVE_ANIMATION_MS = 220;
+
+/* =========================================================
+   0. auth guard
+========================================================= */
+function getLoggedInUser() {
+  try {
+    const auth = JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY));
+    if (!auth || !auth.isLoggedIn) return null;
+    return auth;
+  } catch {
+    return null;
+  }
+}
+
+function requireLogin() {
+  const user = getLoggedInUser();
+  if (user) return;
+
+  const redirectUrl = `${window.location.pathname}${window.location.search}`;
+  window.location.href = `/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+}
+
+requireLogin();
 
 /* =========================================================
    1. DOM
@@ -36,14 +59,6 @@ function getCart() {
 
 function saveCart(cart) {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-}
-
-function getLoggedInUser() {
-  try {
-    return JSON.parse(localStorage.getItem("mrpizza-user"));
-  } catch {
-    return null;
-  }
 }
 
 /* =========================================================
@@ -263,13 +278,10 @@ function createCartItemHTML(item, cartItem, index) {
   const optionText = buildOptionText(item, cartItem);
 
   const thumbClass = isMainCard(item) ? "cart-item__thumb" : "cart-item__thumb cart-item__thumb--sm";
-
   const articleClass = isMainCard(item) ? "cart-item cart-item--main" : "cart-item";
-
   const imgSrc = item.cartImg || item.img || "";
 
   const optionLabel = optionText.includes("₩") ? optionText.split(" ₩")[0] : optionText;
-
   const optionPrice = optionText.includes("₩") ? `₩${optionText.split("₩")[1]}` : "";
 
   return `
@@ -318,9 +330,9 @@ function renderSummary() {
 
     const basePrice = getBasePriceBySize(item, cartItem.size);
     const edgePrice = getEdgePrice(item, cartItem.edge, cartItem.size);
-    const total = (basePrice + edgePrice) * cartItem.qty;
+    const totalPrice = (basePrice + edgePrice) * cartItem.qty;
 
-    return sum + total;
+    return sum + totalPrice;
   }, 0);
 
   if (subtotalEl) subtotalEl.textContent = formatKRW(subtotal);
@@ -335,7 +347,7 @@ function renderEmpty() {
     <div class="cart-empty">
       <p class="cart-empty__title">장바구니가 비어 있어요.</p>
       <p class="cart-empty__desc">맛있는 메뉴를 담아보세요.</p>
-      <a href="/pages/menu/menu.html" class="cart-empty__btn">메뉴 보러가기</a>
+      <a href="/pages/menu.html" class="cart-empty__btn">메뉴 보러가기</a>
     </div>
   `;
 
@@ -477,8 +489,8 @@ function handlePayClick() {
   const user = getLoggedInUser();
 
   if (!user) {
-    localStorage.setItem(REDIRECT_AFTER_LOGIN_KEY, window.location.pathname);
-    window.location.href = "/pages/auth/login.html";
+    const redirectUrl = `${window.location.pathname}${window.location.search}`;
+    window.location.href = `/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
     return;
   }
 
@@ -488,7 +500,6 @@ function handlePayClick() {
   }
 
   showCartToast("결제 기능은 현재 준비 중입니다.");
-  // 나중에 결제 페이지 생기면 아래로 교체
   // window.location.href = "/pages/order/order.html";
 }
 

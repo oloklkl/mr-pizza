@@ -39,6 +39,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <script defer src="../../resources/js/include.js"></script>
     <script defer src="../../resources/js/ui-pattern.js"></script>
+    <script defer src="../../resources/js/login.js"></script>
   </head>
   <body>
     <div id="skip-nav">
@@ -96,7 +97,7 @@
           </a>
           <h1 class="auth-card__title">로그인</h1>
 
-          <form class="auth-form" action="#" method="post">
+          <form class="auth-form" action="#" method="post" novalidate>
             <div class="auth-field">
               <span class="auth-field__icon" aria-hidden="true">
                 <i data-lucide="mail" class="mail"></i>
@@ -110,8 +111,10 @@
                 <i data-lucide="lock"></i>
               </span>
               <label class="sr-only" for="login-pw">비밀번호</label>
-              <input id="login-pw" class="auth-field__input" type="password" placeholder="비밀번호" autocomplete="current-password" />
+              <input id="login-pw" class="auth-field__input" name="password" type="password" placeholder="비밀번호" autocomplete="current-password" required />
             </div>
+
+            <p class="auth-form__message" data-login-message aria-live="polite"></p>
 
             <div class="auth-row">
               <input class="auth-check__input" id="autoLogin" type="checkbox" />
@@ -119,6 +122,15 @@
                 <span class="auth-check__box" aria-hidden="true"></span>
                 <span class="auth-check__label">자동 로그인</span>
               </label>
+            </div>
+
+            <div class="auth-test-wrap">
+              <button type="button" class="auth-test-toggle" data-test-toggle aria-expanded="false" aria-controls="authTestAccount">테스트 계정 보기</button>
+
+              <div id="authTestAccount" class="auth-test" data-test-account hidden>
+                <p>email: test@mrpizza.com</p>
+                <p>password: Test1234!</p>
+              </div>
             </div>
 
             <button class="auth-btn auth-btn--primary" type="submit">로그인</button>
@@ -149,7 +161,7 @@
             <div class="auth-links">
               <a href="./signup.html">회원가입</a>
               <span aria-hidden="true">|</span>
-              <a href="./find.html">아이디 찾기</a>
+              <a href="./find.html" class="auth-link--soon">아이디 찾기<span class="auth-social__tooltip">Coming Soon</span></a>
             </div>
           </form>
         </section>

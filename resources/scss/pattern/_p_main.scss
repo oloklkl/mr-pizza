@@ -4,7 +4,7 @@
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: $dark;
+  background: linear-gradient(180deg, rgba(32, 0, 8, 0.96) 0%, rgba(8, 8, 14, 0.98) 58%, rgba(4, 18, 24, 0.98) 100%), $dark;
   isolation: isolate;
   z-index: 999;
   overflow: hidden;
@@ -15,46 +15,88 @@
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
 
   &__utils {
-    margin-top: 28px;
+    margin-top: 30px;
     display: flex;
-    gap: 22px;
+    gap: 14px;
     align-items: center;
     justify-content: center;
-    opacity: 0.75;
+    opacity: 0.9;
   }
 
   &__util {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
+    gap: 9px;
+    min-width: 96px;
+    justify-content: center;
+    padding: 10px 14px;
     border-radius: 999px;
 
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.82);
     text-decoration: none;
 
     font-size: 1.2rem;
-    letter-spacing: 0.18em;
+    font-weight: 500;
+    letter-spacing: 0.16em;
 
-    transition: 0.25s ease;
+    box-shadow:
+      0 0 0 rgba(255, 0, 51, 0),
+      inset 0 0 0 rgba(255, 255, 255, 0);
+
+    transition:
+      color 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease,
+      transform 0.22s ease,
+      background 0.22s ease;
+
+    -webkit-tap-highlight-color: transparent;
 
     .icon {
       width: 18px;
       height: 18px;
+      flex: 0 0 auto;
+      filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+      transition:
+        filter 0.22s ease,
+        transform 0.22s ease;
     }
 
     span {
       transform: translateY(1px);
+      white-space: nowrap;
     }
 
-    &:hover {
-      opacity: 1;
+    &:active,
+    &.tap {
       color: $white;
-      box-shadow: 0 0 12px rgba(255, 0, 51, 0.25);
-      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba($primary-60, 0.5);
+      box-shadow:
+        0 0 18px rgba($primary-60, 0.22),
+        inset 0 0 18px rgba($primary-60, 0.08);
+      transform: translateY(-1px);
+
+      .icon {
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 8px rgba($primary-60, 0.45));
+      }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: $white;
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 0 14px rgba($primary-60, 0.16);
+
+        .icon {
+          filter: drop-shadow(0 0 6px rgba($primary-60, 0.35));
+        }
+      }
     }
   }
 
@@ -85,10 +127,13 @@
       border: 0;
       cursor: pointer;
       z-index: 5;
-      transition: all 0.3s ease;
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
 
-      &:hover span {
-        filter: drop-shadow(0 0 4px $color-action) drop-shadow(0 0 12px rgba($color-action, 0.6));
+      &:active {
+        transform: scale(0.96);
       }
 
       span {
@@ -101,7 +146,9 @@
         background: $white;
         transform-origin: center;
         transition: 0.3s ease;
-        box-shadow: 0 0 6px rgba(255, 0, 51, 0.4);
+        box-shadow:
+          0 0 6px rgba($primary-60, 0.38),
+          0 0 14px rgba($primary-60, 0.12);
       }
 
       span:nth-child(1) {
@@ -110,6 +157,12 @@
 
       span:nth-child(2) {
         transform: translateY(-50%) rotate(-45deg);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover span {
+          filter: drop-shadow(0 0 4px $color-action) drop-shadow(0 0 12px rgba($color-action, 0.6));
+        }
       }
     }
   }
@@ -127,11 +180,21 @@
     text-align: center;
   }
 
+  .mobile-tagline {
+    color: rgba(255, 255, 255, 0.96);
+    text-shadow: 0 0 10px rgba($primary-60, 0.16);
+  }
+
+  .mobile-year {
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.03em;
+  }
+
   &::before {
     content: "";
     position: absolute;
     inset: -22%;
-    background: radial-gradient(700px 520px at 35% 18%, rgba(255, 0, 51, 0.16), transparent 62%), radial-gradient(620px 480px at 70% 85%, rgba(0, 240, 255, 0.16), transparent 64%), radial-gradient(520px 420px at 85% 35%, rgba(255, 62, 201, 0.07), transparent 66%);
+    background: radial-gradient(700px 520px at 35% 18%, rgba(255, 0, 51, 0.18), transparent 62%), radial-gradient(620px 480px at 70% 85%, rgba(0, 240, 255, 0.18), transparent 64%), radial-gradient(520px 420px at 85% 35%, rgba(255, 62, 201, 0.08), transparent 66%);
     filter: blur(58px);
     opacity: 0;
     transform: scale(0.98);
@@ -142,8 +205,20 @@
     z-index: 1;
   }
 
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0%, transparent 100%), radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.03), transparent 45%);
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1;
+  }
+
   &.active {
     transform: translateY(0);
+
     &::before {
       opacity: 1;
       transform: scale(1.04);
@@ -174,13 +249,15 @@
       position: relative;
       display: inline-block;
       font-size: 3.2rem;
+      font-weight: 500;
       letter-spacing: 0.08em;
       color: rgba(255, 255, 255, 0.92);
       text-decoration: none;
       padding: 10px 6px;
       transition:
         color 0.25s ease,
-        text-shadow 0.25s ease;
+        text-shadow 0.25s ease,
+        transform 0.25s ease;
 
       &::after {
         content: "";
@@ -193,14 +270,19 @@
         background: $primary-60;
         transform: translateY(-50%) scale(0);
         opacity: 0.9;
-        box-shadow: 0 0 10px rgba(255, 0, 51, 0.6);
+        box-shadow:
+          0 0 10px rgba($primary-60, 0.65),
+          0 0 22px rgba($primary-60, 0.28);
         transition: transform 0.25s ease;
       }
 
       &.tap,
       &:active {
         color: $white;
-        text-shadow: 0 0 10px rgba(255, 0, 51, 0.45);
+        text-shadow:
+          0 0 10px rgba($primary-60, 0.4),
+          0 0 24px rgba($primary-60, 0.18);
+        transform: translateY(-1px);
 
         &::after {
           transform: translateY(-50%) scale(1);
@@ -212,6 +294,7 @@
       @media (hover: hover) and (pointer: fine) {
         &:hover {
           color: $white;
+          text-shadow: 0 0 12px rgba($primary-60, 0.32);
 
           &::after {
             transform: translateY(-50%) scale(1);
@@ -221,7 +304,7 @@
     }
   }
 
-  /* 🔥 메뉴 열릴 때 애니메이션 */
+  /* 메뉴 열릴 때 애니메이션 */
   &.active {
     .mobile-menu__nav {
       li {
@@ -580,6 +663,14 @@ $stars-right:
       backface-visibility: hidden;
     }
 
+    .hero__copy {
+      @include mobile {
+        text-shadow:
+          0 2px 6px rgba(0, 0, 0, 0.6),
+          0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+    }
+
     // hero__info 시작
     .hero__info {
       margin-bottom: 20px;
@@ -659,6 +750,7 @@ $stars-right:
 
       @include mobile {
         justify-content: center;
+        flex-direction: column;
       }
 
       .btn {
@@ -736,8 +828,8 @@ $stars-right:
         }
 
         @include mobile {
-          width: 320px;
-          height: 72px;
+          width: 280px;
+          height: 65px;
           font-size: 2.6rem;
         }
 

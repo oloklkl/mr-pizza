@@ -216,3 +216,35 @@
     }
   }
 }
+
+.icon-btn {
+  position: relative;
+}
+
+.icon-btn[data-logout]::after {
+  content: "LOGOUT";
+
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+
+  padding: 5px 9px;
+  border-radius: 6px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.icon-btn[data-logout]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

@@ -333,3 +333,23 @@
     }
   }
 }
+
+.auth-form__message {
+  min-height: 22px;
+  margin: 10px 0 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+
+  &[data-state="error"] {
+    color: #ff6b6b;
+  }
+
+  &[data-state="success"] {
+    color: #7dffbe;
+  }
+
+  &[data-state="info"] {
+    color: #8edbff;
+  }
+}

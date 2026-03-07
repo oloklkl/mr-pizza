@@ -13,7 +13,6 @@ const navBar = () => {
   const $gnblis = getAll("#header .nav .gnb > li");
   const $gnbuls = getAll("#header .nav .gnb > li ul");
 
-  // 요소가 없으면 그냥 종료 (에러 방지)
   if ($gnblis.length === 0 || $gnbuls.length === 0) return;
 
   $gnblis.forEach((li, idx) => {
@@ -49,19 +48,16 @@ const skipNav = () => {
   });
 };
 
-/* ========= ✅ 햄버거 / 모바일 메뉴 초기화 (중복 바인딩 방지 포함) ========= */
+/* ========= 햄버거 / 모바일 메뉴 초기화 ========= */
 const initMobileMenu = () => {
   const hamburger = document.querySelector(".hamburger");
   const mobileMenu = document.querySelector(".mobile-menu");
 
-  // include 타이밍 때문에 없을 수 있음
   if (!hamburger || !mobileMenu) return;
 
-  // ✅ 같은 이벤트가 여러 번 붙는 걸 방지
   if (hamburger.dataset.bound === "true") return;
   hamburger.dataset.bound = "true";
 
-  // 초기 aria 상태
   if (!hamburger.hasAttribute("aria-expanded")) hamburger.setAttribute("aria-expanded", "false");
   if (!mobileMenu.hasAttribute("aria-hidden")) mobileMenu.setAttribute("aria-hidden", "true");
 
@@ -88,32 +84,110 @@ const initMobileMenu = () => {
     hamburger.classList.contains("active") ? closeMenu() : openMenu();
   });
 
-  // 오버레이 빈 공간 클릭 시 닫기
   mobileMenu.addEventListener("click", (e) => {
     if (e.target === mobileMenu) closeMenu();
   });
 
-  // ESC 닫기
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && hamburger.classList.contains("active")) closeMenu();
   });
 
   mobileMenu.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", (e) => {
+    a.addEventListener("click", () => {
       a.classList.add("tap");
 
       setTimeout(() => {
         a.classList.remove("tap");
         closeMenu();
-      }, 120); // 0.12초 네온 보여주고 닫기
+      }, 120);
     });
   });
 };
 
+/* ========= 로그인 상태 관리 (공통) ========= */
+const GLOBAL_AUTH_STORAGE_KEY = "mrpizza-auth";
+
+function getAuthUser() {
+  try {
+    const auth = JSON.parse(localStorage.getItem(GLOBAL_AUTH_STORAGE_KEY));
+    if (!auth || !auth.isLoggedIn) return null;
+    return auth;
+  } catch {
+    return null;
+  }
+}
+
+function logout() {
+  localStorage.removeItem(GLOBAL_AUTH_STORAGE_KEY);
+  location.reload();
+}
+
+function createHeaderAuth(name) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "header-auth";
+
+  const nameEl = document.createElement("span");
+  nameEl.className = "header-auth__name";
+  nameEl.textContent = name || "USER";
+
+  const logoutBtn = document.createElement("button");
+  logoutBtn.className = "header-auth__logout";
+  logoutBtn.type = "button";
+  logoutBtn.textContent = "LOGOUT";
+  logoutBtn.addEventListener("click", logout);
+
+  wrapper.appendChild(nameEl);
+  wrapper.appendChild(logoutBtn);
+
+  return wrapper;
+}
+
+function updateHeaderAuth() {
+  const auth = getAuthUser();
+
+  const desktopAccountBtn = document.querySelector('.header__utils a[href*="login.html"]');
+  const desktopUserIcon = desktopAccountBtn?.querySelector(".icon.user, .icon");
+
+  const mobileAccountBtn = document.querySelector('.mobile-menu__util[href*="login.html"]');
+  const mobileUserIcon = mobileAccountBtn?.querySelector(".icon");
+  const mobileUserText = mobileAccountBtn?.querySelector("span");
+
+  if (!auth) return;
+
+  if (desktopAccountBtn && desktopUserIcon) {
+    desktopAccountBtn.setAttribute("aria-label", "Logout");
+    desktopAccountBtn.dataset.logout = "true";
+    desktopUserIcon.setAttribute("data-lucide", "user-round-check");
+
+    desktopAccountBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      logout();
+    });
+  }
+
+  if (mobileAccountBtn && mobileUserIcon && mobileUserText) {
+    mobileAccountBtn.setAttribute("aria-label", "Logout");
+    mobileUserIcon.setAttribute("data-lucide", "user-round-check");
+    mobileUserText.textContent = "LOGOUT";
+
+    mobileAccountBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      logout();
+    });
+  }
+
+  if (window.lucide) lucide.createIcons();
+}
+
 includeHTML();
 
 function includeHTML() {
-  var z, i, elmnt, file, xhttp;
+  let z;
+  let i;
+  let elmnt;
+  let file;
+  let xhttp;
+
   z = document.getElementsByTagName("*");
 
   for (i = 0; i < z.length; i++) {
@@ -123,9 +197,9 @@ function includeHTML() {
     if (file) {
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) elmnt.innerHTML = this.responseText;
-          if (this.status == 404) elmnt.innerHTML = "Page not found.";
+        if (this.readyState === 4) {
+          if (this.status === 200) elmnt.innerHTML = this.responseText;
+          if (this.status === 404) elmnt.innerHTML = "Page not found.";
 
           elmnt.removeAttribute("include-html");
           includeHTML();
@@ -140,12 +214,10 @@ function includeHTML() {
   if (window.lucide) lucide.createIcons();
 
   initMobileMenu();
-
   preventDefaultAnchor();
-
   navBar();
-
   skipNav();
+  updateHeaderAuth();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -153,4 +225,5 @@ document.addEventListener("DOMContentLoaded", () => {
   navBar();
   skipNav();
   initMobileMenu();
+  updateHeaderAuth();
 });
