@@ -561,15 +561,21 @@ function setCardUI(articleEl, item) {
   articleEl.dataset.id = item.id;
   articleEl.dataset.line = item.line ?? "";
 
+  const link = articleEl.querySelector(".menu-item__link");
   const name = articleEl.querySelector(".menu-item__name");
   const price = articleEl.querySelector(".menu-item__price");
 
-  if (name) name.textContent = item.title ?? "";
+  const title = item.title ?? "";
+
+  if (link) {
+    link.setAttribute("aria-label", `${title} 자세히 보기`);
+  }
+
+  if (name) name.textContent = title;
   if (price) price.textContent = formatCardPrice(item);
 
   clearCardBadge(articleEl);
 
-  // ALL 탭에서는 배지 표시 안함
   const isAllTab = document.querySelector(".menu-tabs__btn.is-active")?.dataset.filter === "all";
 
   if (!isAllTab) {
@@ -581,13 +587,26 @@ function setCardUI(articleEl, item) {
     const opt0 = articleEl.querySelector(".set-opt--wing");
     const opt1 = articleEl.querySelector(".set-opt--pasta");
 
-    if (main) main.src = item.img ?? "";
+    if (main) {
+      main.src = item.img ?? "";
+      main.alt = `${title} 세트 메인`;
+    }
+
     const opts = item.setOptions ?? [];
-    if (opt0) opt0.src = opts[0] ?? "";
-    if (opt1) opt1.src = opts[1] ?? "";
+    if (opt0) {
+      opt0.src = opts[0] ?? "";
+      opt0.alt = "";
+    }
+    if (opt1) {
+      opt1.src = opts[1] ?? "";
+      opt1.alt = "";
+    }
   } else {
     const img = articleEl.querySelector(".menu-item__img");
-    if (img) img.src = item.img ?? "";
+    if (img) {
+      img.src = item.img ?? "";
+      img.alt = "";
+    }
   }
 }
 
