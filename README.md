@@ -51,6 +51,14 @@ https://oloklkl.github.io/mr-pizza/pages/
 - 매장 정보 카드 UI
 - 매장 정보 확인 기능
 
+### About 페이지
+- 브랜드 리뉴얼 컨셉 소개
+- 프로젝트 의도 및 브랜드 스토리 표현
+
+### 회원 기능
+- 로그인 페이지 UI
+- 회원가입 페이지 UI
+
 ---
 
 ## UI 특징
@@ -73,13 +81,23 @@ mr-pizza
 │ ├─ drop.html
 │ ├─ store.html
 │ └─ about.html
+│ │
+│ ├─ auth
+│ │ ├─ login.html
+│ │ └─ signup.html
+│ │
+│ ├─ cart
+│ │ └─ cart.html
+│ │
+│ └─ layout
+│ ├─ header.html
+│ └─ footer.html
 │
 ├─ resources
 │ ├─ images
 │ ├─ js
-│ └─ css
-│
-└─ scss
+│ ├─ css
+└─└─ scss
 ```
 ---
 
