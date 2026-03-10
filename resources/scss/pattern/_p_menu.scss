@@ -606,7 +606,7 @@
   overflow-x: hidden;
 
   /* 배경 */
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/menu-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/menu-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -782,7 +782,7 @@
     .set-card {
       transform: scale(1.34);
       padding-top: 0.2rem;
-      background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/menu-bg.png");
+      background-image: url("/mr-pizza/resources/images/component/auth/menu-bg.png");
 
       &::before {
         content: "";
@@ -850,7 +850,7 @@
   border-radius: 18px;
   overflow: hidden;
   perspective: 1200px;
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/menu-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/menu-bg.png");
 
   &::before {
     content: "";

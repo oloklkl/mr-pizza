@@ -2006,7 +2006,7 @@ button {
   /* ✅ 가로 스크롤 방지 */
   overflow-x: hidden;
   /* 배경 */
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/menu-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/menu-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2170,7 +2170,7 @@ button {
 .menu-modal__media .set-stage .set-card {
   transform: scale(1.34);
   padding-top: 0.2rem;
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/menu-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/menu-bg.png");
 }
 .menu-modal__media .set-stage .set-card::before {
   content: "";
@@ -2229,7 +2229,7 @@ button {
   border-radius: 18px;
   overflow: hidden;
   perspective: 1200px;
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/menu-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/menu-bg.png");
 }
 .pizza-stage::before {
   content: "";
@@ -5045,7 +5045,7 @@ button {
    Page Background
 ========================= */
 .auth--login {
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/auth-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/auth-bg.png");
 }
 
 /* =========================
@@ -5549,7 +5549,7 @@ button {
    Page Background
 ========================= */
 .auth--signup {
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/signup-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/signup-bg.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -5867,7 +5867,7 @@ button {
   }
 }
 .auth--cart {
-  background-image: url("/mr-pizza/mr-pizza/resources/images/component/auth/cart-bg.png");
+  background-image: url("/mr-pizza/resources/images/component/auth/cart-bg.png");
 }
 
 .auth-card--cart {
