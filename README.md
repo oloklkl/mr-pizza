@@ -89,9 +89,9 @@ mr-pizza
 │ ├─ cart
 │ │ └─ cart.html
 │ │
-│ └─ layout
-│ ├─ header.html
-│ └─ footer.html
+│ ├─ layout
+│ │ ├─ header.html
+│ │ └─ footer.html
 │
 ├─ resources
 │ ├─ images
@@ -118,4 +118,5 @@ mr-pizza
 ## Author
 
 조성주  
-Frontend Portfolio Project
+Frontend Developer  
+Portfolio Project
