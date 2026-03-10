@@ -18,6 +18,9 @@ https://oloklkl.github.io/mr-pizza/pages/
 
 <img width="1920" height="919" alt="menu" src="https://github.com/user-attachments/assets/e23a7e79-604a-4293-a978-0383d0f7b326" />
 
+### Menu-modal
+
+<img width="1920" height="919" alt="menu-modal" src="https://github.com/user-attachments/assets/1c7171fe-df4c-44f9-ab75-02cde5e6817b" />
 
 ### Drop
 
@@ -27,17 +30,21 @@ https://oloklkl.github.io/mr-pizza/pages/
 
 <img width="1920" height="919" alt="store" src="https://github.com/user-attachments/assets/f5b912a4-813f-4482-b335-fa7e04a75b3e" />
 
+### About
+
+<img width="1920" height="919" alt="about" src="https://github.com/user-attachments/assets/209a7d2c-aa37-462f-ad01-5f66f9c82370" />
+
 ### Cart
 
-<img width="1920" height="919" alt="cart" src="https://github.com/user-attachments/assets/a0ff0244-c5f4-4bfd-bd54-d929db0d888e" />
+<img width="1920" height="919" alt="cart" src="https://github.com/user-attachments/assets/4eb2916e-d874-40b5-89c1-5ebd9ba09f47" />
 
 ### Login
 
-<img width="1920" height="919" alt="login" src="https://github.com/user-attachments/assets/187e811c-6797-4164-925d-dd64325623b4" />
+<img width="1920" height="919" alt="login" src="https://github.com/user-attachments/assets/f91a48e0-2d06-40e2-aeb8-efa1fbf8fdf9" />
 
 ### Signup
 
-<img width="1920" height="919" alt="signup" src="https://github.com/user-attachments/assets/767fa356-d7e1-412e-83f9-7e64d26ec81a" />
+<img width="1920" height="919" alt="signup" src="https://github.com/user-attachments/assets/d7d6eb9f-a51a-43e9-837a-0ec6e9d145c9" />
 
 ---
 
