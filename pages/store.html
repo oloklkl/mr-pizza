@@ -39,6 +39,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <script defer src="../resources/js/include.js"></script>
     <script defer src="../resources/js/ui-pattern.js"></script>
+    <script type="module" defer src="../resources/js/store-data.js"></script>
+    <script type="module" defer src="../resources/js/store.js"></script>
   </head>
   <body>
     <div id="skip-nav">
@@ -82,7 +84,69 @@
         </div>
       </div>
 
-      <main id="container"></main>
+      <main id="container" class="store-page">
+        <section class="store" aria-labelledby="storeTitle">
+          <div class="store__frame">
+            <!-- LEFT VISUAL -->
+            <aside class="store__visual" aria-hidden="true">
+              <img src="../resources/images/component/store/store-visual.png" alt="" />
+              <div class="store__visual-overlay"></div>
+            </aside>
+
+            <!-- RIGHT PANEL -->
+            <div class="store__panel">
+              <header class="store__head">
+                <h2 class="store__title" id="storeTitle">STORE</h2>
+
+                <div class="store__search">
+                  <div class="store__search-box">
+                    <input type="search" class="store__search-input" placeholder="매장명 또는 지역으로 검색" aria-label="매장 검색" />
+
+                    <button type="button" class="store__search-clear" aria-label="검색어 삭제">
+                      <span></span>
+                      <span></span>
+                    </button>
+                  </div>
+                  <p class="store__count" aria-live="polite"></p>
+                </div>
+              </header>
+
+              <div class="store__body">
+                <ul class="store__list" id="storeList" aria-label="매장 목록"></ul>
+
+                <aside class="store-detail" id="storeDetail" aria-hidden="true" aria-labelledby="storeDetailName">
+                  <button type="button" class="store-detail__close" id="storeDetailClose" aria-label="매장 상세 닫기">
+                    <span></span>
+                    <span></span>
+                  </button>
+
+                  <div class="store-detail__inner">
+                    <figure class="store-detail__thumb">
+                      <img id="storeDetailImage" src="" alt="" />
+                    </figure>
+
+                    <div class="store-detail__body">
+                      <h3 class="store-detail__name" id="storeDetailName"></h3>
+                      <p class="store-detail__address" id="storeDetailAddress"></p>
+                      <p class="store-detail__phone" id="storeDetailPhone"></p>
+                      <p class="store-detail__time" id="storeDetailTime"></p>
+
+                      <a id="storeDetailMap" class="store-detail__map" href="#" target="_blank" rel="noopener noreferrer">
+                        <span class="store-detail__map-text">View on Map</span>
+
+                        <span class="store-detail__arrow" aria-hidden="true">
+                          <i data-lucide="chevron-right"></i>
+                          <i data-lucide="chevron-right"></i>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <footer id="footer" include-html="./layout/footer.html"></footer>
     </div>
