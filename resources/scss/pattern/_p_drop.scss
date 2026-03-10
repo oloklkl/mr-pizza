@@ -68,7 +68,7 @@ $glow-strong: rgba(255, 160, 190, 0.45);
     content: "";
     position: absolute;
     inset: 0;
-    background: url("/mr-pizza/mr-pizza/resources/images/component/drop/drop-bg.png") center / cover no-repeat;
+    background: url("/mr-pizza//resources/images/component/drop/drop-bg.png") center / cover no-repeat;
     filter: saturate(1.06) contrast(1.02);
     transform: scale(1.02);
     z-index: 0;
@@ -94,7 +94,7 @@ $glow-strong: rgba(255, 160, 190, 0.45);
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: url("/mr-pizza/mr-pizza/resources/images/component/drop/noise.png") repeat;
+  background: url("/mr-pizza//resources/images/component/drop/noise.png") repeat;
   opacity: 0.035;
 
   transform: translate3d(var(--noise-x, 0px), var(--noise-y, 0px), 0);
