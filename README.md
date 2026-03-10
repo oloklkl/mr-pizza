@@ -2,6 +2,7 @@
 
 기존 **미스터피자 웹사이트를 리뉴얼 컨셉으로 재구성한 프론트엔드 프로젝트**입니다.  
 브랜드 이미지를 현대적으로 개선하고, 제품 중심의 UI와 직관적인 메뉴 탐색 경험을 목표로 디자인 및 구현했습니다.
+
 <img width="1902" height="919" alt="meta" src="https://github.com/user-attachments/assets/a3d5505c-7c6c-49b1-9209-5470e500969d" />
 
 🔗 **Live Demo**  
@@ -79,6 +80,7 @@ mr-pizza
 │ └─ css
 │
 └─ scss
+```
 ---
 
 ## 개선 포인트
