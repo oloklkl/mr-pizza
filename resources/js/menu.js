@@ -912,7 +912,7 @@ function showCartToast() {
     toast.className = "cart-toast";
     toast.innerHTML = `
       <p class="cart-toast__text">장바구니에 담았어요.</p>
-      <a href="/pages/cart/cart.html" class="cart-toast__link">장바구니 보기</a>
+      <a href="/mr-pizza/pages/cart/cart.html" class="cart-toast__link">장바구니 보기</a>
     `;
     document.body.appendChild(toast);
   }

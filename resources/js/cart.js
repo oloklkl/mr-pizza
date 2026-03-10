@@ -347,7 +347,7 @@ function renderEmpty() {
     <div class="cart-empty">
       <p class="cart-empty__title">장바구니가 비어 있어요.</p>
       <p class="cart-empty__desc">맛있는 메뉴를 담아보세요.</p>
-      <a href="/pages/menu.html" class="cart-empty__btn">메뉴 보러가기</a>
+      <a href="/mr-pizza/pages/menu.html" class="cart-empty__btn">메뉴 보러가기</a>
     </div>
   `;
 

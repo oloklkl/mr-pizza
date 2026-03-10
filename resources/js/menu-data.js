@@ -49,7 +49,7 @@ export const SET_LINE_LABELS = {
 export const RAW_ITEMS = [
   {
     id: 1,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_01.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_01.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "스페셜콰트로",
@@ -71,7 +71,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 2,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_02.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_02.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "미스터트리오",
@@ -92,7 +92,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 3,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_03.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_03.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "치즈블라썸스테이크",
@@ -113,7 +113,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 4,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_01.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_01.png",
     category: "클래식 피자",
     line: "classic",
     title: "스윗고구마",
@@ -134,7 +134,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 5,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_04.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_04.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "디아볼라블라썸",
@@ -153,7 +153,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 6,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_05.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_05.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "레전드 포테이토",
@@ -171,7 +171,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 7,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_02.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_02.png",
     category: "클래식 피자",
     line: "classic",
     title: "더블 치즈",
@@ -191,7 +191,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 8,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_06.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_06.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "쉬림프 골드",
@@ -211,7 +211,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 9,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_07.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_07.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "포테이토 골드",
@@ -231,7 +231,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 10,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_08.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_08.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "하프앤하프",
@@ -251,7 +251,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 11,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_09.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_09.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "크레이지 핫",
@@ -270,7 +270,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 12,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_10.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_10.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "콰트로 치즈",
@@ -289,7 +289,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 13,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_11.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_11.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "레전드 바질 마스카포네",
@@ -308,7 +308,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 14,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_12.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_12.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "레전드 쉬림프",
@@ -327,7 +327,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 15,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_13.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_13.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "디아볼라 블라썸",
@@ -346,7 +346,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 16,
-    img: "/resources/images/component/menu/pizza-premium/pizza_premium_14.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-premium/pizza_premium_14.png",
     category: "프리미엄 피자",
     line: "premium",
     title: "새우천왕",
@@ -366,7 +366,7 @@ export const RAW_ITEMS = [
   // ---------- classic ----------
   {
     id: 17,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_03.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_03.png",
     category: "클래식 피자",
     line: "classic",
     title: "콘 스노잉",
@@ -385,7 +385,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 18,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_04.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_04.png",
     category: "클래식 피자",
     line: "classic",
     title: "치즈후라이",
@@ -404,7 +404,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 19,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_05.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_05.png",
     category: "클래식 피자",
     line: "classic",
     title: "페퍼로니 플러스",
@@ -423,7 +423,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 20,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_06.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_06.png",
     category: "클래식 피자",
     line: "classic",
     title: "베지테리안",
@@ -442,7 +442,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 21,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_07.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_07.png",
     category: "클래식 피자",
     line: "classic",
     title: "하와이안스페셜",
@@ -461,7 +461,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 22,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_08.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_08.png",
     category: "클래식 피자",
     line: "classic",
     title: "콤비네이션",
@@ -480,7 +480,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 23,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_09.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_09.png",
     category: "클래식 피자",
     line: "classic",
     title: "포테이토",
@@ -499,7 +499,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 24,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_10.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_10.png",
     category: "클래식 피자",
     line: "classic",
     title: "불고기",
@@ -518,7 +518,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 25,
-    img: "/resources/images/component/menu/pizza-classic/pizza_classic_11.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-classic/pizza_classic_11.png",
     category: "클래식 피자",
     line: "classic",
     title: "시카고딥",
@@ -539,7 +539,7 @@ export const RAW_ITEMS = [
   // ---------- suncrust ----------
   {
     id: 26,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_01.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_01.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "더블치즈(씬)",
@@ -556,7 +556,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 27,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_02.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_02.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "콘스노잉(씬)",
@@ -573,7 +573,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 28,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_03.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_03.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "치즈후라이(씬)",
@@ -590,7 +590,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 29,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_04.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_04.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "페퍼로니플러스(씬)",
@@ -607,7 +607,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 30,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_05.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_05.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "베지테리안(씬)",
@@ -624,7 +624,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 31,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_06.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_06.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "하와이안스페셜(씬)",
@@ -641,7 +641,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 32,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_07.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_07.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "콤비네이션(씬)",
@@ -658,7 +658,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 33,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_08.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_08.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "포테이토(씬)",
@@ -675,7 +675,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 34,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_09.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_09.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "불고기(씬)",
@@ -692,7 +692,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 35,
-    img: "/resources/images/component/menu/pizza-suncrust/pizza_suncrust_10.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-suncrust/pizza_suncrust_10.png",
     category: "씬크러스트 피자",
     line: "suncrust",
     title: "스윗고구마(씬)",
@@ -710,7 +710,7 @@ export const RAW_ITEMS = [
   // ---------- solo ----------
   {
     id: 37,
-    img: "/resources/images/component/menu/pizza-solo/pizza_solo_01.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-solo/pizza_solo_01.png",
     category: "1인용 피자",
     line: "solo",
     title: "페퍼로니플러스(S)",
@@ -726,7 +726,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 38,
-    img: "/resources/images/component/menu/pizza-solo/pizza_solo_02.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-solo/pizza_solo_02.png",
     category: "1인용 피자",
     line: "solo",
     title: "콤비네이션(S)",
@@ -742,7 +742,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 39,
-    img: "/resources/images/component/menu/pizza-solo/pizza_solo_03.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-solo/pizza_solo_03.png",
     category: "1인용 피자",
     line: "solo",
     title: "불고기(S)",
@@ -758,7 +758,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 40,
-    img: "/resources/images/component/menu/pizza-solo/pizza_solo_04.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-solo/pizza_solo_04.png",
     category: "1인용 피자",
     line: "solo",
     title: "스윗고구마(S)",
@@ -774,7 +774,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 41,
-    img: "/resources/images/component/menu/pizza-solo/pizza_solo_05.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-solo/pizza_solo_05.png",
     category: "1인용 피자",
     line: "solo",
     title: "하와이안스페셜(S)",
@@ -790,7 +790,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 42,
-    img: "/resources/images/component/menu/pizza-solo/pizza_solo_06.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-solo/pizza_solo_06.png",
     category: "1인용 피자",
     line: "solo",
     title: "베지테리안(S)",
@@ -808,7 +808,7 @@ export const RAW_ITEMS = [
   // ---------- sand ----------
   {
     id: 43,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_01.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_01.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "콤비네이션 샌드",
@@ -827,7 +827,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 44,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_02.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_02.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "치킨텐더 샌드",
@@ -846,7 +846,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 45,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_03.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_03.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "소세지 샌드",
@@ -865,7 +865,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 46,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_04.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_04.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "불고기 샌드",
@@ -883,7 +883,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 47,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_05.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_05.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "포테이토골드 샌드",
@@ -901,7 +901,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 48,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_06.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_06.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "쉬림프골드 샌드",
@@ -920,7 +920,7 @@ export const RAW_ITEMS = [
   // ---------- sand set ----------
   {
     id: 49,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_07.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_07.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "콤비네이션 샌드 세트",
@@ -943,7 +943,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 50,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_08.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_08.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "치킨텐더 샌드 세트",
@@ -966,7 +966,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 51,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_09.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_09.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "소세지 샌드 세트",
@@ -989,7 +989,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 52,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_10.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_10.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "불고기 샌드 세트",
@@ -1011,7 +1011,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 53,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_11.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_11.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "포테이토골드 샌드 세트",
@@ -1033,7 +1033,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 54,
-    img: "/resources/images/component/menu/pizza-sand/pizza_sand_12.png",
+    img: "/mr-pizza/resources/images/component/menu/pizza-sand/pizza_sand_12.png",
     category: "피자샌드",
     line: "pizzasand",
     title: "쉬림프골드 샌드 세트",
@@ -1056,7 +1056,7 @@ export const RAW_ITEMS = [
   // ---------- pasta-rice ----------
   {
     id: 55,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_01.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_01.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "불고기 라이스",
@@ -1075,7 +1075,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 56,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_02.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_02.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "바질크림파스타",
@@ -1094,7 +1094,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 57,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_03.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "오븐치즈 미트 스파게티",
@@ -1113,7 +1113,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 58,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_04.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_04.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "오븐치즈 베이컨크림 스파게티",
@@ -1131,7 +1131,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 59,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_05.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_05.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "쉬림프 까르보나라",
@@ -1149,7 +1149,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 60,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_06.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_06.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "쉬림프 로제 파스타",
@@ -1167,7 +1167,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 61,
-    img: "/resources/images/component/menu/pasta-rice/pasta_rice_07.png",
+    img: "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_07.png",
     category: "파스타&라이스",
     line: "pasta",
     title: "베이컨 크림 리조또",
@@ -1187,7 +1187,7 @@ export const RAW_ITEMS = [
   // ---------- salad-side ----------
   {
     id: 62,
-    img: "/resources/images/component/menu/salad-side/salad_side_01.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_01.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "미트치즈프라이즈",
@@ -1206,7 +1206,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 63,
-    img: "/resources/images/component/menu/salad-side/salad_side_02.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_02.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "바베큐윙",
@@ -1225,7 +1225,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 64,
-    img: "/resources/images/component/menu/salad-side/salad_side_03.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_03.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "사이드샘플러",
@@ -1244,7 +1244,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 65,
-    img: "/resources/images/component/menu/salad-side/salad_side_04.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_04.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "치킨텐더(4조각/8조각)",
@@ -1261,7 +1261,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 66,
-    img: "/resources/images/component/menu/salad-side/salad_side_05.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "핫윙(4조각/8조각)",
@@ -1278,7 +1278,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 67,
-    img: "/resources/images/component/menu/salad-side/salad_side_06.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_06.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "미피떡볶이(1인용/매콤,달콤)",
@@ -1296,7 +1296,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 68,
-    img: "/resources/images/component/menu/salad-side/salad_side_07.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_07.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "스파이시 포테이토",
@@ -1314,7 +1314,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 69,
-    img: "/resources/images/component/menu/salad-side/salad_side_08.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_08.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "크림치즈바게트",
@@ -1332,7 +1332,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 70,
-    img: "/resources/images/component/menu/salad-side/salad_side_09.png",
+    img: "/mr-pizza/resources/images/component/menu/salad-side/salad_side_09.png",
     category: "샐러드&사이드",
     line: "salad",
     title: "홈샐러드(6구)",
@@ -1352,7 +1352,7 @@ export const RAW_ITEMS = [
   // ---------- drink ----------
   {
     id: 71,
-    img: "/resources/images/component/menu/drink/drink_01.png",
+    img: "/mr-pizza/resources/images/component/menu/drink/drink_01.png",
     category: "음료",
     line: "drink",
     title: "펩시콜라(제로)",
@@ -1369,7 +1369,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 72,
-    img: "/resources/images/component/menu/drink/drink_02.png",
+    img: "/mr-pizza/resources/images/component/menu/drink/drink_02.png",
     category: "음료",
     line: "drink",
     title: "펩시콜라",
@@ -1386,7 +1386,7 @@ export const RAW_ITEMS = [
   },
   {
     id: 73,
-    img: "/resources/images/component/menu/drink/drink_03.png",
+    img: "/mr-pizza/resources/images/component/menu/drink/drink_03.png",
     category: "음료",
     line: "drink",
     title: "칠성사이다",
@@ -1405,9 +1405,9 @@ export const RAW_ITEMS = [
   // ---------- special-set ----------
   {
     id: 74,
-    img: "/resources/images/component/menu/special-set/special_set_01.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_01.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_01.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_01.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1422,9 +1422,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 75,
-    img: "/resources/images/component/menu/special-set/special_set_02.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_02.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_02.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_02.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1439,9 +1439,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 76,
-    img: "/resources/images/component/menu/special-set/special_set_03.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_03.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_03.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_03.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1456,9 +1456,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 77,
-    img: "/resources/images/component/menu/special-set/special_set_04.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_04.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_04.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_04.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1473,9 +1473,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 78,
-    img: "/resources/images/component/menu/special-set/special_set_05.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_05.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_05.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_05.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1490,9 +1490,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 79,
-    img: "/resources/images/component/menu/special-set/special_set_06.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_06.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_06.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_06.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1507,9 +1507,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 80,
-    img: "/resources/images/component/menu/special-set/special_set_07.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_07.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_07.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_07.png",
     category: "특제 세트",
     type: "set",
     line: "special",
@@ -1524,9 +1524,9 @@ export const RAW_ITEMS = [
   },
   {
     id: 81,
-    img: "/resources/images/component/menu/special-set/special_set_08.png",
-    setOptions: ["/resources/images/component/menu/salad-side/salad_side_05.png", "/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
-    cartImg: "/resources/images/component/cart/special_set_08.png",
+    img: "/mr-pizza/resources/images/component/menu/special-set/special_set_08.png",
+    setOptions: ["/mr-pizza/resources/images/component/menu/salad-side/salad_side_05.png", "/mr-pizza/resources/images/component/menu/pasta-rice/pasta_rice_03.png"],
+    cartImg: "/mr-pizza/resources/images/component/cart/special_set_08.png",
     category: "특제 세트",
     type: "set",
     line: "special",
