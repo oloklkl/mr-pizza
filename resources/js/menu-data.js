@@ -1567,7 +1567,7 @@ export const HERO_ITEMS = MENU_ITEMS.filter((item) => HERO_IDS.has(Number(item.i
   const id = Number(item.id);
   return {
     ...item,
-    heroImg: `../resources/images/component/main/${id}.png`,
+    heroImg: `/mr-pizza/resources/images/component/main/${id}.png`,
   };
 });
 

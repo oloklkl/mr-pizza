@@ -26,7 +26,7 @@ function requireLogin() {
   if (user) return;
 
   const redirectUrl = `${window.location.pathname}${window.location.search}`;
-  window.location.href = `/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+  window.location.href = `/mr-pizza/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
 }
 
 requireLogin();
@@ -490,7 +490,7 @@ function handlePayClick() {
 
   if (!user) {
     const redirectUrl = `${window.location.pathname}${window.location.search}`;
-    window.location.href = `/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+    window.location.href = `/mr-pizza/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
     return;
   }
 
