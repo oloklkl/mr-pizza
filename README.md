@@ -6,7 +6,29 @@
 🔗 **Live Demo**  
 https://oloklkl.github.io/mr-pizza/pages/
 
-<img width="1902" height="919" alt="meta" src="https://github.com/user-attachments/assets/a3d5505c-7c6c-49b1-9209-5470e500969d" />
+---
+
+## Preview
+
+### Main
+
+<img width="1902" height="919" alt="main" src="https://github.com/user-attachments/assets/a3d5505c-7c6c-49b1-9209-5470e500969d" />
+
+### Menu
+
+<img width="1920" height="3102" alt="menu" src="https://github.com/user-attachments/assets/79c846fd-7dec-4a2e-986d-6c3bdb2b72bc" />
+
+### Drop
+
+<img src="여기에_drop_스크린샷_URL" />
+
+### Store
+
+<img src="여기에_store_스크린샷_URL" />
+
+### Cart
+
+<img src="여기에_cart_스크린샷_URL" />
 
 ---
 
