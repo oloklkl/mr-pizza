@@ -16,19 +16,28 @@ https://oloklkl.github.io/mr-pizza/pages/
 
 ### Menu
 
-<img width="1920" height="3102" alt="menu" src="https://github.com/user-attachments/assets/79c846fd-7dec-4a2e-986d-6c3bdb2b72bc" />
+<img width="1920" height="919" alt="menu" src="https://github.com/user-attachments/assets/e23a7e79-604a-4293-a978-0383d0f7b326" />
+
 
 ### Drop
 
-<img src="여기에_drop_스크린샷_URL" />
+<img width="1920" height="919" alt="drop" src="https://github.com/user-attachments/assets/b8ffb618-844b-42ac-b047-3b47044d9bf9" />
 
 ### Store
 
-<img src="여기에_store_스크린샷_URL" />
+<img width="1920" height="919" alt="store" src="https://github.com/user-attachments/assets/f5b912a4-813f-4482-b335-fa7e04a75b3e" />
 
 ### Cart
 
-<img src="여기에_cart_스크린샷_URL" />
+<img width="1920" height="919" alt="cart" src="https://github.com/user-attachments/assets/a0ff0244-c5f4-4bfd-bd54-d929db0d888e" />
+
+### Login
+
+<img width="1920" height="919" alt="login" src="https://github.com/user-attachments/assets/187e811c-6797-4164-925d-dd64325623b4" />
+
+### Signup
+
+<img width="1920" height="919" alt="signup" src="https://github.com/user-attachments/assets/767fa356-d7e1-412e-83f9-7e64d26ec81a" />
 
 ---
 
