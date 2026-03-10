@@ -36,7 +36,7 @@ https://oloklkl.github.io/mr-pizza/pages/
 
 ### Cart
 
-<img width="1920" height="919" alt="cart" src="https://github.com/user-attachments/assets/4eb2916e-d874-40b5-89c1-5ebd9ba09f47" />
+<img width="1920" height="919" alt="cart" src="https://github.com/user-attachments/assets/061f7a35-e384-4bb8-b9fc-f1b89715c00c" />
 
 ### Login
 
