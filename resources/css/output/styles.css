@@ -3010,6 +3010,7 @@ button {
 /* RIGHT visual */
 .drop-hero__visual {
   position: relative;
+  z-index: 2;
   min-height: clamp(320px, 40vw, 520px);
   perspective: 1200px;
 }
@@ -3049,6 +3050,7 @@ button {
 
 .drop-hero__pizza {
   position: absolute;
+  z-index: 3;
   right: clamp(-12px, -2vw, 0px); /* ✅ 오른쪽으로 더 붙임 */
   top: 50%;
   --pizza-offset-y: 0px;
