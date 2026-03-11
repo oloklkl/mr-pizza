@@ -68,8 +68,8 @@ $glow-strong: rgba(255, 160, 190, 0.45);
     content: "";
     position: absolute;
     inset: 0;
-    background: url("/mr-pizza//resources/images/component/drop/drop-bg.png") center / cover no-repeat;
-    filter: saturate(1.06) contrast(1.02);
+    background: url("/mr-pizza/resources/images/component/drop/drop-bg.png") center / cover no-repeat;
+    filter: brightness(0.92) saturate(1.06) contrast(1.02);
     transform: scale(1.02);
     z-index: 0;
   }
@@ -81,11 +81,7 @@ $glow-strong: rgba(255, 160, 190, 0.45);
     pointer-events: none;
     z-index: 0;
 
-    background:
-    /* ✅ 중앙 광: 조금 더 넓게 + 살짝 더 밝게 */
-      radial-gradient(980px 600px at 55% 34%, rgba(255, 235, 245, 0.26), transparent 64%),
-      /* ✅ 비네팅: 강도 낮춤 */ radial-gradient(1200px 820px at 50% 58%, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.18)),
-      /* ✅ 위/아래 눌림도 약하게 */ linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.05) 38%, rgba(0, 0, 0, 0.12));
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.1) 28%, rgba(0, 0, 0, 0.02) 52%, rgba(0, 0, 0, 0) 68%), radial-gradient(760px 520px at 72% 38%, rgba(255, 235, 245, 0.16), transparent 65%), radial-gradient(1200px 820px at 50% 58%, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.26)), linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.08) 38%, rgba(0, 0, 0, 0.18));
   }
 }
 
@@ -94,7 +90,7 @@ $glow-strong: rgba(255, 160, 190, 0.45);
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: url("/mr-pizza//resources/images/component/drop/noise.png") repeat;
+  background: url("/mr-pizza/resources/images/component/drop/noise.png") repeat;
   opacity: 0.035;
 
   transform: translate3d(var(--noise-x, 0px), var(--noise-y, 0px), 0);
@@ -295,9 +291,8 @@ $glow-strong: rgba(255, 160, 190, 0.45);
     z-index: -1;
     border-radius: 20px;
 
-    background: radial-gradient(circle at 30% 50%, rgba(180, 110, 130, 0.35), rgba(180, 110, 130, 0.15) 40%, rgba(180, 110, 130, 0) 70%);
-
-    filter: blur(40px);
+    background: radial-gradient(circle at 30% 50%, rgba(180, 110, 130, 0.22), rgba(180, 110, 130, 0.08) 42%, rgba(180, 110, 130, 0) 72%);
+    filter: blur(44px);
   }
 }
 
@@ -361,18 +356,6 @@ $glow-strong: rgba(255, 160, 190, 0.45);
     background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 210, 220, 0.9), rgba(255, 255, 255, 0));
 
     box-shadow: 0 0 12px rgba(255, 170, 195, 0.45);
-  }
-}
-
-@include tablet-only {
-  .drop-hero__title {
-    white-space: normal;
-  }
-}
-
-@include mobile {
-  .drop-hero__title {
-    white-space: normal;
   }
 }
 
@@ -713,15 +696,15 @@ $glow-strong: rgba(255, 160, 190, 0.45);
   /* 살짝 유리 느낌 */
   padding: clamp(14px, 2.2vw, 18px) clamp(14px, 3vw, 22px);
   border-radius: 18px;
-  background: rgba(255, 170, 190, 0.085);
-  border: 1px solid rgba(255, 220, 230, 0.24);
+  background: rgba(255, 170, 190, 0.05);
+  border: 1px solid rgba(255, 220, 230, 0.16);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 230, 235, 0.06),
-    0 0 22px rgba(0, 0, 0, 0.26),
-    0 0 60px rgba(255, 170, 190, 0.1);
+    inset 0 0 0 1px rgba(255, 230, 235, 0.03),
+    0 0 14px rgba(0, 0, 0, 0.18),
+    0 0 26px rgba(255, 170, 190, 0.04);
 
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .drop-count__item {
@@ -734,7 +717,7 @@ $glow-strong: rgba(255, 160, 190, 0.45);
   font-size: clamp(2.125rem, 5vw, 3.625rem);
   letter-spacing: 0.06em;
   line-height: 1;
-  text-shadow: 0 0 10px rgba(255, 210, 220, 0.25);
+  text-shadow: 0 0 6px rgba(255, 210, 220, 0.16);
 }
 
 .drop-count__label {
