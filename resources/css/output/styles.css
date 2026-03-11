@@ -3065,7 +3065,7 @@ button {
   width: min(780px, 56vw);
   max-width: none;
   height: auto;
-  filter: drop-shadow(calc(var(--shadow-x)) calc(10px + var(--shadow-y)) 18px rgba(0, 0, 0, 0.24)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
+  filter: brightness(1.06) drop-shadow(calc(var(--shadow-x)) calc(10px + var(--shadow-y)) 18px rgba(0, 0, 0, 0.24)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
   transition: transform 0.35s ease, filter 0.35s ease;
   will-change: transform;
 }
