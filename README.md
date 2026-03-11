@@ -23,9 +23,8 @@ https://oloklkl.github.io/mr-pizza/pages/
 <img width="1920" height="919" alt="menu-modal" src="https://github.com/user-attachments/assets/1c7171fe-df4c-44f9-ab75-02cde5e6817b" />
 
 ### Drop
-<img width="1920" height="919" alt="drop" src="https://github.com/user-attachments/assets/31be4d9f-0198-4d1c-be16-4f884c7ab34b" />
 
-<img width="1920" height="919" alt="drop" src="https://github.com/user-attachments/assets/b8ffb618-844b-42ac-b047-3b47044d9bf9" />
+<img width="1920" height="919" alt="drop" src="https://github.com/user-attachments/assets/31be4d9f-0198-4d1c-be16-4f884c7ab34b" />
 
 ### Store
 
