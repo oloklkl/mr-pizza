@@ -120,12 +120,12 @@
             </div>
 
             <div class="hero__cta">
-              <button class="btn btn-primary">
+              <button class="btn btn-primary hero-order-delivery">
                 <i data-lucide="truck" class="icon"></i>
                 <span>배달 주문</span>
               </button>
 
-              <button class="btn btn-outline">
+              <button class="btn btn-outline hero-order-pickup">
                 <i data-lucide="shopping-bag" class="icon"></i>
                 <span>포장 주문</span>
               </button>
@@ -146,6 +146,94 @@
 
       <footer id="footer" include-html="./layout/footer.html"></footer>
     </div>
+
+    <div id="menu-modal" class="auth--modal" aria-hidden="true">
+      <section class="auth-card auth-card--modal menu-modal" role="dialog" aria-modal="true" aria-labelledby="menu-modal-title">
+        <span class="auth-card__sheen" aria-hidden="true"></span>
+
+        <button class="modal-close" type="button" aria-label="닫기">&times;</button>
+
+        <div class="menu-modal__grid">
+          <!-- LEFT: 이미지/배지 -->
+          <div class="menu-modal__media">
+            <span class="menu-modal__badge" data-badge>BEST</span>
+
+            <div class="pizza-stage">
+              <img class="menu-modal__img" src="" alt="" />
+            </div>
+
+            <div class="set-stage" hidden>
+              <div class="set-card">
+                <img class="set-main" src="" alt="" />
+                <div class="set-options" aria-hidden="true">
+                  <img class="set-opt set-opt--wing" data-set-opt="0" src="" alt="" />
+                  <img class="set-opt set-opt--pasta" data-set-opt="1" src="" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div class="menu-modal__meta">
+              <details class="meta">
+                <summary>원산지 정보</summary>
+                <div class="meta__body" data-origin>-</div>
+              </details>
+
+              <details class="meta">
+                <summary>영양 정보</summary>
+                <div class="meta__body" data-nutrition>-</div>
+              </details>
+
+              <details class="meta">
+                <summary>알레르기 유발재료</summary>
+                <div class="meta__body" data-allergy>-</div>
+              </details>
+            </div>
+          </div>
+
+          <!-- RIGHT: 정보/옵션/CTA -->
+          <div class="menu-modal__panel">
+            <div class="menu-modal__orderType">
+              <button type="button" class="orderType is-active" data-order="delivery" type="button"><i data-lucide="truck" class="icon truck"></i>배달</button>
+              <button type="button" class="orderType" data-order="pickup" type="button"><i data-lucide="shopping-bag" class="icon shopping-bag"></i>포장</button>
+            </div>
+            <h2 id="menu-modal-title" class="menu-modal__title"></h2>
+            <p class="menu-modal__desc">메뉴 설명</p>
+
+            <div class="menu-modal__section">
+              <h3 class="menu-modal__label">사이즈</h3>
+              <div class="menu-modal__seg">
+                <button class="seg is-active" type="button" data-size="M">M <small>(29cm)</small><em class="seg__sub" data-size-price="M"></em></button>
+                <button class="seg" type="button" data-size="L">L <small>(33cm)</small><em class="seg__sub" data-size-price="L"></em></button>
+              </div>
+            </div>
+
+            <div class="menu-modal__section" data-edge-section>
+              <h3 class="menu-modal__label">엣지 선택</h3>
+              <div class="menu-modal__seg" data-edge-wrap></div>
+            </div>
+
+            <div class="menu-modal__section menu-modal__qty">
+              <h3 class="menu-modal__label">수량</h3>
+              <div class="qty">
+                <button class="qty__btn" type="button" data-qty="-1">-</button>
+                <span class="qty__val" data-qty-val>1</span>
+                <button class="qty__btn" type="button" data-qty="1">+</button>
+              </div>
+            </div>
+
+            <div class="menu-modal__footer">
+              <div class="menu-modal__price">
+                <span class="menu-modal__price-label">합계</span>
+                <strong class="menu-modal__price-val">₩ 32,500</strong>
+              </div>
+
+              <button class="auth-btn menu-modal__cta" type="button">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       lucide.createIcons();

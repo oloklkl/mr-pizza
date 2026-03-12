@@ -1,4 +1,5 @@
 import { HERO_ITEMS } from "./menu-data.js";
+import { openModal, setOrderType } from "./menu.js";
 
 (() => {
   const showcaseData = HERO_ITEMS;
@@ -15,9 +16,13 @@ import { HERO_ITEMS } from "./menu-data.js";
   const $curWrap = $hero.querySelector(".hero__imgWrap--current");
   const $nextWrap = $hero.querySelector(".hero__imgWrap--next");
 
-  // movers (이동 변수 담당 ⭐⭐⭐ 중요)
+  if (!$curImg || !$nextImg || !$curWrap || !$nextWrap) return;
+
+  // movers (이동 변수 담당)
   const $curMover = $curWrap.querySelector(".hero__mover");
   const $nextMover = $nextWrap.querySelector(".hero__mover");
+
+  if (!$curMover || !$nextMover) return;
 
   // text
   const $category = $hero.querySelector("[data-hero='category']");
@@ -27,6 +32,9 @@ import { HERO_ITEMS } from "./menu-data.js";
   const $tags = $hero.querySelector("[data-hero='tags']");
   const $pick = $hero.querySelector("[data-hero='pick']");
   const $ctaBtns = Array.from($hero.querySelectorAll(".hero__cta .btn"));
+
+  const $deliveryBtn = $hero.querySelector(".hero__cta .btn-primary");
+  const $pickupBtn = $hero.querySelector(".hero__cta .btn-outline");
 
   // progress
   const $progressFill = $hero.querySelector(".hero__progress-fill");
@@ -76,7 +84,7 @@ import { HERO_ITEMS } from "./menu-data.js";
   }
 
   function animateProgress(index) {
-    if (!$progressFill) return;
+    if (!$progressFill || !$current || !$total) return;
 
     const total = showcaseData.length;
     $current.textContent = String(index + 1).padStart(2, "0");
@@ -106,9 +114,22 @@ import { HERO_ITEMS } from "./menu-data.js";
     });
   }
 
-  // ⭐ 첫 로딩: 오른쪽 밖 → 슝
+  function getCurrentHeroItem() {
+    return showcaseData[currentIndex] ?? null;
+  }
+
+  function openHeroModal(type) {
+    const item = getCurrentHeroItem();
+    if (!item) return;
+
+    setOrderType(type);
+    openModal(item);
+  }
+
+  // 첫 로딩
   function intro() {
     const first = showcaseData[0];
+    if (!first) return;
 
     updateText(first);
     animateProgress(0);
@@ -130,7 +151,6 @@ import { HERO_ITEMS } from "./menu-data.js";
     tl.to($curWrap, { rotateY: 0, scale: 1, duration: 0.85, ease: "power3.out" }, 0);
     tl.add(() => textIn(), 0.2);
 
-    // floating
     gsap.to($curMover, {
       "--fy": "10px",
       duration: 2.6,
@@ -141,12 +161,16 @@ import { HERO_ITEMS } from "./menu-data.js";
     });
   }
 
-  // ⭐ 전환: 왼쪽으로 빠짐 + 오른쪽에서 등장
+  // 전환
   function transitionTo(nextIndex) {
     if (isAnimating) return;
     isAnimating = true;
 
     const nextItem = showcaseData[nextIndex];
+    if (!nextItem) {
+      isAnimating = false;
+      return;
+    }
 
     $nextImg.src = getHeroSrc(nextItem);
     $nextImg.style.visibility = "visible";
@@ -171,7 +195,6 @@ import { HERO_ITEMS } from "./menu-data.js";
         gsap.set($nextWrap, { opacity: 0 });
         $nextImg.style.visibility = "hidden";
 
-        // floating 재시작
         gsap.to($curMover, {
           "--fy": "10px",
           duration: 2.6,
@@ -204,7 +227,23 @@ import { HERO_ITEMS } from "./menu-data.js";
   }
 
   function stopAuto() {
-    if (timer) clearInterval(timer);
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function bindEvents() {
+    $deliveryBtn?.addEventListener("click", () => {
+      openHeroModal("delivery");
+    });
+
+    $pickupBtn?.addEventListener("click", () => {
+      openHeroModal("pickup");
+    });
+
+    $hero.addEventListener("mouseenter", stopAuto);
+    $hero.addEventListener("mouseleave", startAuto);
   }
 
   function init() {
@@ -214,6 +253,7 @@ import { HERO_ITEMS } from "./menu-data.js";
     $nextImg.style.visibility = "hidden";
 
     intro();
+    bindEvents();
     startAuto();
   }
 

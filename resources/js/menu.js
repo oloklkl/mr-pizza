@@ -452,6 +452,7 @@ function renderMediaStages() {
   const setOpt1 = modal.querySelector('.set-stage [data-set-opt="1"]');
 
   const isSet = isSetLine(currentItem.line);
+  const previewImg = currentItem.heroImg || currentItem.img || "";
 
   if (pizzaStage) pizzaStage.hidden = isSet;
   if (setStage) setStage.hidden = !isSet;
@@ -466,7 +467,7 @@ function renderMediaStages() {
     if (setOpt1) setOpt1.src = opts[1] ?? "";
   } else {
     if (imgEl) {
-      imgEl.src = currentItem.img ?? "";
+      imgEl.src = previewImg;
       imgEl.alt = currentItem.title ?? "";
     }
   }
