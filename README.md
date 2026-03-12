@@ -16,7 +16,7 @@ https://oloklkl.github.io/mr-pizza/pages/
 
 ### Menu
 
-<img width="1920" height="919" alt="menu" src="https://github.com/user-attachments/assets/e23a7e79-604a-4293-a978-0383d0f7b326" />
+<img width="1920" height="919" alt="menu" src="https://github.com/user-attachments/assets/29f2a19b-e57d-46c1-b6e4-0a0d47ac7589" />
 
 ### Menu-modal
 
