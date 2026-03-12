@@ -2556,6 +2556,18 @@ button {
   color: #ffcc00;
 }
 
+/* =========================
+   PC - ALL 탭 3열 피자 크기 보정
+========================= */
+@media (min-width: 901px) {
+  .menu-showcase__inner:not(.is-pizza-compact) .menu-block[data-group=pizza] .menu-item__media {
+    min-height: 300px;
+    padding: 1.6rem 1rem 1rem;
+  }
+  .menu-showcase__inner:not(.is-pizza-compact) .menu-block[data-group=pizza] .menu-item__img {
+    max-height: 255px;
+  }
+}
 @keyframes dropSparkle {
   0% {
     opacity: 0.55;
