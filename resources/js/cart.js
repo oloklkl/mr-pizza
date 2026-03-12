@@ -9,7 +9,7 @@ const AUTH_STORAGE_KEY = "mrpizza-auth";
 const REMOVE_ANIMATION_MS = 220;
 
 /* =========================================================
-   0. auth guard
+   0. auth
 ========================================================= */
 function getLoggedInUser() {
   try {
@@ -20,16 +20,6 @@ function getLoggedInUser() {
     return null;
   }
 }
-
-function requireLogin() {
-  const user = getLoggedInUser();
-  if (user) return;
-
-  const redirectUrl = `${window.location.pathname}${window.location.search}`;
-  window.location.href = `/mr-pizza/pages/auth/login.html?redirect=${encodeURIComponent(redirectUrl)}`;
-}
-
-requireLogin();
 
 /* =========================================================
    1. DOM
