@@ -35,7 +35,7 @@ const imgEl = modal?.querySelector(".menu-modal__img");
 const priceEl = modal?.querySelector(".menu-modal__price-val");
 
 const sizeBtns = [...(modal?.querySelectorAll("[data-size]") ?? [])];
-const qtyBtns = modal?.querySelectorAll("[data-qty]") ?? [];
+const qtyBtns = [...(modal?.querySelectorAll("[data-qty]") ?? [])];
 const qtyVal = modal?.querySelector("[data-qty-val]");
 
 const originEl = modal?.querySelector("[data-origin]");
@@ -46,14 +46,14 @@ const edgeWrap = modal?.querySelector("[data-edge-wrap]");
 const edgeSection = modal?.querySelector("[data-edge-section]");
 const badgeEl = modal?.querySelector("[data-badge]");
 
-const orderBtns = modal?.querySelectorAll("[data-order]") ?? [];
+const orderBtns = [...(modal?.querySelectorAll("[data-order]") ?? [])];
 
-const tabBtns = document.querySelectorAll(".menu-tabs__btn");
+const tabBtns = [...document.querySelectorAll(".menu-tabs__btn")];
 const showcaseInner = document.querySelector(".menu-showcase__inner");
 const ALL_ORIGINAL_HTML = showcaseInner?.innerHTML ?? "";
 
 /* ✅ 사이즈 섹션 묶음 찾기 */
-const sizeSection = modal?.querySelector("[data-size-section]") || sizeBtns[0]?.closest(".menu-modal__section") || sizeBtns[0]?.closest(".menu-modal__group") || sizeBtns[0]?.parentElement?.closest(".menu-modal__section") || sizeBtns[0]?.parentElement;
+const sizeSection = modal?.querySelector("[data-size-section]") || sizeBtns[0]?.closest(".menu-modal__section") || sizeBtns[0]?.closest(".menu-modal__group") || sizeBtns[0]?.parentElement?.closest(".menu-modal__section") || sizeBtns[0]?.parentElement || null;
 
 /* =========================================================
    3. 상태
@@ -127,6 +127,7 @@ function getBadgeLabel(item) {
 
 function renderBadge(el, item) {
   if (!el) return;
+
   const label = getBadgeLabel(item);
   if (!label) {
     el.style.display = "none";
@@ -134,6 +135,7 @@ function renderBadge(el, item) {
     el.removeAttribute("data-badge-kind");
     return;
   }
+
   el.style.display = "";
   el.textContent = label;
   el.dataset.badgeKind = label.toLowerCase();
@@ -141,11 +143,6 @@ function renderBadge(el, item) {
 
 /* =========================================================
    6. 가격/사이즈 파싱
-   - M/L
-   - S
-   - 500ml / 1.25L
-   - 4조각 / 8조각
-   - 단일 가격
 ========================================================= */
 function labelToSizeKey(label) {
   const raw = String(label ?? "").trim();
@@ -221,10 +218,6 @@ function getPriceBySize(item, sizeKey) {
   return item?.basePrice?.[sizeKey] ?? 0;
 }
 
-/* ✅ 카드 리스트용 가격 표시
-   - 옵션 2개 이상: 최소가~
-   - 옵션 1개: 가격만
-========================================================= */
 function formatCardPrice(item) {
   const raw = String(item?.price ?? "").trim();
   if (!raw) return "";
@@ -296,9 +289,7 @@ function setSizeButtonContent(btn, opt) {
 function shouldShowSizeSection(item) {
   const options = item?.sizeOptions ?? [];
   if (options.length <= 1) return false;
-
   if (isSoloLine(item?.line)) return false;
-
   return true;
 }
 
@@ -339,22 +330,18 @@ function getEdgePrice(edgeId) {
   const byEdge = EDGE_PRICE_MAP?.[edgeId];
   const byLine = EDGE_PRICE_MAP?.[currentItem.line]?.[edgeId];
 
-  // 1) edgeId 바로 아래에 사이즈별 객체가 있는 경우
   if (byEdge && typeof byEdge === "object" && byEdge[size] != null) {
     return Number(byEdge[size]) || 0;
   }
 
-  // 2) line > edgeId 아래에 사이즈별 객체가 있는 경우
   if (byLine && typeof byLine === "object" && byLine[size] != null) {
     return Number(byLine[size]) || 0;
   }
 
-  // 3) line > edgeId 값이 숫자 하나인 경우
   if (typeof byLine === "number") {
     return byLine;
   }
 
-  // 4) edgeId 값이 숫자 하나인 경우
   if (typeof byEdge === "number") {
     return byEdge;
   }
@@ -444,6 +431,8 @@ function toggleEdgeSection(item) {
 }
 
 function renderMediaStages() {
+  if (!modal || !currentItem) return;
+
   const pizzaStage = modal.querySelector(".pizza-stage");
   const setStage = modal.querySelector(".set-stage");
 
@@ -462,6 +451,7 @@ function renderMediaStages() {
       setMain.src = currentItem.img ?? "";
       setMain.alt = currentItem.title ?? "";
     }
+
     const opts = currentItem.setOptions ?? [];
     if (setOpt0) setOpt0.src = opts[0] ?? "";
     if (setOpt1) setOpt1.src = opts[1] ?? "";
@@ -474,10 +464,10 @@ function renderMediaStages() {
 }
 
 function renderContent() {
-  if (!currentItem) return;
+  if (!currentItem || !modal) return;
 
-  titleEl.textContent = currentItem.title ?? "";
-  descEl.textContent = currentItem.desc ?? "";
+  if (titleEl) titleEl.textContent = currentItem.title ?? "";
+  if (descEl) descEl.textContent = currentItem.desc ?? "";
 
   if (originEl) originEl.textContent = currentItem.originInfo ?? "-";
   if (allergyEl) allergyEl.textContent = currentItem.allergyInfo ?? "-";
@@ -497,12 +487,14 @@ function renderContent() {
 /* =========================================================
    9. 모달
 ========================================================= */
-function openModal(item) {
+export function openModal(item) {
+  if (!modal || !item) return;
+
   currentItem = normalizeItem(item);
   lastActiveEl = document.activeElement;
 
   qty = 1;
-  if (qtyVal) qtyVal.textContent = 1;
+  if (qtyVal) qtyVal.textContent = "1";
 
   size = pickDefaultSize(currentItem);
   selectedEdge = currentItem.defaultEdge ?? currentItem.allowedEdges?.[0] ?? null;
@@ -515,7 +507,9 @@ function openModal(item) {
   closeBtn?.focus();
 }
 
-function closeModal() {
+export function closeModal() {
+  if (!modal) return;
+
   modal.classList.remove("active");
   modal.setAttribute("aria-hidden", "true");
   lastActiveEl?.focus();
@@ -553,6 +547,7 @@ function renderCardBadge(articleEl, item) {
 function clearCardBadge(articleEl) {
   const badge = articleEl.querySelector(".menu-item__badge[data-badge]");
   if (!badge) return;
+
   badge.style.display = "none";
   badge.textContent = "";
   badge.removeAttribute("data-badge-kind");
@@ -606,7 +601,7 @@ function setCardUI(articleEl, item) {
     const img = articleEl.querySelector(".menu-item__img");
     if (img) {
       img.src = item.img ?? "";
-      img.alt = "";
+      img.alt = title;
     }
   }
 }
@@ -662,6 +657,8 @@ function getSavedTab() {
 }
 
 function renderTab(filter) {
+  if (!showcaseInner) return;
+
   showcaseInner.classList.toggle("is-pizza-compact", filter === "pizza");
 
   if (filter === "all") {
@@ -703,7 +700,6 @@ function renderTab(filter) {
       article.dataset.line = item.line ?? "";
 
       const badge = filter === "all" ? null : getBadgeLabel(item);
-
       const badgeHTML = badge ? `<span class="menu-item__badge" data-badge data-badge-kind="${badge.toLowerCase()}">${badge}</span>` : "";
 
       if (filter === "set") {
@@ -766,79 +762,30 @@ function activateTab(filter) {
   saveActiveTab(filter);
 }
 
-tabBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    activateTab(btn.dataset.filter);
-  });
-});
-
 /* =========================================================
    12. 카드 클릭
 ========================================================= */
-showcaseInner.addEventListener("click", (e) => {
-  const article = e.target.closest(".menu-item");
-  if (!article) return;
+function bindCardClick() {
+  if (!showcaseInner) return;
 
-  e.preventDefault();
+  showcaseInner.addEventListener("click", (e) => {
+    const article = e.target.closest(".menu-item");
+    if (!article) return;
 
-  const id = Number(article.dataset.id);
-  const item = MENU_ITEMS.find((i) => i.id === id);
-  if (item) openModal(item);
-});
+    e.preventDefault();
+
+    const id = Number(article.dataset.id);
+    const item = MENU_ITEMS.find((i) => i.id === id);
+    if (item) openModal(item);
+  });
+}
 
 /* =========================================================
-   13. 기타 이벤트
+   13. 주문 타입
 ========================================================= */
-closeBtn?.addEventListener("click", closeModal);
-
-modal?.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
-
-card?.addEventListener("click", (e) => e.stopPropagation());
-
-sizeBtns.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    if (btn.hidden || btn.disabled) return;
-    size = btn.dataset.size;
-    setActive(
-      sizeBtns.filter((b) => !b.hidden),
-      btn,
-    );
-    updateNutrition();
-    updatePrice();
-  }),
-);
-
-orderBtns.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    orderType = btn.dataset.order;
-    setActive(orderBtns, btn);
-  }),
-);
-
-edgeWrap?.addEventListener("click", (e) => {
-  if (!currentItem || !PIZZA_LINES.has(String(currentItem.line))) return;
-
-  const btn = e.target.closest("[data-edge]");
-  if (!btn) return;
-
-  selectedEdge = btn.dataset.edge;
-  renderEdges();
-  updatePrice();
-});
-
-qtyBtns.forEach((btn) =>
-  btn.addEventListener("click", () => {
-    qty = Math.max(1, qty + Number(btn.dataset.qty));
-    if (qtyVal) qtyVal.textContent = qty;
-    updatePrice();
-  }),
-);
-
-function setOrderType(next) {
+export function setOrderType(next) {
   orderType = next;
-  const activeBtn = [...orderBtns].find((b) => b.dataset.order === orderType);
+  const activeBtn = orderBtns.find((b) => b.dataset.order === orderType);
   if (activeBtn) setActive(orderBtns, activeBtn);
 }
 
@@ -851,10 +798,10 @@ function normalizeItem(raw) {
     sizeOptions,
   };
 }
-/* =========================================================
-   장바구니 저장
-========================================================= */
 
+/* =========================================================
+   14. 장바구니 저장
+========================================================= */
 const CART_STORAGE_KEY = "mrpizza-cart";
 
 function getCart() {
@@ -883,28 +830,6 @@ function addToCart(payload) {
   saveCart(cart);
 }
 
-const addToCartBtn = modal?.querySelector(".menu-modal__cta");
-
-addToCartBtn?.addEventListener("click", () => {
-  if (!currentItem) return;
-
-  const payload = {
-    id: currentItem.id,
-    size,
-    qty,
-  };
-
-  if (PIZZA_LINES.has(String(currentItem.line))) {
-    payload.edge = selectedEdge ?? currentItem.defaultEdge ?? null;
-  }
-
-  addToCart(payload);
-  closeModal();
-  showCartToast();
-
-  console.log("장바구니 저장:", payload);
-});
-
 function showCartToast() {
   let toast = document.querySelector(".cart-toast");
 
@@ -929,8 +854,100 @@ function showCartToast() {
 }
 
 /* =========================================================
-   초기 실행
+   15. 이벤트 바인딩
 ========================================================= */
-const initialTab = getSavedTab() || document.querySelector(".menu-tabs__btn.is-active")?.dataset.filter || "all";
+function bindModalEvents() {
+  closeBtn?.addEventListener("click", closeModal);
 
-activateTab(initialTab);
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  card?.addEventListener("click", (e) => e.stopPropagation());
+
+  sizeBtns.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      if (btn.hidden || btn.disabled) return;
+
+      size = btn.dataset.size;
+      setActive(
+        sizeBtns.filter((b) => !b.hidden),
+        btn,
+      );
+      updateNutrition();
+      updatePrice();
+    }),
+  );
+
+  orderBtns.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      orderType = btn.dataset.order;
+      setActive(orderBtns, btn);
+    }),
+  );
+
+  edgeWrap?.addEventListener("click", (e) => {
+    if (!currentItem || !PIZZA_LINES.has(String(currentItem.line))) return;
+
+    const btn = e.target.closest("[data-edge]");
+    if (!btn) return;
+
+    selectedEdge = btn.dataset.edge;
+    renderEdges();
+    updatePrice();
+  });
+
+  qtyBtns.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      qty = Math.max(1, qty + Number(btn.dataset.qty));
+      if (qtyVal) qtyVal.textContent = String(qty);
+      updatePrice();
+    }),
+  );
+
+  const addToCartBtn = modal?.querySelector(".menu-modal__cta");
+  addToCartBtn?.addEventListener("click", () => {
+    if (!currentItem) return;
+
+    const payload = {
+      id: currentItem.id,
+      size,
+      qty,
+    };
+
+    if (PIZZA_LINES.has(String(currentItem.line))) {
+      payload.edge = selectedEdge ?? currentItem.defaultEdge ?? null;
+    }
+
+    addToCart(payload);
+    closeModal();
+    showCartToast();
+  });
+}
+
+function bindTabEvents() {
+  if (!tabBtns.length) return;
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activateTab(btn.dataset.filter);
+    });
+  });
+}
+
+/* =========================================================
+   16. 초기 실행
+========================================================= */
+function initMenuPage() {
+  bindTabEvents();
+  bindCardClick();
+  bindModalEvents();
+
+  if (showcaseInner) {
+    const initialTab = getSavedTab() || document.querySelector(".menu-tabs__btn.is-active")?.dataset.filter || "all";
+
+    activateTab(initialTab);
+  }
+}
+
+initMenuPage();
