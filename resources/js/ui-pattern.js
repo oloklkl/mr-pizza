@@ -2,12 +2,6 @@
 const get = (target) => document.querySelector(target);
 const getAll = (target) => document.querySelectorAll(target);
 
-/* ========= 기본 a 태그 클릭 이벤트 방지 ========= */
-const preventDefaultAnchor = () => {
-  const $links = getAll('a[href="#"]');
-  $links.forEach((link) => link.addEventListener("click", (e) => e.preventDefault()));
-};
-
 /* ========= GNB 메뉴 기능 (PC용 드롭다운/서브메뉴 있을 때) ========= */
 const navBar = () => {
   const $gnblis = getAll("#header .nav .gnb > li");
@@ -214,16 +208,7 @@ function includeHTML() {
   if (window.lucide) lucide.createIcons();
 
   initMobileMenu();
-  preventDefaultAnchor();
   navBar();
   skipNav();
   updateHeaderAuth();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  preventDefaultAnchor();
-  navBar();
-  skipNav();
-  initMobileMenu();
-  updateHeaderAuth();
-});
